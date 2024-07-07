@@ -3,12 +3,14 @@ import struct
 import asyncio
 import logging
 import random
+from src.BrotatoAiServeur.utils.json_to_gate_state_converter import json_to_game_state
 
 logger = logging.getLogger(__name__)
 
 class Server:
+
     def __init__(self):
-        self.last_game_state = {}
+        self.last_game_state = None
 
     async def start_server(self):
         server = await asyncio.start_server(self.handle_request, 'localhost', 4242)
@@ -29,26 +31,23 @@ class Server:
                 data_size_bytes = await reader.readexactly(8)
                 data_size = struct.unpack('Q', data_size_bytes)[0]
 
-                logger.debug(f"Message size {data_size!r}")
+                # logger.debug(f"Message size {data_size!r}")
 
                 # Read the message based on the size
                 message = await reader.readexactly(data_size)
                 message_str = message.decode()
 
-                logger.debug(f"Message {message_str!r}")
+                # logger.debug(f"Message {message_str!r}")
 
                 # Randomly choose an action (replace with your logic)
                 choice = random.choice(['up', 'down', 'left', 'right'])
                 writer.write(choice.encode())
 
                 try:
-                    state = json.loads(message_str)
-                    self.last_game_state = state
+                    state_dic = json.loads(message_str)
+                    logger.debug("State: %s", json.dumps(state_dic, indent=4))
 
-                    # Determine action based on state (you need to implement this)
-                    # action = self.determine_action(state['player_position'], state['monster_positions'])
-
-                    logger.debug("State: %s", json.dumps(state, indent=4))
+                    self.last_game_state = json_to_game_state(state_dic)
 
                 except json.JSONDecodeError:
                     logger.error("Error parsing JSON")
