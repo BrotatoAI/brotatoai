@@ -1,0 +1,121 @@
+{
+  "name": "BrotatoAI",
+  "namespace": "BaRRaK",
+  "version_number": "1.0.0",
+  "description": "BrotatoAI is a mod that adds a new AI as player to the game.",
+  "website_url": "https://github.com/example/repo",
+  "dependencies": [],
+  "extra": {
+    "godot": {
+      "authors": ["BaRRaK"],
+      "tags": ["ai", "bot"],
+      "description_rich": "",
+      "optional_dependencies": [],
+      "load_before": [],
+      "incompatibilities": [
+      ],
+      "compatible_mod_loader_version": ["6.2.0"],
+      "compatible_game_version": ["1.2.3"],
+      "config_schema": {
+        "title": "BrotatoAI Settings",
+        "description": "Config for BrotatoAI",
+        "type" : "object",
+        "properties" : {
+          "ENABLE_AUTOBATTLER" : {
+            "type": "boolean",
+            "default": false,
+            "tooltip": "ENABLE_AUTOBATTLER_TOOLTIP"
+          },
+          "ENABLE_AI_VISUALS" : {
+            "type": "boolean",
+            "default": false,
+            "tooltip": "ENABLE_AI_VISUALS_TOOLTIP"
+          },
+          "ENABLE_FPS_METER" : {
+            "type": "boolean",
+            "default": false,
+            "tooltip": "ENABLE_FPS_METER_TOOLTIP"
+          },
+          "ENABLE_SERVER_STATUS" : {
+            "type": "boolean",
+            "default": false,
+            "tooltip": "ENABLE_SERVER_STATUS_TOOLTIP"
+          },
+          "ENABLE_AI_MARKER" : {
+            "type": "boolean",
+            "default": true,
+            "tooltip": "ENABLE_AI_MARKER_TOOLTIP"
+          },
+          "ENABLE_SMOOTHING" : {
+            "type": "boolean",
+            "default": true,
+            "tooltip": "ENABLE_SMOOTHING_TOOLTIP"
+          },
+          "SMOOTHING_SPEED" : {
+            "type": "number",
+            "minimum" : 0,
+            "maximum" : 10.0,
+            "default" : 1.0,
+            "tooltip": "SMOOTHING_SPEED_TOOLTIP"
+          },
+          "ITEM_WEIGHT" : {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 10.0,
+            "default": 0.5,
+            "tooltip": "ITEM_WEIGHT_TOOLTIP",
+            "format": "%.2f X"
+          },
+          "PROJECTILE_WEIGHT": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 10.0,
+            "default": 2.0,
+            "tooltip": "PROJECTILE_WEIGHT_TOOLTIP",
+            "format": "%.2f X"
+          },
+          "TREE_WEIGHT": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 10.0,
+            "default": 2.0,
+            "tooltip": "TREE_WEIGHT_TOOLTIP",
+            "format": "%.2f X"
+          },
+          "BOSS_WEIGHT": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 10.0,
+            "default": 3.0,
+            "tooltip": "BOSS_WEIGHT_TOOLTIP",
+            "format": "%.2f X"
+          },
+          "BUMPER_WEIGHT": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 10.0,
+            "default": 2.0,
+            "tooltip": "BUMPER_WEIGHT_TOOLTIP",
+            "format": "%.2f X"
+          },
+          "EGG_WEIGHT": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 10.0,
+            "default": 5.0,
+            "tooltip": "EGG_WEIGHT_TOOLTIP",
+            "format": "%.2f X"
+          },
+          "BUMPER_DISTANCE": {
+            "type": "number",
+            "minimum": 1.0,
+            "maximum": 1000.0,
+            "default": 300.0,
+            "tooltip": "BUMPER_DISTANCE_TOOLTIP",
+            "format": "%1.0f"
+          }
+        }
+      }
+    }
+  }
+}
