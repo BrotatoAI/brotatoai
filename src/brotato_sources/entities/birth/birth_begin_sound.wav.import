@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/birth_begin_sound.wav-27fe6d550020e1ac4761ec13db1e4dad.sample"
+
+[deps]
+
+source_file="res://entities/birth/birth_begin_sound.wav"
+dest_files=[ "res://.import/birth_begin_sound.wav-27fe6d550020e1ac4761ec13db1e4dad.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/menus/pages/menu_credits.gd" type="Script" id=2]
+[ext_resource path="res://resources/fonts/actual/base/font_small_title.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/blobfish_games_logo.png" type="Texture" id=4]
+
+[node name="MenuCredits" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
+theme = ExtResource( 1 )
+alignment = 1
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 660.0
+margin_top = 70.0
+margin_right = 1260.0
+margin_bottom = 1009.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 31.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
+text = "a game by"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+margin_left = 172.0
+margin_top = 35.0
+margin_right = 428.0
+margin_bottom = 291.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 4 )
+stretch_mode = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 295.0
+margin_right = 600.0
+margin_bottom = 870.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
+text = "Thomas Gervraud
+Tobias Mansfield-Williams
+Marco Conrad
+Maxime Gervraud
+
+made with the Godot Engine
+
+music licensed through Artlist:
+
+-Power Punch by 2050
+-Extreme Chaos by 2050
+-Time Jumper by 2050
+-After Midnight by Luke Melville
+-Density Wave by Aviad Zinemanas
+-Wasteland Survivors by Evgeny Bardyuzha
+
+"
+align = 1
+
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 874.0
+margin_right = 600.0
+margin_bottom = 939.0
+rect_min_size = Vector2( 600, 0 )
+size_flags_horizontal = 4
+custom_constants/separation = 25
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="VBoxContainer/Buttons"]
+margin_right = 600.0
+margin_bottom = 65.0
+text = "MENU_BACK"
+
+[connection signal="pressed" from="VBoxContainer/Buttons/BackButton" to="." method="_on_BackButton_pressed"]

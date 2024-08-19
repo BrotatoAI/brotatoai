@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/hud/ui_item_list.gd" type="Script" id=1]
+[ext_resource path="res://ui/hud/ui_item_element.tscn" type="PackedScene" id=2]
+
+[node name="UIItemList" type="HBoxContainer"]
+alignment = 2
+script = ExtResource( 1 )
+element_scene = ExtResource( 2 )

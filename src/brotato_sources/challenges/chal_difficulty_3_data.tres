@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://challenges/global/challenge_data.gd" type="Script" id=1]
+[ext_resource path="res://items/characters/masochist/masochist_data.tres" type="Resource" id=2]
+[ext_resource path="res://ui/menus/run/difficulty_selection/difficulty_icons/3.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "chal_difficulty_3"
+unlocked_by_default = false
+icon = ExtResource( 3 )
+name = "DIFFICULTY_NB"
+tier = 0
+value = 3
+effects = [  ]
+tracking_text = ""
+description = "CHAL_DIFFICULTY_DESC"
+reward_type = 6
+reward = ExtResource( 2 )
+number = 3
+stat = ""
+additional_args = [  ]

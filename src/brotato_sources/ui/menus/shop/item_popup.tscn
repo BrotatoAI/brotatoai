@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://ui/menus/ingame/item_panel_ui.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/menus/shop/item_popup.gd" type="Script" id=2]
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=3]
+[ext_resource path="res://ui/menus/global/my_menu_button.gd" type="Script" id=4]
+[ext_resource path="res://resources/themes/panel_button_theme.tres" type="Theme" id=5]
+[ext_resource path="res://resources/fonts/actual/base/font_small_button.tres" type="DynamicFont" id=6]
+[ext_resource path="res://ui/menus/shop/synergy_container.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/menus/shop/info_container.tscn" type="PackedScene" id=8]
+
+[node name="ItemPopup" type="Control"]
+theme = ExtResource( 3 )
+script = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ItemPanelUI" parent="HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 0.0
+margin_right = 359.0
+margin_bottom = 387.0
+
+[node name="MarginContainer" parent="HBoxContainer/ItemPanelUI" index="0"]
+margin_bottom = 382.0
+
+[node name="VBoxContainer" parent="HBoxContainer/ItemPanelUI/MarginContainer" index="0"]
+margin_bottom = 363.0
+custom_constants/separation = 10
+
+[node name="EmptySpace" type="Control" parent="HBoxContainer/ItemPanelUI/MarginContainer/VBoxContainer" index="1"]
+margin_top = 106.0
+margin_right = 321.0
+margin_bottom = 267.0
+size_flags_vertical = 3
+
+[node name="CombineButton" type="Button" parent="HBoxContainer/ItemPanelUI/MarginContainer/VBoxContainer" index="2"]
+visible = false
+margin_top = 300.0
+margin_right = 361.0
+margin_bottom = 328.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../DiscardButton")
+focus_mode = 0
+theme = ExtResource( 5 )
+custom_fonts/font = ExtResource( 6 )
+text = "MENU_COMBINE"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscardButton" type="Button" parent="HBoxContainer/ItemPanelUI/MarginContainer/VBoxContainer" index="3"]
+margin_top = 277.0
+margin_right = 321.0
+margin_bottom = 308.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../CombineButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../CancelButton")
+focus_mode = 0
+theme = ExtResource( 5 )
+custom_fonts/font = ExtResource( 6 )
+text = "MENU_RECYCLE"
+expand_icon = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelButton" type="Button" parent="HBoxContainer/ItemPanelUI/MarginContainer/VBoxContainer" index="4"]
+margin_top = 318.0
+margin_right = 321.0
+margin_bottom = 349.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../DiscardButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_mode = 0
+theme = ExtResource( 5 )
+custom_fonts/font = ExtResource( 6 )
+text = "MENU_CANCEL"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SynergyContainer" parent="HBoxContainer" instance=ExtResource( 7 )]
+margin_left = 363.0
+margin_right = 663.0
+margin_bottom = 387.0
+
+[node name="LastWaveInfoContainer" parent="HBoxContainer/SynergyContainer" instance=ExtResource( 8 )]
+
+[connection signal="pressed" from="HBoxContainer/ItemPanelUI/MarginContainer/VBoxContainer/CombineButton" to="." method="_on_CombineButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ItemPanelUI/MarginContainer/VBoxContainer/DiscardButton" to="." method="_on_DiscardButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ItemPanelUI/MarginContainer/VBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
+
+[editable path="HBoxContainer/ItemPanelUI"]

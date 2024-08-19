@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://entities/units/enemies/enemy_data.gd" type="Script" id=1]
+[ext_resource path="res://entities/units/enemies/034/34.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "elite_demon"
+scene = ExtResource( 2 )

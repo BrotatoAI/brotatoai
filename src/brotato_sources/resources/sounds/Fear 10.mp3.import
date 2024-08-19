@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Fear 10.mp3-2e9e9b0b78297446655233e84c39170b.mp3str"
+
+[deps]
+
+source_file="res://resources/sounds/Fear 10.mp3"
+dest_files=[ "res://.import/Fear 10.mp3-2e9e9b0b78297446655233e84c39170b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/hud/ui_bonus_gold.gd" type="Script" id=1]
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=3]
+[ext_resource path="res://resources/fonts/raw/Anybody-Medium.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://items/materials/material_bag.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = 10
+font_data = ExtResource( 4 )
+
+[node name="UIBonusGold" type="HBoxContainer"]
+margin_right = 95.0
+margin_bottom = 64.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="."]
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 5 )
+
+[node name="GoldLabel" type="Label" parent="."]
+margin_left = 68.0
+margin_top = 1.0
+margin_right = 95.0
+margin_bottom = 63.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 32, 32 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

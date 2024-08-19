@@ -1,0 +1,13 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://singletons/music_manager.gd" type="Script" id=1]
+[ext_resource path="res://resources/music/after-midnight by luke-melville Artlist.mp3" type="AudioStream" id=2]
+[ext_resource path="res://resources/music/density-wave by _aviad-zinemanas__ Artlist.mp3" type="AudioStream" id=3]
+[ext_resource path="res://resources/music/time-jumper by 2050 Artlist.mp3" type="AudioStream" id=4]
+[ext_resource path="res://resources/music/wasteland-survivors by evgeny-bardyuzha Artlist.mp3" type="AudioStream" id=6]
+[ext_resource path="res://resources/music/extreme-chaos by 2050 Artlist.mp3" type="AudioStream" id=7]
+[ext_resource path="res://resources/music/power-punch by 2050 Artlist.mp3" type="AudioStream" id=9]
+
+[node name="MusicManager" type="Node"]
+script = ExtResource( 1 )
+music_tracks = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 6 ) ]

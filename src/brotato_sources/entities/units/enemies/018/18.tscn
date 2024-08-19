@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://entities/units/enemies/attack_behaviors/enemy_charge_prep_animation.tres" type="Animation" id=2]
+[ext_resource path="res://entities/units/enemies/attack_behaviors/charging_attack_behavior.gd" type="Script" id=3]
+[ext_resource path="res://entities/units/enemies/018/18_stats.tres" type="Resource" id=4]
+[ext_resource path="res://entities/units/enemies/enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/units/enemies/018/18.png" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 16.2788
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 40.0125
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 27.0
+
+[node name="Enemy" instance=ExtResource( 5 )]
+stats = ExtResource( 4 )
+
+[node name="Sprite" parent="Animation" index="0"]
+position = Vector2( 0, -25 )
+texture = ExtResource( 6 )
+
+[node name="Collision" parent="." index="1"]
+position = Vector2( 0, -1 )
+shape = SubResource( 2 )
+
+[node name="Collision" parent="Hurtbox" index="0"]
+shape = SubResource( 4 )
+
+[node name="Collision" parent="Hitbox" index="0"]
+position = Vector2( -1, -10 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/shoot = ExtResource( 2 )
+
+[node name="AttackBehavior" parent="." index="7"]
+script = ExtResource( 3 )
+cooldown = 60.0
+max_cd_randomization = 10
+min_range = 0
+max_range = 500
+attack_anim_speed = 1.0
+charge_duration = 0.75
+charge_speed = 700.0
+target = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

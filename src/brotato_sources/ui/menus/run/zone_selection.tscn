@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/menus/shop/shop_background.png" type="Texture" id=1]
+[ext_resource path="res://ui/menus/run/zone_selection.gd" type="Script" id=2]
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=4]
+[ext_resource path="res://resources/fonts/actual/base/font_big_title.tres" type="DynamicFont" id=5]
+
+[node name="ZoneSelection" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 25
+custom_constants/margin_top = 100
+custom_constants/margin_left = 25
+custom_constants/margin_bottom = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 25.0
+margin_top = 100.0
+margin_right = 1895.0
+margin_bottom = 1055.0
+custom_constants/separation = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 1870.0
+margin_bottom = 73.0
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 687.0
+margin_right = 1182.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 5 )
+text = "ZONE_SELECTION"
+
+[node name="ZoneContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+margin_left = 935.0
+margin_top = 123.0
+margin_right = 935.0
+margin_bottom = 123.0
+size_flags_horizontal = 4
+custom_constants/vseparation = 25
+custom_constants/hseparation = 25
+columns = 3

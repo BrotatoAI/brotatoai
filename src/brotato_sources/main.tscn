@@ -1,0 +1,535 @@
+[gd_scene load_steps=106 format=2]
+
+[ext_resource path="res://global/entity_spawner.gd" type="Script" id=1]
+[ext_resource path="res://ui/hud/ui_dim_screen.gd" type="Script" id=2]
+[ext_resource path="res://global/my_tile_map_limits.gd" type="Script" id=3]
+[ext_resource path="res://visual_effects/damage_vignette.gd" type="Script" id=4]
+[ext_resource path="res://ui/hud/ui_upgrade_to_process_list.gd" type="Script" id=5]
+[ext_resource path="res://global/screenshaker.gd" type="Script" id=6]
+[ext_resource path="res://visual_effects/floating_text/floating_text_manager.gd" type="Script" id=7]
+[ext_resource path="res://global/my_tile_map.gd" type="Script" id=8]
+[ext_resource path="res://ui/menus/ingame/wave_cleared_label.gd" type="Script" id=9]
+[ext_resource path="res://ui/hud/wave_timer.gd" type="Script" id=10]
+[ext_resource path="res://entities/birth/entity_birth.tscn" type="PackedScene" id=11]
+[ext_resource path="res://visual_effects/hit_effect/hit_effect.tscn" type="PackedScene" id=12]
+[ext_resource path="res://items/materials/gold.tscn" type="PackedScene" id=13]
+[ext_resource path="res://visual_effects/floating_text/floating_text.tscn" type="PackedScene" id=14]
+[ext_resource path="res://ui/hud/ui_upgrade_to_process_element.tscn" type="PackedScene" id=15]
+[ext_resource path="res://particles/pickup_gold_particles.tscn" type="PackedScene" id=16]
+[ext_resource path="res://particles/directional_hit_particles.tscn" type="PackedScene" id=17]
+[ext_resource path="res://items/consumables/consumable.tscn" type="PackedScene" id=18]
+[ext_resource path="res://entities/units/player/player.tscn" type="PackedScene" id=19]
+[ext_resource path="res://particles/hit_particles.tscn" type="PackedScene" id=20]
+[ext_resource path="res://resources/fonts/actual/base/font_small_title.tres" type="DynamicFont" id=21]
+[ext_resource path="res://resources/fonts/actual/base/font_big_title.tres" type="DynamicFont" id=22]
+[ext_resource path="res://resources/fonts/actual/base/font_biggest.tres" type="DynamicFont" id=23]
+[ext_resource path="res://global/effects_manager.gd" type="Script" id=24]
+[ext_resource path="res://ui/hud/ui_wave_timer.gd" type="Script" id=25]
+[ext_resource path="res://items/materials/material_0007.png" type="Texture" id=26]
+[ext_resource path="res://items/materials/material_0006.png" type="Texture" id=27]
+[ext_resource path="res://items/materials/material_0008.png" type="Texture" id=28]
+[ext_resource path="res://items/materials/material_0002.png" type="Texture" id=29]
+[ext_resource path="res://items/materials/material_0003.png" type="Texture" id=30]
+[ext_resource path="res://items/materials/material_0009.png" type="Texture" id=31]
+[ext_resource path="res://items/materials/material_0000.png" type="Texture" id=32]
+[ext_resource path="res://items/materials/material_0001.png" type="Texture" id=33]
+[ext_resource path="res://items/materials/material_0010.png" type="Texture" id=34]
+[ext_resource path="res://items/materials/material_0004.png" type="Texture" id=35]
+[ext_resource path="res://items/materials/material_0005.png" type="Texture" id=36]
+[ext_resource path="res://ui/menus/ingame/info_popup.tscn" type="PackedScene" id=37]
+[ext_resource path="res://zones/backgrounds/background_gradient.tres" type="Gradient" id=38]
+[ext_resource path="res://main.gd" type="Script" id=39]
+[ext_resource path="res://resources/fonts/actual/base/font_floating_text.tres" type="DynamicFont" id=40]
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=41]
+[ext_resource path="res://resources/sounds/level_up.wav" type="AudioStream" id=42]
+[ext_resource path="res://resources/sounds/Fear 10.mp3" type="AudioStream" id=43]
+[ext_resource path="res://resources/sounds/Madness 10.mp3" type="AudioStream" id=44]
+[ext_resource path="res://resources/sounds/Madness 1.mp3" type="AudioStream" id=45]
+[ext_resource path="res://resources/sounds/Madness 3.mp3" type="AudioStream" id=46]
+[ext_resource path="res://items/materials/water_drop_drip_single_05.wav" type="AudioStream" id=47]
+[ext_resource path="res://ui/sounds/end_wave.wav" type="AudioStream" id=48]
+[ext_resource path="res://ui/sounds/CGM3_Bubble_Button_01_3.wav" type="AudioStream" id=49]
+[ext_resource path="res://resources/sounds/Madness 2.mp3" type="AudioStream" id=50]
+[ext_resource path="res://resources/sounds/Madness 6.mp3" type="AudioStream" id=51]
+[ext_resource path="res://ui/sounds/clock_tick_01.wav" type="AudioStream" id=52]
+[ext_resource path="res://resources/tiles/tiles_outline.png" type="Texture" id=53]
+[ext_resource path="res://resources/sounds/Madness 9.mp3" type="AudioStream" id=54]
+[ext_resource path="res://resources/sounds/Madness 4.mp3" type="AudioStream" id=55]
+[ext_resource path="res://resources/sounds/Madness 7.mp3" type="AudioStream" id=56]
+[ext_resource path="res://items/materials/water_drop_drip_single_02.wav" type="AudioStream" id=57]
+[ext_resource path="res://resources/sounds/Madness 8.mp3" type="AudioStream" id=58]
+[ext_resource path="res://ui/sounds/CGM3_Bubble_Button_01_4.wav" type="AudioStream" id=59]
+[ext_resource path="res://items/materials/water_drop_drip_single_03.wav" type="AudioStream" id=60]
+[ext_resource path="res://items/materials/water_drop_drip_single_04.wav" type="AudioStream" id=61]
+[ext_resource path="res://items/materials/water_drop_drip_single_01.wav" type="AudioStream" id=62]
+[ext_resource path="res://zones/wave_manager.gd" type="Script" id=63]
+[ext_resource path="res://ui/hud/ui_item_list.tscn" type="PackedScene" id=64]
+[ext_resource path="res://particles/speed_removed_particles.tscn" type="PackedScene" id=65]
+[ext_resource path="res://ui/menus/ingame/challenge_completed_ui.tscn" type="PackedScene" id=66]
+[ext_resource path="res://ui/hud/ui_bonus_gold.tscn" type="PackedScene" id=67]
+[ext_resource path="res://particles/stats_boost_particles.tscn" type="PackedScene" id=68]
+[ext_resource path="res://ui/hud/ui_gold.tscn" type="PackedScene" id=69]
+[ext_resource path="res://ui/menus/upgrades/item_box_ui.tscn" type="PackedScene" id=70]
+[ext_resource path="res://ui/hud/ui_progress_bar.tscn" type="PackedScene" id=71]
+[ext_resource path="res://ui/menus/ingame/pause_menu.tscn" type="PackedScene" id=72]
+[ext_resource path="res://ui/menus/ingame/upgrades_ui.tscn" type="PackedScene" id=73]
+[ext_resource path="res://items/materials/gold_bag.tscn" type="PackedScene" id=74]
+[ext_resource path="res://zones/zone_1/000_all/group_1.tres" type="Resource" id=75]
+[ext_resource path="res://resources/tiles/ground_tiles.tres" type="TileSet" id=76]
+[ext_resource path="res://resources/sounds/harvest/cartoon_boing_jump_06.wav" type="AudioStream" id=78]
+[ext_resource path="res://resources/sounds/harvest/cartoon_boing_jump_09.wav" type="AudioStream" id=79]
+[ext_resource path="res://global/my_camera.gd" type="Script" id=80]
+[ext_resource path="res://resources/sounds/harvest/cartoon_boing_jump_01.wav" type="AudioStream" id=81]
+[ext_resource path="res://ui/hud/ui_consumable_to_process_list.gd" type="Script" id=82]
+[ext_resource path="res://resources/sounds/harvest/cartoon_boing_jump_07.wav" type="AudioStream" id=83]
+[ext_resource path="res://items/materials/alt_sounds/coin_bag_ring_gemstone_item_03.wav" type="AudioStream" id=84]
+[ext_resource path="res://items/materials/alt_sounds/coin_bag_ring_gemstone_item_01.wav" type="AudioStream" id=85]
+[ext_resource path="res://items/materials/alt_sounds/coin_bag_ring_gemstone_item_04.wav" type="AudioStream" id=86]
+[ext_resource path="res://items/materials/alt_sounds/coin_bag_ring_gemstone_item_05.wav" type="AudioStream" id=87]
+[ext_resource path="res://items/materials/alt_sounds/coin_bag_ring_gemstone_item_02.wav" type="AudioStream" id=88]
+[ext_resource path="res://zones/zone_1/000_hordes/group_1.tres" type="Resource" id=89]
+[ext_resource path="res://zones/zone_1/000_hordes/group_3.tres" type="Resource" id=90]
+[ext_resource path="res://zones/zone_1/000_elites/group_1.tres" type="Resource" id=91]
+[ext_resource path="res://zones/zone_1/000_hordes/group_2.tres" type="Resource" id=92]
+[ext_resource path="res://zones/zone_1/000_hordes/group_4.tres" type="Resource" id=93]
+[ext_resource path="res://zones/zone_1/000_hordes/group_5.tres" type="Resource" id=94]
+[ext_resource path="res://ui/menus/global/my_menu_button.gd" type="Script" id=95]
+[ext_resource path="res://zones/zone_1/000_extra/group_1.tres" type="Resource" id=96]
+[ext_resource path="res://zones/zone_1/000_debug/group_1.tres" type="Resource" id=97]
+[ext_resource path="res://zones/zone_1/000_loot/group_1.tres" type="Resource" id=98]
+[ext_resource path="res://items/all/turret/turret_effect_1.tres" type="Resource" id=99]
+[ext_resource path="res://items/materials/harvesting_icon.png" type="Texture" id=120]
+[ext_resource path="res://weapons/melee/dagger/dagger_icon.png" type="Texture" id=121]
+[ext_resource path="res://zones/zone_1/000_all/group_2.tres" type="Resource" id=122]
+[ext_resource path="res://particles/heal_particles.tscn" type="PackedScene" id=123]
+
+[sub_resource type="GradientTexture" id=3]
+gradient = ExtResource( 38 )
+width = 1920
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform vec4 color: hint_color;
+uniform float multiplier = 0.2;
+uniform float softness = 0.2;
+
+void fragment() {
+	float value = distance(UV, vec2(0.5));
+	COLOR = vec4(color.rgb, smoothstep(multiplier, softness, value));
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 10 )
+shader_param/color = Color( 0, 0, 0, 1 )
+shader_param/multiplier = 0.8
+shader_param/softness = 0.8
+
+[node name="Main" type="Node"]
+script = ExtResource( 39 )
+gold_bag_scene = ExtResource( 74 )
+gold_scene = ExtResource( 13 )
+consumable_scene = ExtResource( 18 )
+turret_effect = ExtResource( 99 )
+gold_sprites = [ ExtResource( 32 ), ExtResource( 33 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 27 ), ExtResource( 26 ), ExtResource( 28 ), ExtResource( 31 ), ExtResource( 34 ) ]
+gold_pickup_sounds = [ ExtResource( 62 ), ExtResource( 57 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 47 ) ]
+gold_alt_pickup_sounds = [ ExtResource( 85 ), ExtResource( 88 ), ExtResource( 84 ), ExtResource( 86 ), ExtResource( 87 ) ]
+level_up_sound = ExtResource( 42 )
+run_won_sounds = [ ExtResource( 43 ) ]
+run_lost_sounds = [ ExtResource( 45 ), ExtResource( 50 ), ExtResource( 46 ), ExtResource( 55 ), ExtResource( 51 ), ExtResource( 56 ), ExtResource( 58 ), ExtResource( 54 ), ExtResource( 44 ) ]
+end_wave_sounds = [ ExtResource( 48 ) ]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1920.0
+margin_right = 1080.0
+margin_bottom = 840.0
+rect_rotation = 89.9906
+texture = SubResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaveManager" type="Node2D" parent="."]
+script = ExtResource( 63 )
+debug_groups = [ ExtResource( 97 ) ]
+extra_groups = [ ExtResource( 96 ) ]
+loot_alien_groups = [ ExtResource( 98 ) ]
+groups_data_in_all_waves = [ ExtResource( 75 ), ExtResource( 122 ) ]
+horde_groups = [ ExtResource( 89 ), ExtResource( 92 ), ExtResource( 90 ), ExtResource( 93 ), ExtResource( 94 ) ]
+elite_group = ExtResource( 91 )
+
+[node name="EffectsManager" type="Node2D" parent="."]
+script = ExtResource( 24 )
+heal_particles = ExtResource( 123 )
+stats_boost_particles = ExtResource( 68 )
+speed_removed_particles = ExtResource( 65 )
+hit_particles = ExtResource( 20 )
+directional_hit_particles = ExtResource( 17 )
+hit_effect = ExtResource( 12 )
+gold_pickup_particles = ExtResource( 16 )
+
+[node name="FloatingTextManager" type="Node2D" parent="."]
+script = ExtResource( 7 )
+_floating_text = ExtResource( 14 )
+gold_on_crit_kill_icon = ExtResource( 121 )
+harvesting_icon = ExtResource( 120 )
+stat_pos_sounds = [ ExtResource( 79 ) ]
+stat_neg_sounds = [ ExtResource( 83 ) ]
+harvest_pos_sounds = [ ExtResource( 81 ) ]
+harvest_neg_sounds = [ ExtResource( 78 ) ]
+
+[node name="EntitySpawner" type="Node2D" parent="."]
+script = ExtResource( 1 )
+player_scene = ExtResource( 19 )
+entity_birth_scene = ExtResource( 11 )
+
+[node name="StructureTimer" type="Timer" parent="EntitySpawner"]
+autostart = true
+
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 80 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Screenshaker" type="Node" parent="Camera"]
+script = ExtResource( 6 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 76 )
+cell_quadrant_size = 64
+collision_layer = 128
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 7, 0, 65538, 65536, 0, 65538, 65537, 0, 65538 )
+script = ExtResource( 8 )
+
+[node name="Outline" type="NinePatchRect" parent="TileMap"]
+modulate = Color( 0.470588, 0.403922, 0.345098, 1 )
+show_behind_parent = true
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 640.0
+margin_bottom = 392.0
+texture = ExtResource( 53 )
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TileMapLimits" type="StaticBody2D" parent="."]
+position = Vector2( -64, -64 )
+collision_layer = 128
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Consumables" type="Node2D" parent="."]
+
+[node name="Births" type="Node2D" parent="."]
+
+[node name="Entities" type="YSort" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="WorldUI" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="PlayerLifeBarContainer" type="Node2D" parent="WorldUI"]
+
+[node name="PlayerLifeBar" parent="WorldUI/PlayerLifeBarContainer" instance=ExtResource( 71 )]
+unique_name_in_owner = true
+visible = false
+margin_left = -32.0
+margin_top = -72.0
+margin_right = 32.0
+margin_bottom = -56.0
+nine_patch_stretch = true
+progress_color = Color( 0.721569, 0, 0, 1 )
+effect_colors = {
+"hit_protection": Color( 0.678431, 0.352941, 1, 1 )
+}
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="DamageVignette" type="ColorRect" parent="UI"]
+material = SubResource( 11 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="DimScreen" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="UI/DimScreen"]
+
+[node name="WaveClearedLabel" type="Label" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -960.0
+margin_right = 960.0
+margin_bottom = 400.0
+theme = ExtResource( 41 )
+custom_fonts/font = ExtResource( 22 )
+text = "WAVE_COMPLETED"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 9 )
+font_end_run = ExtResource( 23 )
+character_appearing_sounds = [ ExtResource( 49 ), ExtResource( 59 ) ]
+
+[node name="Timer" type="Timer" parent="UI/WaveClearedLabel"]
+wait_time = 0.1
+one_shot = true
+
+[node name="ItemBoxUI" parent="UI" instance=ExtResource( 70 )]
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="UpgradesUI" parent="UI" instance=ExtResource( 73 )]
+visible = false
+
+[node name="HUD" type="MarginContainer" parent="UI"]
+anchor_right = 1.0
+margin_bottom = 284.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/margin_right = 24
+custom_constants/margin_top = 24
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 24
+
+[node name="LifeContainer" type="VBoxContainer" parent="UI/HUD"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 344.0
+margin_bottom = 260.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UILifeBar" parent="UI/HUD/LifeContainer" instance=ExtResource( 71 )]
+margin_bottom = 48.0
+size_flags_horizontal = 0
+tint_progress = Color( 0.721569, 0, 0, 1 )
+progress_color = Color( 0.721569, 0, 0, 1 )
+effect_colors = {
+"hit_protection": Color( 0.678431, 0.352941, 1, 1 )
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/LifeContainer/UILifeBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 7
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LifeLabel" type="Label" parent="UI/HUD/LifeContainer/UILifeBar/MarginContainer"]
+margin_left = 12.0
+margin_top = 8.0
+margin_right = 308.0
+margin_bottom = 39.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 21 )
+text = "8 / 8"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UIXPBar" parent="UI/HUD/LifeContainer" instance=ExtResource( 71 )]
+margin_top = 52.0
+margin_bottom = 100.0
+size_flags_horizontal = 0
+value = 50.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/LifeContainer/UIXPBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 7
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelLabel" type="Label" parent="UI/HUD/LifeContainer/UIXPBar/MarginContainer"]
+margin_left = 12.0
+margin_top = 8.0
+margin_right = 308.0
+margin_bottom = 39.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 21 )
+text = "LV. 1"
+align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TestButton" type="Button" parent="UI/HUD/LifeContainer"]
+unique_name_in_owner = true
+visible = false
+margin_top = 104.0
+margin_right = 320.0
+margin_bottom = 169.0
+theme = ExtResource( 41 )
+text = "BACK_TO_MOD"
+script = ExtResource( 95 )
+
+[node name="UIGold" parent="UI/HUD/LifeContainer" instance=ExtResource( 69 )]
+anchor_left = 0.0
+anchor_right = 0.0
+margin_left = 0.0
+margin_top = 104.0
+margin_right = 320.0
+margin_bottom = 168.0
+size_flags_horizontal = 3
+alignment = 0
+
+[node name="UIBonusGold" parent="UI/HUD/LifeContainer" instance=ExtResource( 67 )]
+margin_top = 172.0
+margin_bottom = 236.0
+size_flags_horizontal = 0
+
+[node name="WaveContainer" type="VBoxContainer" parent="UI/HUD"]
+margin_left = 873.0
+margin_top = 24.0
+margin_right = 1046.0
+margin_bottom = 146.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentWaveLabel" type="Label" parent="UI/HUD/WaveContainer"]
+margin_right = 173.0
+margin_bottom = 45.0
+theme = ExtResource( 41 )
+custom_fonts/font = ExtResource( 40 )
+text = "WAVE {0}"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaveTimerLabel" type="Label" parent="UI/HUD/WaveContainer"]
+margin_top = 49.0
+margin_right = 173.0
+margin_bottom = 122.0
+theme = ExtResource( 41 )
+custom_fonts/font = ExtResource( 22 )
+text = "60"
+align = 1
+script = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ThingsToProcessContainer" type="VBoxContainer" parent="UI/HUD"]
+margin_left = 1896.0
+margin_top = 24.0
+margin_right = 1896.0
+margin_bottom = 36.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_constants/separation = 12
+
+[node name="Upgrades" parent="UI/HUD/ThingsToProcessContainer" instance=ExtResource( 64 )]
+modulate = Color( 1, 1, 1, 0.501961 )
+script = ExtResource( 5 )
+element_scene = ExtResource( 15 )
+
+[node name="Consumables" parent="UI/HUD/ThingsToProcessContainer" instance=ExtResource( 64 )]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_top = 12.0
+margin_bottom = 12.0
+script = ExtResource( 82 )
+
+[node name="PauseMenu" parent="UI" instance=ExtResource( 72 )]
+pause_mode = 2
+visible = false
+
+[node name="ChallengeCompletedUI" parent="UI" instance=ExtResource( 66 )]
+visible = false
+
+[node name="InfoPopup" parent="UI" instance=ExtResource( 37 )]
+visible = false
+
+[node name="EndWaveTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="HarvestingTimer" type="Timer" parent="."]
+wait_time = 0.66
+one_shot = true
+
+[node name="WaveTimer" type="Timer" parent="."]
+one_shot = true
+script = ExtResource( 10 )
+tick_sounds = [ ExtResource( 52 ) ]
+
+[node name="TickTimer" type="Timer" parent="WaveTimer"]
+
+[node name="FiveSecondsTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="enemy_spawned" from="EntitySpawner" to="." method="_on_EntitySpawner_enemy_spawned"]
+[connection signal="neutral_spawned" from="EntitySpawner" to="." method="_on_EntitySpawner_neutral_spawned"]
+[connection signal="player_spawned" from="EntitySpawner" to="." method="_on_EntitySpawner_player_spawned"]
+[connection signal="structure_spawned" from="EntitySpawner" to="." method="_on_EntitySpawner_structure_spawned"]
+[connection signal="timeout" from="EntitySpawner/StructureTimer" to="EntitySpawner" method="_on_StructureTimer_timeout"]
+[connection signal="timeout" from="UI/WaveClearedLabel/Timer" to="UI/WaveClearedLabel" method="_on_Timer_timeout"]
+[connection signal="pressed" from="UI/HUD/LifeContainer/TestButton" to="." method="_on_TestButton_pressed"]
+[connection signal="mouse_entered" from="UI/HUD/LifeContainer/UIBonusGold" to="." method="_on_UIBonusGold_mouse_entered"]
+[connection signal="mouse_exited" from="UI/HUD/LifeContainer/UIBonusGold" to="." method="_on_UIBonusGold_mouse_exited"]
+[connection signal="paused" from="UI/PauseMenu" to="." method="_on_PauseMenu_paused"]
+[connection signal="unpaused" from="UI/PauseMenu" to="." method="_on_PauseMenu_unpaused"]
+[connection signal="timeout" from="EndWaveTimer" to="." method="_on_EndWaveTimer_timeout"]
+[connection signal="timeout" from="HarvestingTimer" to="." method="_on_HarvestingTimer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="WaveTimer" method="_on_WaveTimer_timeout"]
+[connection signal="timeout" from="WaveTimer/TickTimer" to="WaveTimer" method="_on_TickTimer_timeout"]
+[connection signal="timeout" from="FiveSecondsTimer" to="." method="_on_FiveSecondsTimer_timeout"]
+
+[editable path="UI/HUD/LifeContainer/UILifeBar"]
+[editable path="UI/HUD/LifeContainer/UIXPBar"]
+[editable path="UI/ChallengeCompletedUI"]

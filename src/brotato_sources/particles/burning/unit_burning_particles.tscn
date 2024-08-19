@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://particles/burning/burning_material_red.tres" type="Material" id=1]
+[ext_resource path="res://particles/burning/burning_material_blue.tres" type="Material" id=2]
+[ext_resource path="res://particles/sprites/particle_9.png" type="Texture" id=3]
+[ext_resource path="res://particles/burning/burning_particles.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 128.0
+
+[node name="BurningParticles" type="Particles2D"]
+amount = 5
+lifetime = 0.4
+randomness = 0.5
+process_material = ExtResource( 1 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+red_mat = ExtResource( 1 )
+blue_mat = ExtResource( 2 )
+
+[node name="SpreadArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpreadArea"]
+shape = SubResource( 6 )
+
+[connection signal="body_entered" from="SpreadArea" to="." method="_on_SpreadArea_body_entered"]
+[connection signal="body_exited" from="SpreadArea" to="." method="_on_SpreadArea_body_exited"]

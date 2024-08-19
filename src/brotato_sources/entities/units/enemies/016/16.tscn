@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://entities/units/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/units/enemies/016/16.png" type="Texture" id=3]
+[ext_resource path="res://entities/units/enemies/016/16_stats.tres" type="Resource" id=4]
+[ext_resource path="res://entities/units/enemies/017/17.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/units/enemies/016/16.gd" type="Script" id=6]
+[ext_resource path="res://entities/units/movement_behaviors/follow_rand_pos_around_player_movement_behavior.gd" type="Script" id=7]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 32.3883
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 48.5077
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 34.0
+
+[node name="Enemy" instance=ExtResource( 2 )]
+script = ExtResource( 6 )
+stats = ExtResource( 4 )
+enemy_to_spawn = ExtResource( 5 )
+
+[node name="Animation" parent="." index="0"]
+material = null
+
+[node name="Sprite" parent="Animation" index="0"]
+position = Vector2( 0, 0 )
+texture = ExtResource( 3 )
+
+[node name="Collision" parent="." index="1"]
+material = null
+position = Vector2( 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Collision" parent="Hurtbox" index="0"]
+position = Vector2( 0, 8 )
+shape = SubResource( 5 )
+
+[node name="Hitbox" parent="." index="3"]
+position = Vector2( 0, 8 )
+
+[node name="Collision" parent="Hitbox" index="0"]
+position = Vector2( 3, -2 )
+shape = SubResource( 6 )
+
+[node name="MovementBehavior" parent="." index="6"]
+script = ExtResource( 7 )
+range_around_player = 400
+range_randomization = 50
+allow_within = false
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

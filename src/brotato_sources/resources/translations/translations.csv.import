@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://resources/translations/translations.en.translation", "res://resources/translations/translations.fr.translation", "res://resources/translations/translations.zh.translation", "res://resources/translations/translations.ja.translation", "res://resources/translations/translations.ko.translation", "res://resources/translations/translations.zh_TW.translation", "res://resources/translations/translations.ru.translation", "res://resources/translations/translations.pl.translation", "res://resources/translations/translations.es.translation", "res://resources/translations/translations.pt.translation", "res://resources/translations/translations.de.translation", "res://resources/translations/translations.tr.translation", "res://resources/translations/translations.it.translation" ]
+
+source_file="res://resources/translations/translations.csv"
+dest_files=[ "res://resources/translations/translations.en.translation", "res://resources/translations/translations.fr.translation", "res://resources/translations/translations.zh.translation", "res://resources/translations/translations.ja.translation", "res://resources/translations/translations.ko.translation", "res://resources/translations/translations.zh_TW.translation", "res://resources/translations/translations.ru.translation", "res://resources/translations/translations.pl.translation", "res://resources/translations/translations.es.translation", "res://resources/translations/translations.pt.translation", "res://resources/translations/translations.de.translation", "res://resources/translations/translations.tr.translation", "res://resources/translations/translations.it.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

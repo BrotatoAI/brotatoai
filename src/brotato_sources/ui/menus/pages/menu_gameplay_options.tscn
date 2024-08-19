@@ -1,0 +1,454 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/menus/pages/menu_gameplay_options.gd" type="Script" id=2]
+[ext_resource path="res://ui/menus/global/my_menu_button.gd" type="Script" id=3]
+[ext_resource path="res://ui/menus/global/slider_option.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/fonts/actual/base/font_big_title.tres" type="DynamicFont" id=5]
+[ext_resource path="res://resources/fonts/actual/base/font_big_outlined.tres" type="DynamicFont" id=6]
+[ext_resource path="res://resources/themes/button_styles/button_hover.tres" type="StyleBox" id=7]
+[ext_resource path="res://ui/menus/pages/score_storing_button.gd" type="Script" id=8]
+[ext_resource path="res://resources/fonts/actual/base/font_smallest_text.tres" type="DynamicFont" id=9]
+
+[node name="MenuGameplayOptions" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+alignment = 1
+script = ExtResource( 2 )
+
+[node name="Options" type="HBoxContainer" parent="."]
+margin_top = 81.0
+margin_right = 1949.0
+margin_bottom = 829.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="Column1" type="VBoxContainer" parent="Options"]
+margin_right = 909.0
+margin_bottom = 748.0
+rect_min_size = Vector2( 600, 0 )
+size_flags_horizontal = 4
+custom_constants/separation = 25
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameplayContainer" type="VBoxContainer" parent="Options/Column1"]
+margin_right = 909.0
+margin_bottom = 748.0
+size_flags_vertical = 3
+custom_constants/separation = 5
+
+[node name="GameplayLabel" type="Label" parent="Options/Column1/GameplayContainer"]
+margin_right = 909.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 5 )
+text = "MENU_GAMEPLAY"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/Column1/GameplayContainer"]
+margin_top = 78.0
+margin_right = 909.0
+margin_bottom = 593.0
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MouseOnlyButton" type="CheckButton" parent="Options/Column1/GameplayContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 909.0
+margin_bottom = 70.0
+focus_neighbour_top = NodePath("../../../../../BackButton")
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_OPTIONS_MOUSE_ONLY"
+
+[node name="ManualAimButton" type="CheckButton" parent="Options/Column1/GameplayContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 75.0
+margin_right = 909.0
+margin_bottom = 145.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_OPTIONS_MANUAL_AIM"
+
+[node name="ManualAimOnMousePressButton" type="CheckButton" parent="Options/Column1/GameplayContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 150.0
+margin_right = 909.0
+margin_bottom = 220.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_MANUAL_AIM_ON_MOUSE_PRESS"
+
+[node name="HPbarOnCharacterButton" type="CheckButton" parent="Options/Column1/GameplayContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 225.0
+margin_right = 909.0
+margin_bottom = 295.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_HP_BAR_ON_CHAR"
+
+[node name="BossHPBarButton" type="CheckButton" parent="Options/Column1/GameplayContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 300.0
+margin_right = 909.0
+margin_bottom = 370.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_BOSS_HP_BAR"
+
+[node name="KeepLockButton" type="CheckButton" parent="Options/Column1/GameplayContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 375.0
+margin_right = 909.0
+margin_bottom = 445.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_KEEP_LOCK"
+
+[node name="ScoreContainer" type="HBoxContainer" parent="Options/Column1/GameplayContainer/VBoxContainer"]
+margin_top = 450.0
+margin_right = 909.0
+margin_bottom = 515.0
+focus_neighbour_bottom = NodePath("../../../../../DefaultButton")
+size_flags_horizontal = 3
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="Options/Column1/GameplayContainer/VBoxContainer/ScoreContainer"]
+margin_top = 10.0
+margin_right = 508.0
+margin_bottom = 55.0
+text = "ENDLESS_SCORE_STORING"
+
+[node name="EmptySpace" type="Control" parent="Options/Column1/GameplayContainer/VBoxContainer/ScoreContainer"]
+margin_left = 528.0
+margin_right = 817.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+
+[node name="ScoreStoringButton" type="OptionButton" parent="Options/Column1/GameplayContainer/VBoxContainer/ScoreContainer"]
+unique_name_in_owner = true
+margin_left = 837.0
+margin_right = 909.0
+margin_bottom = 65.0
+focus_neighbour_bottom = NodePath("../../../../../../DefaultButton")
+custom_fonts/font = ExtResource( 6 )
+script = ExtResource( 8 )
+
+[node name="Column2" type="VBoxContainer" parent="Options"]
+margin_left = 959.0
+margin_right = 1949.0
+margin_bottom = 748.0
+rect_min_size = Vector2( 600, 0 )
+size_flags_horizontal = 4
+custom_constants/separation = 25
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AccessibilityContainer" type="VBoxContainer" parent="Options/Column2"]
+margin_right = 990.0
+margin_bottom = 748.0
+size_flags_vertical = 3
+custom_constants/separation = 5
+
+[node name="AccessibilityLabel" type="Label" parent="Options/Column2/AccessibilityContainer"]
+margin_right = 990.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 5 )
+text = "MENU_ACCESSIBILITY"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/Column2/AccessibilityContainer"]
+margin_top = 78.0
+margin_right = 990.0
+margin_bottom = 373.0
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemyHealthSlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_top = 0.0
+margin_right = 990.0
+margin_bottom = 45.0
+
+[node name="Label" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyHealthSlider" index="0"]
+margin_top = 0.0
+margin_right = 435.0
+margin_bottom = 45.0
+text = "MENU_ENEMY_HEALTH"
+
+[node name="Control" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyHealthSlider" index="1"]
+margin_left = 485.0
+margin_right = 600.0
+margin_bottom = 45.0
+
+[node name="HSlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyHealthSlider" index="2"]
+margin_left = 650.0
+margin_right = 850.0
+margin_bottom = 45.0
+focus_neighbour_top = NodePath("../../../../../../BackButton")
+min_value = 0.25
+max_value = 2.0
+value = 1.0
+
+[node name="Value" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyHealthSlider" index="3"]
+margin_left = 900.0
+margin_top = 0.0
+margin_right = 990.0
+margin_bottom = 45.0
+
+[node name="EnemyDamageSlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_top = 50.0
+margin_right = 990.0
+margin_bottom = 95.0
+
+[node name="Label" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyDamageSlider" index="0"]
+margin_top = 0.0
+margin_right = 452.0
+margin_bottom = 45.0
+text = "MENU_ENEMY_DAMAGE"
+
+[node name="Control" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyDamageSlider" index="1"]
+margin_left = 502.0
+margin_right = 600.0
+margin_bottom = 45.0
+
+[node name="HSlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyDamageSlider" index="2"]
+margin_left = 650.0
+margin_right = 850.0
+margin_bottom = 45.0
+min_value = 0.25
+max_value = 2.0
+value = 1.0
+
+[node name="Value" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyDamageSlider" index="3"]
+margin_left = 900.0
+margin_top = 0.0
+margin_right = 990.0
+margin_bottom = 45.0
+
+[node name="EnemySpeedSlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_top = 100.0
+margin_right = 990.0
+margin_bottom = 145.0
+
+[node name="Label" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemySpeedSlider" index="0"]
+margin_top = 0.0
+margin_right = 410.0
+margin_bottom = 45.0
+text = "MENU_ENEMY_SPEED"
+
+[node name="Control" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemySpeedSlider" index="1"]
+margin_left = 460.0
+margin_right = 600.0
+margin_bottom = 45.0
+
+[node name="HSlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemySpeedSlider" index="2"]
+margin_left = 650.0
+margin_right = 850.0
+margin_bottom = 45.0
+min_value = 0.25
+max_value = 1.5
+value = 1.0
+
+[node name="Value" parent="Options/Column2/AccessibilityContainer/VBoxContainer/EnemySpeedSlider" index="3"]
+margin_left = 900.0
+margin_top = 0.0
+margin_right = 990.0
+margin_bottom = 45.0
+
+[node name="ExplosionOpacitySlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_top = 150.0
+margin_right = 990.0
+margin_bottom = 195.0
+
+[node name="Label" parent="Options/Column2/AccessibilityContainer/VBoxContainer/ExplosionOpacitySlider" index="0"]
+margin_top = 0.0
+margin_right = 536.0
+margin_bottom = 45.0
+text = "MENU_EXPLOSION_OPACITY"
+
+[node name="Control" parent="Options/Column2/AccessibilityContainer/VBoxContainer/ExplosionOpacitySlider" index="1"]
+margin_left = 586.0
+margin_right = 600.0
+margin_bottom = 45.0
+
+[node name="HSlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer/ExplosionOpacitySlider" index="2"]
+margin_left = 650.0
+margin_right = 850.0
+margin_bottom = 45.0
+value = 1.0
+
+[node name="Value" parent="Options/Column2/AccessibilityContainer/VBoxContainer/ExplosionOpacitySlider" index="3"]
+margin_left = 900.0
+margin_top = 0.0
+margin_right = 990.0
+margin_bottom = 45.0
+
+[node name="ProjectileOpacitySlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_top = 200.0
+margin_right = 990.0
+margin_bottom = 245.0
+
+[node name="Label" parent="Options/Column2/AccessibilityContainer/VBoxContainer/ProjectileOpacitySlider" index="0"]
+margin_top = 0.0
+margin_right = 550.0
+margin_bottom = 45.0
+text = "MENU_PROJECTILE_OPACITY"
+
+[node name="Control" parent="Options/Column2/AccessibilityContainer/VBoxContainer/ProjectileOpacitySlider" index="1"]
+margin_left = 600.0
+margin_right = 600.0
+margin_bottom = 45.0
+
+[node name="HSlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer/ProjectileOpacitySlider" index="2"]
+margin_left = 650.0
+margin_right = 850.0
+margin_bottom = 45.0
+value = 1.0
+
+[node name="Value" parent="Options/Column2/AccessibilityContainer/VBoxContainer/ProjectileOpacitySlider" index="3"]
+margin_left = 900.0
+margin_top = 0.0
+margin_right = 990.0
+margin_bottom = 45.0
+
+[node name="FontSizeSlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_top = 250.0
+margin_right = 990.0
+margin_bottom = 295.0
+
+[node name="Label" parent="Options/Column2/AccessibilityContainer/VBoxContainer/FontSizeSlider" index="0"]
+margin_top = 10.0
+margin_right = 180.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 9 )
+text = "MENU_FONT_SIZE"
+
+[node name="Control" parent="Options/Column2/AccessibilityContainer/VBoxContainer/FontSizeSlider" index="1"]
+margin_left = 230.0
+margin_right = 600.0
+margin_bottom = 45.0
+
+[node name="HSlider" parent="Options/Column2/AccessibilityContainer/VBoxContainer/FontSizeSlider" index="2"]
+margin_left = 650.0
+margin_right = 850.0
+margin_bottom = 45.0
+min_value = 0.8
+max_value = 1.25
+value = 1.0
+
+[node name="Value" parent="Options/Column2/AccessibilityContainer/VBoxContainer/FontSizeSlider" index="3"]
+margin_left = 900.0
+margin_top = 0.0
+margin_right = 990.0
+margin_bottom = 45.0
+
+[node name="CharacterHighlightingButton" type="CheckButton" parent="Options/Column2/AccessibilityContainer"]
+unique_name_in_owner = true
+margin_top = 378.0
+margin_right = 990.0
+margin_bottom = 448.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_CHAR_HIGHLIGHTING"
+
+[node name="WeaponHighlightingButton" type="CheckButton" parent="Options/Column2/AccessibilityContainer"]
+unique_name_in_owner = true
+margin_top = 453.0
+margin_right = 990.0
+margin_bottom = 523.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_WEAPON_HIGHLIGHTING"
+
+[node name="ProjectileHighlightingButton" type="CheckButton" parent="Options/Column2/AccessibilityContainer"]
+unique_name_in_owner = true
+margin_top = 528.0
+margin_right = 990.0
+margin_bottom = 598.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_PROJECTILES_HIGHLIGHTING"
+
+[node name="GoldSoundsButton" type="CheckButton" parent="Options/Column2/AccessibilityContainer"]
+unique_name_in_owner = true
+margin_top = 603.0
+margin_right = 990.0
+margin_bottom = 673.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_GOLD_SOUNDS"
+
+[node name="DarkenScreenButton" type="CheckButton" parent="Options/Column2/AccessibilityContainer"]
+unique_name_in_owner = true
+margin_top = 678.0
+margin_right = 990.0
+margin_bottom = 748.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 7 )
+text = "MENU_DARKEN_SCREEN"
+
+[node name="DefaultButton" type="Button" parent="."]
+margin_left = 700.0
+margin_top = 849.0
+margin_right = 1248.0
+margin_bottom = 914.0
+size_flags_horizontal = 4
+text = "MENU_RESET_TO_DEFAULT"
+script = ExtResource( 3 )
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 841.0
+margin_top = 934.0
+margin_right = 1108.0
+margin_bottom = 999.0
+focus_neighbour_bottom = NodePath("../Options/Column1/GameplayContainer/VBoxContainer/MouseOnlyButton")
+size_flags_horizontal = 4
+text = "MENU_BACK"
+script = ExtResource( 3 )
+
+[connection signal="hide" from="." to="." method="_on_MenuOptions_hide"]
+[connection signal="toggled" from="Options/Column1/GameplayContainer/VBoxContainer/MouseOnlyButton" to="." method="_on_MouseOnlyButton_toggled"]
+[connection signal="toggled" from="Options/Column1/GameplayContainer/VBoxContainer/ManualAimButton" to="." method="_on_ManualAimButton_toggled"]
+[connection signal="toggled" from="Options/Column1/GameplayContainer/VBoxContainer/ManualAimOnMousePressButton" to="." method="_on_ManualAimOnMousePressButton_toggled"]
+[connection signal="toggled" from="Options/Column1/GameplayContainer/VBoxContainer/HPbarOnCharacterButton" to="." method="_on_HPbarOnCharacterButton_toggled"]
+[connection signal="toggled" from="Options/Column1/GameplayContainer/VBoxContainer/BossHPBarButton" to="." method="_on_BossHPBarButton_toggled"]
+[connection signal="toggled" from="Options/Column1/GameplayContainer/VBoxContainer/KeepLockButton" to="." method="_on_KeepLockButton_toggled"]
+[connection signal="item_selected" from="Options/Column1/GameplayContainer/VBoxContainer/ScoreContainer/ScoreStoringButton" to="." method="_on_ScoreButton_item_selected"]
+[connection signal="value_changed" from="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyHealthSlider" to="." method="_on_EnemyHealthSlider_value_changed"]
+[connection signal="value_changed" from="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyDamageSlider" to="." method="_on_EnemyDamageSlider_value_changed"]
+[connection signal="value_changed" from="Options/Column2/AccessibilityContainer/VBoxContainer/EnemySpeedSlider" to="." method="_on_EnemySpeedSlider_value_changed"]
+[connection signal="value_changed" from="Options/Column2/AccessibilityContainer/VBoxContainer/ExplosionOpacitySlider" to="." method="_on_ExplosionOpacitySlider_value_changed"]
+[connection signal="value_changed" from="Options/Column2/AccessibilityContainer/VBoxContainer/ProjectileOpacitySlider" to="." method="_on_ProjectileOpacitySlider_value_changed"]
+[connection signal="value_changed" from="Options/Column2/AccessibilityContainer/VBoxContainer/FontSizeSlider" to="." method="_on_FontSizeSlider_value_changed"]
+[connection signal="toggled" from="Options/Column2/AccessibilityContainer/CharacterHighlightingButton" to="." method="_on_CharacterHighlightingButton_toggled"]
+[connection signal="toggled" from="Options/Column2/AccessibilityContainer/WeaponHighlightingButton" to="." method="_on_WeaponHighlightingButton_toggled"]
+[connection signal="toggled" from="Options/Column2/AccessibilityContainer/ProjectileHighlightingButton" to="." method="_on_ProjectileHighlightingButton_toggled"]
+[connection signal="toggled" from="Options/Column2/AccessibilityContainer/GoldSoundsButton" to="." method="_on_GoldSoundsButton_toggled"]
+[connection signal="toggled" from="Options/Column2/AccessibilityContainer/DarkenScreenButton" to="." method="_on_DarkenScreenButton_toggled"]
+[connection signal="pressed" from="DefaultButton" to="." method="_on_DefaultButton_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+
+[editable path="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyHealthSlider"]
+[editable path="Options/Column2/AccessibilityContainer/VBoxContainer/EnemyDamageSlider"]
+[editable path="Options/Column2/AccessibilityContainer/VBoxContainer/EnemySpeedSlider"]
+[editable path="Options/Column2/AccessibilityContainer/VBoxContainer/ExplosionOpacitySlider"]
+[editable path="Options/Column2/AccessibilityContainer/VBoxContainer/ProjectileOpacitySlider"]
+[editable path="Options/Column2/AccessibilityContainer/VBoxContainer/FontSizeSlider"]

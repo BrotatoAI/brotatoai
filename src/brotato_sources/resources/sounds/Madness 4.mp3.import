@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Madness 4.mp3-db6fd0641d6fb63f32baebb82792064a.mp3str"
+
+[deps]
+
+source_file="res://resources/sounds/Madness 4.mp3"
+dest_files=[ "res://.import/Madness 4.mp3-db6fd0641d6fb63f32baebb82792064a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

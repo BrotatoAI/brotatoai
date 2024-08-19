@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=1]
+[ext_resource path="res://visual_effects/floating_text/floating_text.gd" type="Script" id=2]
+[ext_resource path="res://resources/fonts/actual/base/font_floating_text.tres" type="DynamicFont" id=3]
+
+[node name="FloatingText" type="Label"]
+margin_left = -24.0
+margin_top = -16.0
+margin_right = 20.0
+margin_bottom = 29.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "24"
+align = 1
+valign = 1
+script = ExtResource( 2 )

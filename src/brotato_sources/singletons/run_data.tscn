@@ -1,0 +1,14 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://singletons/run_data.gd" type="Script" id=1]
+[ext_resource path="res://zones/backgrounds/background_data_6.tres" type="Resource" id=2]
+[ext_resource path="res://zones/backgrounds/background_data_1.tres" type="Resource" id=3]
+[ext_resource path="res://zones/backgrounds/background_data_4.tres" type="Resource" id=4]
+[ext_resource path="res://zones/backgrounds/background_data_3.tres" type="Resource" id=5]
+[ext_resource path="res://zones/backgrounds/background_data_5.tres" type="Resource" id=6]
+[ext_resource path="res://zones/backgrounds/background_data_2.tres" type="Resource" id=7]
+
+[node name="RunData" type="Node"]
+script = ExtResource( 1 )
+backgrounds = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 2 ) ]
+background_colors = [ Color( 0.188235, 0, 0, 1 ), Color( 0.188235, 0.129412, 0, 1 ), Color( 0, 0.188235, 0.164706, 1 ), Color( 0, 0.145098, 0.188235, 1 ), Color( 0, 0.121569, 0.188235, 1 ), Color( 0, 0.0313726, 0.188235, 1 ), Color( 0.117647, 0, 0.188235, 1 ), Color( 0.188235, 0, 0.152941, 1 ) ]

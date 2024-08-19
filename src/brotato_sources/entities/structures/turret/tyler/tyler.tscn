@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://entities/structures/structure.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/structures/turret/tyler/tyler.png" type="Texture" id=2]
+[ext_resource path="res://entities/structures/turret/turret.gd" type="Script" id=3]
+[ext_resource path="res://entities/structures/turret/turret_shoot_animation.tres" type="Animation" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 136.0
+
+[node name="Tyler" instance=ExtResource( 1 )]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="Animation" index="0"]
+position = Vector2( 0, -16 )
+texture = ExtResource( 2 )
+
+[node name="Muzzle" type="Position2D" parent="Animation" index="1"]
+position = Vector2( 0, -32 )
+
+[node name="Collision" parent="." index="1"]
+visible = false
+position = Vector2( 0, -8 )
+
+[node name="AnimationPlayer" parent="." index="2"]
+anims/shoot = ExtResource( 4 )
+
+[node name="Range" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range" index="0"]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]

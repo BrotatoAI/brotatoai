@@ -1,0 +1,58 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://entities/units/unit/unit.gd" type="Script" id=1]
+[ext_resource path="res://entities/entity.tscn" type="PackedScene" id=2]
+[ext_resource path="res://overlap/hurtbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://particles/burning/unit_burning_particles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/units/unit/crit_sounds/bullet_impact_metal_light_02.wav" type="AudioStream" id=5]
+[ext_resource path="res://entities/units/unit/hurt_sounds/punch_general_body_impact_04.wav" type="AudioStream" id=6]
+[ext_resource path="res://entities/units/unit/hurt_sounds/punch_general_body_impact_02.wav" type="AudioStream" id=7]
+[ext_resource path="res://entities/units/unit/crit_sounds/bullet_impact_metal_light_05.wav" type="AudioStream" id=8]
+[ext_resource path="res://entities/units/unit/hurt_sounds/punch_general_body_impact_08.wav" type="AudioStream" id=9]
+[ext_resource path="res://entities/units/unit/dodge_sounds/whoosh_swish_small_harsh_03.wav" type="AudioStream" id=10]
+[ext_resource path="res://entities/units/unit/hurt_sounds/punch_general_body_impact_05.wav" type="AudioStream" id=11]
+[ext_resource path="res://resources/sounds/burn/fireball_impact_burn_03.wav" type="AudioStream" id=12]
+[ext_resource path="res://entities/units/unit/hurt_sounds/punch_general_body_impact_07.wav" type="AudioStream" id=13]
+[ext_resource path="res://entities/units/unit/crit_sounds/bullet_impact_metal_light_03.wav" type="AudioStream" id=14]
+[ext_resource path="res://entities/units/unit/crit_sounds/bullet_impact_metal_light_01.wav" type="AudioStream" id=15]
+[ext_resource path="res://entities/units/unit/hurt_sounds/punch_general_body_impact_06.wav" type="AudioStream" id=16]
+[ext_resource path="res://entities/units/unit/dodge_sounds/whoosh_swish_small_harsh_02.wav" type="AudioStream" id=17]
+[ext_resource path="res://resources/sounds/burn/fireball_impact_burn_01.wav" type="AudioStream" id=18]
+[ext_resource path="res://resources/sounds/burn/fireball_impact_burn_02.wav" type="AudioStream" id=19]
+[ext_resource path="res://entities/units/unit/hurt_sounds/punch_general_body_impact_03.wav" type="AudioStream" id=20]
+[ext_resource path="res://entities/units/unit/hurt_sounds/punch_general_body_impact_01.wav" type="AudioStream" id=21]
+[ext_resource path="res://resources/sounds/burn/fireball_impact_burn_04.wav" type="AudioStream" id=22]
+[ext_resource path="res://resources/shaders/flash.gdshader" type="Shader" id=23]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 23 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+
+[node name="Unit" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+crit_sounds = [ ExtResource( 15 ), ExtResource( 5 ), ExtResource( 14 ), ExtResource( 8 ) ]
+hurt_sounds = [ ExtResource( 21 ), ExtResource( 7 ), ExtResource( 20 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 9 ) ]
+burn_sounds = [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 12 ), ExtResource( 22 ) ]
+dodge_sounds = [ ExtResource( 17 ), ExtResource( 10 ) ]
+stats = null
+mirror_sprite_with_movement = true
+always_play_hurt_sound = false
+flash_mat = SubResource( 1 )
+
+[node name="Hurtbox" parent="." index="2" instance=ExtResource( 3 )]
+position = Vector2( 0, -24 )
+
+[node name="FlashTimer" type="Timer" parent="." index="4"]
+wait_time = 0.1
+
+[node name="BurningTimer" type="Timer" parent="." index="5"]
+wait_time = 0.5
+
+[node name="BurningParticles" parent="." index="6" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 0, -24 )
+emitting = false
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]
+[connection signal="timeout" from="BurningTimer" to="." method="_on_BurningTimer_timeout"]

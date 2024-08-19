@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/menus/run/difficulty_selection/difficulty_selection.gd" type="Script" id=1]
+[ext_resource path="res://ui/menus/run/character_selection.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/fonts/actual/base/font_big_outlined.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/menus/run/difficulty_selection/endless_button.gd" type="Script" id=4]
+[ext_resource path="res://resources/themes/button_styles/button_hover.tres" type="StyleBox" id=5]
+[ext_resource path="res://ui/menus/ingame/item_panel_ui.tscn" type="PackedScene" id=15]
+
+[node name="DifficultySelection" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+add_random_element = false
+
+[node name="VBoxContainer" parent="MarginContainer" index="0"]
+margin_left = 219.0
+margin_right = 1701.0
+
+[node name="TitleContainer" parent="MarginContainer/VBoxContainer" index="0"]
+margin_right = 1482.0
+
+[node name="Title" parent="MarginContainer/VBoxContainer/TitleContainer" index="0"]
+margin_left = 410.0
+margin_right = 1072.0
+text = "DIFFICULTY_SELECTION"
+
+[node name="DescriptionContainer" parent="MarginContainer/VBoxContainer" index="1"]
+margin_right = 1482.0
+
+[node name="CharacterPanel" parent="MarginContainer/VBoxContainer/DescriptionContainer" index="0" instance=ExtResource( 15 )]
+margin_left = 0.0
+margin_right = 359.0
+margin_bottom = 500.0
+
+[node name="MarginContainer" parent="MarginContainer/VBoxContainer/DescriptionContainer/CharacterPanel" index="0"]
+margin_bottom = 495.0
+
+[node name="VBoxContainer" parent="MarginContainer/VBoxContainer/DescriptionContainer/CharacterPanel/MarginContainer" index="0"]
+margin_bottom = 476.0
+
+[node name="ItemDescription" parent="MarginContainer/VBoxContainer/DescriptionContainer/CharacterPanel/MarginContainer/VBoxContainer" index="0"]
+margin_bottom = 461.0
+expand_indefinitely = false
+
+[node name="ScrollContainer" parent="MarginContainer/VBoxContainer/DescriptionContainer/CharacterPanel/MarginContainer/VBoxContainer/ItemDescription" index="2"]
+visible = true
+margin_top = 116.0
+margin_bottom = 461.0
+rect_min_size = Vector2( 0, 345 )
+
+[node name="WeaponPanel" parent="MarginContainer/VBoxContainer/DescriptionContainer" index="1" instance=ExtResource( 15 )]
+margin_left = 374.0
+margin_right = 733.0
+margin_bottom = 500.0
+
+[node name="MarginContainer" parent="MarginContainer/VBoxContainer/DescriptionContainer/WeaponPanel" index="0"]
+margin_bottom = 495.0
+
+[node name="VBoxContainer" parent="MarginContainer/VBoxContainer/DescriptionContainer/WeaponPanel/MarginContainer" index="0"]
+margin_bottom = 476.0
+
+[node name="ItemDescription" parent="MarginContainer/VBoxContainer/DescriptionContainer/WeaponPanel/MarginContainer/VBoxContainer" index="0"]
+expand_indefinitely = false
+
+[node name="ScrollContainer" parent="MarginContainer/VBoxContainer/DescriptionContainer/WeaponPanel/MarginContainer/VBoxContainer/ItemDescription" index="2"]
+rect_min_size = Vector2( 0, 345 )
+
+[node name="Panel" parent="MarginContainer/VBoxContainer/DescriptionContainer" index="2"]
+margin_left = 748.0
+margin_right = 1107.0
+
+[node name="LockedPanel" parent="MarginContainer/VBoxContainer/DescriptionContainer" index="3"]
+margin_left = 1122.0
+margin_right = 1482.0
+
+[node name="MarginContainer" parent="MarginContainer/VBoxContainer/DescriptionContainer/LockedPanel" index="0"]
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" parent="MarginContainer/VBoxContainer/DescriptionContainer/LockedPanel/MarginContainer" index="0"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 475.0
+
+[node name="Icon" parent="MarginContainer/VBoxContainer/DescriptionContainer/LockedPanel/MarginContainer/VBoxContainer" index="0"]
+margin_right = 320.0
+
+[node name="Description" parent="MarginContainer/VBoxContainer/DescriptionContainer/LockedPanel/MarginContainer/VBoxContainer" index="1"]
+margin_right = 320.0
+align = 1
+
+[node name="InfoPanel" parent="MarginContainer/VBoxContainer/DescriptionContainer" index="4"]
+visible = false
+margin_left = 1475.0
+margin_right = 1861.0
+
+[node name="ScrollContainer" parent="MarginContainer/VBoxContainer" index="2"]
+margin_left = 731.0
+margin_right = 751.0
+margin_bottom = 875.0
+
+[node name="EndlessButton" type="CheckButton" parent="MarginContainer/VBoxContainer" index="3"]
+unique_name_in_owner = true
+margin_left = 591.0
+margin_top = 910.0
+margin_right = 891.0
+margin_bottom = 980.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover_pressed = ExtResource( 5 )
+text = "ENDLESS"
+script = ExtResource( 4 )
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/EndlessButton" to="." method="_on_EndlessButton_toggled"]
+
+[editable path="MarginContainer/VBoxContainer/DescriptionContainer/CharacterPanel"]
+[editable path="MarginContainer/VBoxContainer/DescriptionContainer/CharacterPanel/MarginContainer/VBoxContainer/ItemDescription"]
+[editable path="MarginContainer/VBoxContainer/DescriptionContainer/WeaponPanel"]
+[editable path="MarginContainer/VBoxContainer/DescriptionContainer/WeaponPanel/MarginContainer/VBoxContainer/ItemDescription"]
+[editable path="MarginContainer/VBoxContainer/DescriptionContainer/Panel"]
+[editable path="MarginContainer/VBoxContainer/DescriptionContainer/Panel/MarginContainer/VBoxContainer/ItemDescription"]

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" load_steps=23 format=2]
+
+[ext_resource path="res://zones/zone_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/insanity/insanity_icon.png" type="Texture" id=2]
+[ext_resource path="res://zones/zone_1/002/wave_2.tres" type="Resource" id=4]
+[ext_resource path="res://zones/zone_1/007/wave_7.tres" type="Resource" id=5]
+[ext_resource path="res://zones/zone_1/011/wave_11.tres" type="Resource" id=6]
+[ext_resource path="res://zones/zone_1/012/wave_12.tres" type="Resource" id=7]
+[ext_resource path="res://zones/zone_1/013/wave_13.tres" type="Resource" id=8]
+[ext_resource path="res://zones/zone_1/009/wave_9.tres" type="Resource" id=9]
+[ext_resource path="res://zones/zone_1/014/wave_14.tres" type="Resource" id=10]
+[ext_resource path="res://zones/zone_1/008/wave_8.tres" type="Resource" id=11]
+[ext_resource path="res://zones/zone_1/010/wave_10.tres" type="Resource" id=12]
+[ext_resource path="res://zones/zone_1/001/wave_1.tres" type="Resource" id=13]
+[ext_resource path="res://zones/zone_1/015/wave_15.tres" type="Resource" id=14]
+[ext_resource path="res://zones/zone_1/019/wave_19.tres" type="Resource" id=15]
+[ext_resource path="res://zones/zone_1/018/wave_18.tres" type="Resource" id=16]
+[ext_resource path="res://zones/zone_1/017/wave_17.tres" type="Resource" id=17]
+[ext_resource path="res://zones/zone_1/003/wave_3.tres" type="Resource" id=18]
+[ext_resource path="res://zones/zone_1/005/wave_5.tres" type="Resource" id=19]
+[ext_resource path="res://zones/zone_1/006/wave_6.tres" type="Resource" id=20]
+[ext_resource path="res://zones/zone_1/016/wave_16.tres" type="Resource" id=21]
+[ext_resource path="res://zones/zone_1/004/wave_4.tres" type="Resource" id=22]
+[ext_resource path="res://zones/zone_1/020/wave_20.tres" type="Resource" id=23]
+
+[resource]
+script = ExtResource( 1 )
+my_id = 0
+unlocked_by_default = true
+name = "ZONE_CRASH_ZONE"
+icon = ExtResource( 2 )
+width = 32
+height = 24
+waves_data = [ ExtResource( 13 ), ExtResource( 4 ), ExtResource( 18 ), ExtResource( 22 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 23 ) ]

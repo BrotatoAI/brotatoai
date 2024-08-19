@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://entities/birth/entity_birth.gd" type="Script" id=1]
+[ext_resource path="res://entities/birth/entity_birth.png" type="Texture" id=2]
+[ext_resource path="res://entities/birth/birth_end_sound.wav" type="AudioStream" id=3]
+[ext_resource path="res://entities/birth/birth_begin_sound.wav" type="AudioStream" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 72.0
+
+[node name="EntityBirth" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 1 )
+birth_begin_sound = ExtResource( 4 )
+birth_end_sound = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.215686, 0.215686, 1 )
+scale = Vector2( 0.33, 0.33 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_EntityBirth_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_EntityBirth_body_exited"]

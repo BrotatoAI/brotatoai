@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://projectiles/projectile.gd" type="Script" id=2]
+[ext_resource path="res://projectiles/bullet/frame0000.png" type="Texture" id=3]
+[ext_resource path="res://overlap/hitbox.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 44.0
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 24, 0 )
+texture = ExtResource( 3 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 4 )]
+
+[node name="Collision" parent="Hitbox" index="0"]
+position = Vector2( 23, 0 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="DestroyTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_DestroyTimer_timeout"]
+
+[editable path="Hitbox"]

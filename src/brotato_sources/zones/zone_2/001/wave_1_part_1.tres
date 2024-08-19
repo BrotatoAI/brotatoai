@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://zones/wave_part_data.gd" type="Script" id=1]
+[ext_resource path="res://zones/zone_2/001/wave_1_part_1_group_1.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+groups_data = [ ExtResource( 2 ) ]

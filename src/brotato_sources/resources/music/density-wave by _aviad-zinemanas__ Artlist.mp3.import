@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/density-wave by _aviad-zinemanas__ Artlist.mp3-8b58b0d26867dbb732287f78084dac92.mp3str"
+
+[deps]
+
+source_file="res://resources/music/density-wave by _aviad-zinemanas__ Artlist.mp3"
+dest_files=[ "res://.import/density-wave by _aviad-zinemanas__ Artlist.mp3-8b58b0d26867dbb732287f78084dac92.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

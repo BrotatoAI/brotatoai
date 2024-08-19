@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Potion_Grab_01.ogg-cfeedf82344793018ae62cdaca86cb15.oggstr"
+
+[deps]
+
+source_file="res://entities/units/player/hp_regen_sounds/Potion_Grab_01.ogg"
+dest_files=[ "res://.import/Potion_Grab_01.ogg-cfeedf82344793018ae62cdaca86cb15.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

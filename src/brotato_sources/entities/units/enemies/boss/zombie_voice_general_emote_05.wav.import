@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zombie_voice_general_emote_05.wav-c4b410ffdb68812b33cd799faf967bcd.sample"
+
+[deps]
+
+source_file="res://entities/units/enemies/boss/zombie_voice_general_emote_05.wav"
+dest_files=[ "res://.import/zombie_voice_general_emote_05.wav-c4b410ffdb68812b33cd799faf967bcd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

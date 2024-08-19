@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://entities/units/enemies/enemy.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 22.0
+
+[node name="Enemy" instance=ExtResource( 2 )]
+
+[node name="Collision" parent="." index="1"]
+shape = SubResource( 2 )
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

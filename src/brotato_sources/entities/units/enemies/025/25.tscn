@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://entities/units/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/units/enemies/025/25.png" type="Texture" id=3]
+[ext_resource path="res://entities/units/enemies/025/25_stats.tres" type="Resource" id=4]
+[ext_resource path="res://entities/units/enemies/attack_behaviors/shooting_attack_behavior.gd" type="Script" id=5]
+[ext_resource path="res://entities/units/enemies/attack_behaviors/enemy_shoot_animation.tres" type="Animation" id=6]
+[ext_resource path="res://entities/units/movement_behaviors/follow_rand_pos_around_player_movement_behavior.gd" type="Script" id=7]
+[ext_resource path="res://projectiles/slash/slash_projectile_2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://entities/units/enemies/025/25.gd" type="Script" id=10]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 21.0238
+
+[node name="Enemy" instance=ExtResource( 2 )]
+script = ExtResource( 10 )
+stats = ExtResource( 4 )
+
+[node name="Sprite" parent="Animation" index="0"]
+position = Vector2( -4, -16 )
+texture = ExtResource( 3 )
+
+[node name="Collision" parent="." index="1"]
+position = Vector2( 0, 3 )
+shape = SubResource( 2 )
+
+[node name="Hurtbox" parent="." index="2"]
+position = Vector2( 1, -16 )
+
+[node name="Collision" parent="Hurtbox" index="0"]
+position = Vector2( -1, 11 )
+shape = SubResource( 4 )
+
+[node name="Hitbox" parent="." index="3"]
+position = Vector2( -5, 0 )
+
+[node name="Collision" parent="Hitbox" index="0"]
+position = Vector2( 6, -3 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/shoot = ExtResource( 6 )
+
+[node name="MovementBehavior" parent="." index="6"]
+script = ExtResource( 7 )
+range_around_player = 300
+range_randomization = 0
+allow_within = true
+
+[node name="AttackBehavior" parent="." index="7"]
+script = ExtResource( 5 )
+projectile_scene = ExtResource( 8 )
+projectile_speed = 300
+cooldown = 60.0
+damage = 1
+damage_increase_each_wave = 1.0
+max_cd_randomization = 10
+min_range = 0
+max_range = 500
+attack_anim_speed = 1.0
+random_direction = false
+number_projectiles = 2
+projectile_spread = 0.8
+spawn_projectiles_on_target = false
+projectile_spawn_spread = 0
+projectile_spawn_only_on_borders = false
+constant_spread = true
+atleast_one_projectile_on_target = false
+initial_cooldown = 0
+shoot_in_unit_direction = false
+rotate_projectile = true
+delete_projectile_on_death = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

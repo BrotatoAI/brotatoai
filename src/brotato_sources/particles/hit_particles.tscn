@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://particles/sprites/particle_1.png" type="Texture" id=1]
+[ext_resource path="res://particles/particles.gd" type="Script" id=2]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 15.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_random = 0.25
+scale_curve = SubResource( 3 )
+color = Color( 0.623529, 0.152941, 0.152941, 1 )
+
+[node name="HitParticles" type="Particles2D"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="DestroyTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_DestroyTimer_timeout"]

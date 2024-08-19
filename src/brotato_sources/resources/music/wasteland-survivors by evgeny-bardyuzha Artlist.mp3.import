@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/wasteland-survivors by evgeny-bardyuzha Artlist.mp3-2cc484ff53236b5ff34f24ba73f0a9e9.mp3str"
+
+[deps]
+
+source_file="res://resources/music/wasteland-survivors by evgeny-bardyuzha Artlist.mp3"
+dest_files=[ "res://.import/wasteland-survivors by evgeny-bardyuzha Artlist.mp3-2cc484ff53236b5ff34f24ba73f0a9e9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

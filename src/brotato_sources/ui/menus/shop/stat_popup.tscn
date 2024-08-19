@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/menus/shop/stat_popup.gd" type="Script" id=1]
+[ext_resource path="res://items/upgrades/armor/flat_dmg_reduction.png" type="Texture" id=2]
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=3]
+[ext_resource path="res://resources/fonts/actual/base/font_small_text.tres" type="DynamicFont" id=4]
+[ext_resource path="res://resources/fonts/actual/base/font_small_title.tres" type="DynamicFont" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="StatPopup" type="Control"]
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 10.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 600, 0 )
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 595.0
+margin_bottom = 131.0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 575.0
+margin_bottom = 111.0
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
+margin_right = 96.0
+margin_bottom = 96.0
+texture = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 100.0
+margin_right = 560.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_constants/separation = 8
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 460.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 5 )
+text = "dsfdsf"
+
+[node name="Description" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 39.0
+margin_right = 460.0
+margin_bottom = 90.0
+custom_fonts/font = ExtResource( 4 )
+text = "sdfsdfdsfsdfsdsdfsdfdf fdsd fdqsf qsdf qdsfdqs fqdsf qsdf qdsf qsdf qsd"
+autowrap = true

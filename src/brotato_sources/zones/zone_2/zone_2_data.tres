@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://zones/zone_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/baby_with_a_beard/baby_with_a_beard_icon.png" type="Texture" id=2]
+[ext_resource path="res://zones/zone_2/001/wave_1.tres" type="Resource" id=3]
+
+[resource]
+script = ExtResource( 1 )
+my_id = 0
+unlocked_by_default = false
+name = "ZONE_LAKE"
+icon = ExtResource( 2 )
+width = 32
+height = 24
+waves_data = [ ExtResource( 3 ) ]

@@ -1,0 +1,1691 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "ArgValue",
+"language": "GDScript",
+"path": "res://effects/enums/arg_value.gd"
+}, {
+"base": "Behavior",
+"class": "AttackBehavior",
+"language": "GDScript",
+"path": "res://entities/units/enemies/attack_behaviors/attack_behavior.gd"
+}, {
+"base": "OptionButton",
+"class": "BackgroundButton",
+"language": "GDScript",
+"path": "res://ui/menus/pages/background_button.gd"
+}, {
+"base": "Resource",
+"class": "BackgroundData",
+"language": "GDScript",
+"path": "res://zones/backgrounds/background_data.gd"
+}, {
+"base": "Control",
+"class": "BasePopup",
+"language": "GDScript",
+"path": "res://ui/menus/shop/base_popup.gd"
+}, {
+"base": "Node2D",
+"class": "Behavior",
+"language": "GDScript",
+"path": "res://global/behavior.gd"
+}, {
+"base": "Enemy",
+"class": "Boss",
+"language": "GDScript",
+"path": "res://entities/units/enemies/boss/boss.gd"
+}, {
+"base": "Node2D",
+"class": "BossState",
+"language": "GDScript",
+"path": "res://entities/units/enemies/boss/boss_state.gd"
+}, {
+"base": "Effect",
+"class": "BurnChanceEffect",
+"language": "GDScript",
+"path": "res://effects/items/burn_chance_effect.gd"
+}, {
+"base": "Resource",
+"class": "BurningData",
+"language": "GDScript",
+"path": "res://effects/burning_data.gd"
+}, {
+"base": "NullEffect",
+"class": "BurningEffect",
+"language": "GDScript",
+"path": "res://effects/weapons/burning_effect.gd"
+}, {
+"base": "Particles2D",
+"class": "BurningParticles",
+"language": "GDScript",
+"path": "res://particles/burning/burning_particles.gd"
+}, {
+"base": "Reference",
+"class": "BurningType",
+"language": "GDScript",
+"path": "res://effects/burning_type.gd"
+}, {
+"base": "MyMenuButtonParent",
+"class": "ButtonWithIcon",
+"language": "GDScript",
+"path": "res://ui/menus/shop/button_with_icon.gd"
+}, {
+"base": "Reference",
+"class": "Category",
+"language": "GDScript",
+"path": "res://items/global/category.gd"
+}, {
+"base": "VBoxContainer",
+"class": "ChallengeAndRewardUI",
+"language": "GDScript",
+"path": "res://ui/menus/run/challenge_and_reward_ui.gd"
+}, {
+"base": "Control",
+"class": "ChallengeCompletedUI",
+"language": "GDScript",
+"path": "res://ui/menus/ingame/challenge_completed_ui.gd"
+}, {
+"base": "ItemParentData",
+"class": "ChallengeData",
+"language": "GDScript",
+"path": "res://challenges/global/challenge_data.gd"
+}, {
+"base": "PanelContainer",
+"class": "ChallengeUI",
+"language": "GDScript",
+"path": "res://ui/menus/ingame/challenge_ui.gd"
+}, {
+"base": "Effect",
+"class": "ChanceStatDamageEffect",
+"language": "GDScript",
+"path": "res://effects/items/chance_stat_damage_effect.gd"
+}, {
+"base": "ItemData",
+"class": "CharacterData",
+"language": "GDScript",
+"path": "res://items/characters/character_data.gd"
+}, {
+"base": "Reference",
+"class": "CharacterDifficultyInfo",
+"language": "GDScript",
+"path": "res://ui/menus/run/difficulty_selection/character_difficulty_info.gd"
+}, {
+"base": "PanelContainer",
+"class": "CharacterInfoPanel",
+"language": "GDScript",
+"path": "res://ui/menus/run/character_info_panel.gd"
+}, {
+"base": "Control",
+"class": "CharacterSelection",
+"language": "GDScript",
+"path": "res://ui/menus/run/character_selection.gd"
+}, {
+"base": "AttackBehavior",
+"class": "ChargingAttackBehavior",
+"language": "GDScript",
+"path": "res://entities/units/enemies/attack_behaviors/charging_attack_behavior.gd"
+}, {
+"base": "Effect",
+"class": "ClassBonusEffect",
+"language": "GDScript",
+"path": "res://effects/items/class_bonus_effect.gd"
+}, {
+"base": "Item",
+"class": "Consumable",
+"language": "GDScript",
+"path": "res://items/consumables/consumable.gd"
+}, {
+"base": "ItemData",
+"class": "ConsumableData",
+"language": "GDScript",
+"path": "res://items/consumables/consumable_data.gd"
+}, {
+"base": "Effect",
+"class": "ConvertStatEffect",
+"language": "GDScript",
+"path": "res://effects/items/convert_stat_effect.gd"
+}, {
+"base": "Resource",
+"class": "CustomArg",
+"language": "GDScript",
+"path": "res://items/global/custom_arg.gd"
+}, {
+"base": "PlayerProjectile",
+"class": "DelayedPlayerProjectile",
+"language": "GDScript",
+"path": "res://projectiles/delayed_player_projectile.gd"
+}, {
+"base": "ItemParentData",
+"class": "DifficultyData",
+"language": "GDScript",
+"path": "res://items/difficulties/difficulty_data.gd"
+}, {
+"base": "Reference",
+"class": "DifficultyScore",
+"language": "GDScript",
+"path": "res://ui/menus/run/difficulty_selection/difficulty_score.gd"
+}, {
+"base": "CharacterSelection",
+"class": "DifficultySelection",
+"language": "GDScript",
+"path": "res://ui/menus/run/difficulty_selection/difficulty_selection.gd"
+}, {
+"base": "Reference",
+"class": "Direction",
+"language": "GDScript",
+"path": "res://global/direction.gd"
+}, {
+"base": "Resource",
+"class": "Effect",
+"language": "GDScript",
+"path": "res://items/global/effect.gd"
+}, {
+"base": "Node2D",
+"class": "EffectsManager",
+"language": "GDScript",
+"path": "res://global/effects_manager.gd"
+}, {
+"base": "Inventory",
+"class": "EliteContainer",
+"language": "GDScript",
+"path": "res://ui/menus/shop/elite_container.gd"
+}, {
+"base": "Reference",
+"class": "EliteType",
+"language": "GDScript",
+"path": "res://items/difficulties/elite_type.gd"
+}, {
+"base": "Control",
+"class": "EndRun",
+"language": "GDScript",
+"path": "res://ui/menus/run/end_run.gd"
+}, {
+"base": "CheckButton",
+"class": "EndlessButton",
+"language": "GDScript",
+"path": "res://ui/menus/run/difficulty_selection/endless_button.gd"
+}, {
+"base": "Reference",
+"class": "EndlessScoreStoring",
+"language": "GDScript",
+"path": "res://ui/menus/run/difficulty_selection/endless_score_storing.gd"
+}, {
+"base": "Unit",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://entities/units/enemies/enemy.gd"
+}, {
+"base": "Resource",
+"class": "EnemyData",
+"language": "GDScript",
+"path": "res://entities/units/enemies/enemy_data.gd"
+}, {
+"base": "Projectile",
+"class": "EnemyProjectile",
+"language": "GDScript",
+"path": "res://projectiles/bullet_enemy/enemy_projectile.gd"
+}, {
+"base": "EnemyProjectile",
+"class": "EnemyProjectileRotating",
+"language": "GDScript",
+"path": "res://projectiles/bullet_enemy/enemy_projectile_rotating.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://entities/entity.gd"
+}, {
+"base": "Area2D",
+"class": "EntityBirth",
+"language": "GDScript",
+"path": "res://entities/birth/entity_birth.gd"
+}, {
+"base": "Node2D",
+"class": "EntitySpawner",
+"language": "GDScript",
+"path": "res://global/entity_spawner.gd"
+}, {
+"base": "Reference",
+"class": "EntityType",
+"language": "GDScript",
+"path": "res://entities/entity_type.gd"
+}, {
+"base": "NullEffect",
+"class": "ExplodingEffect",
+"language": "GDScript",
+"path": "res://effects/weapons/exploding_effect.gd"
+}, {
+"base": "Reference",
+"class": "FixedTimer",
+"language": "GDScript",
+"path": "res://global/fixed_timer.gd"
+}, {
+"base": "Turret",
+"class": "FlameTurret",
+"language": "GDScript",
+"path": "res://entities/structures/turret/flame/flame_turret.gd"
+}, {
+"base": "Label",
+"class": "FloatingText",
+"language": "GDScript",
+"path": "res://visual_effects/floating_text/floating_text.gd"
+}, {
+"base": "Node2D",
+"class": "FloatingTextManager",
+"language": "GDScript",
+"path": "res://visual_effects/floating_text/floating_text_manager.gd"
+}, {
+"base": "Node",
+"class": "FocusManager",
+"language": "GDScript",
+"path": "res://ui/menus/global/focus_manager.gd"
+}, {
+"base": "MovementBehavior",
+"class": "FollowPlayerMovementBehavior",
+"language": "GDScript",
+"path": "res://entities/units/movement_behaviors/follow_player_movement_behavior.gd"
+}, {
+"base": "MovementBehavior",
+"class": "FollowRandPosAroundPlayerMovementBehavior",
+"language": "GDScript",
+"path": "res://entities/units/movement_behaviors/follow_rand_pos_around_player_movement_behavior.gd"
+}, {
+"base": "Reference",
+"class": "Format",
+"language": "GDScript",
+"path": "res://effects/enums/format.gd"
+}, {
+"base": "NullEffect",
+"class": "GainStatEveryKilledEnemiesEffect",
+"language": "GDScript",
+"path": "res://effects/weapons/gain_stat_every_killed_enemies_effect.gd"
+}, {
+"base": "Effect",
+"class": "GainStatForEveryStatEffect",
+"language": "GDScript",
+"path": "res://effects/items/gain_stat_for_every_stat_effect.gd"
+}, {
+"base": "Turret",
+"class": "Garden",
+"language": "GDScript",
+"path": "res://entities/structures/turret/garden/garden.gd"
+}, {
+"base": "Item",
+"class": "Gold",
+"language": "GDScript",
+"path": "res://items/materials/gold.gd"
+}, {
+"base": "Area2D",
+"class": "GoldBag",
+"language": "GDScript",
+"path": "res://items/materials/gold_bag.gd"
+}, {
+"base": "Label",
+"class": "GoldLabel",
+"language": "GDScript",
+"path": "res://ui/menus/run/gold_label.gd"
+}, {
+"base": "Reference",
+"class": "GutHookScript",
+"language": "GDScript",
+"path": "res://addons/gut/hook_script.gd"
+}, {
+"base": "Node",
+"class": "GutTest",
+"language": "GDScript",
+"path": "res://addons/gut/test.gd"
+}, {
+"base": "Effect",
+"class": "HealingEffect",
+"language": "GDScript",
+"path": "res://effects/items/healing_effect.gd"
+}, {
+"base": "Reference",
+"class": "HitType",
+"language": "GDScript",
+"path": "res://entities/units/unit/hit_type.gd"
+}, {
+"base": "Area2D",
+"class": "Hitbox",
+"language": "GDScript",
+"path": "res://overlap/hitbox.gd"
+}, {
+"base": "Area2D",
+"class": "Hurtbox",
+"language": "GDScript",
+"path": "res://overlap/hurtbox.gd"
+}, {
+"base": "VBoxContainer",
+"class": "InfoContainer",
+"language": "GDScript",
+"path": "res://ui/menus/shop/info_container.gd"
+}, {
+"base": "BasePopup",
+"class": "InfoPopup",
+"language": "GDScript",
+"path": "res://ui/menus/ingame/info_popup.gd"
+}, {
+"base": "Control",
+"class": "IngameMainMenu",
+"language": "GDScript",
+"path": "res://ui/menus/ingame/ingame_main_menu.gd"
+}, {
+"base": "Menus",
+"class": "IngameMenus",
+"language": "GDScript",
+"path": "res://ui/menus/ingame/ingame_menus.gd"
+}, {
+"base": "GridContainer",
+"class": "Inventory",
+"language": "GDScript",
+"path": "res://ui/menus/shop/inventory.gd"
+}, {
+"base": "VBoxContainer",
+"class": "InventoryContainer",
+"language": "GDScript",
+"path": "res://ui/menus/shop/inventory_container.gd"
+}, {
+"base": "Button",
+"class": "InventoryElement",
+"language": "GDScript",
+"path": "res://items/global/inventory_element.gd"
+}, {
+"base": "Area2D",
+"class": "Item",
+"language": "GDScript",
+"path": "res://items/global/item.gd"
+}, {
+"base": "Resource",
+"class": "ItemAppearanceData",
+"language": "GDScript",
+"path": "res://items/global/item_appearance_data.gd"
+}, {
+"base": "Control",
+"class": "ItemBoxUI",
+"language": "GDScript",
+"path": "res://ui/menus/upgrades/item_box_ui.gd"
+}, {
+"base": "ItemParentData",
+"class": "ItemData",
+"language": "GDScript",
+"path": "res://items/global/item_data.gd"
+}, {
+"base": "VBoxContainer",
+"class": "ItemDescription",
+"language": "GDScript",
+"path": "res://ui/menus/shop/item_description.gd"
+}, {
+"base": "ExplodingEffect",
+"class": "ItemExplodingEffect",
+"language": "GDScript",
+"path": "res://effects/items/item_exploding_effect.gd"
+}, {
+"base": "PanelContainer",
+"class": "ItemPanelUI",
+"language": "GDScript",
+"path": "res://ui/menus/ingame/item_panel_ui.gd"
+}, {
+"base": "Resource",
+"class": "ItemParentData",
+"language": "GDScript",
+"path": "res://items/global/item_parent_data.gd"
+}, {
+"base": "Control",
+"class": "ItemPopup",
+"language": "GDScript",
+"path": "res://ui/menus/shop/item_popup.gd"
+}, {
+"base": "Reference",
+"class": "JSONSchema",
+"language": "GDScript",
+"path": "res://addons/JSON_Schema_Validator/json_schema_validator.gd"
+}, {
+"base": "Structure",
+"class": "Landmine",
+"language": "GDScript",
+"path": "res://entities/structures/landmine/landmine.gd"
+}, {
+"base": "OptionButton",
+"class": "LanguageButton",
+"language": "GDScript",
+"path": "res://ui/menus/pages/language_button.gd"
+}, {
+"base": "HBoxContainer",
+"class": "LevelContainer",
+"language": "GDScript",
+"path": "res://ui/menus/shop/level_container.gd"
+}, {
+"base": "Reference",
+"class": "LiveStats",
+"language": "GDScript",
+"path": "res://entities/units/unit/live_stats.gd"
+}, {
+"base": "PanelContainer",
+"class": "LockedPanel",
+"language": "GDScript",
+"path": "res://ui/menus/run/locked_panel.gd"
+}, {
+"base": "Control",
+"class": "MainMenu",
+"language": "GDScript",
+"path": "res://ui/menus/pages/main_menu.gd"
+}, {
+"base": "Reference",
+"class": "MeleeAttackType",
+"language": "GDScript",
+"path": "res://weapons/melee/melee_attack_type.gd"
+}, {
+"base": "ShootingData",
+"class": "MeleeShootingData",
+"language": "GDScript",
+"path": "res://weapons/shooting_behaviors/melee_shooting_data.gd"
+}, {
+"base": "Weapon",
+"class": "MeleeWeapon",
+"language": "GDScript",
+"path": "res://weapons/melee/melee_weapon.gd"
+}, {
+"base": "WeaponShootingBehavior",
+"class": "MeleeWeaponShootingBehavior",
+"language": "GDScript",
+"path": "res://weapons/shooting_behaviors/melee_weapon_shooting_behavior.gd"
+}, {
+"base": "WeaponStats",
+"class": "MeleeWeaponStats",
+"language": "GDScript",
+"path": "res://weapons/weapon_stats/melee_weapon_stats.gd"
+}, {
+"base": "VBoxContainer",
+"class": "MenuChooseOptions",
+"language": "GDScript",
+"path": "res://ui/menus/pages/menu_choose_options.gd"
+}, {
+"base": "VBoxContainer",
+"class": "MenuConfirm",
+"language": "GDScript",
+"path": "res://ui/menus/pages/menu_confirm.gd"
+}, {
+"base": "Control",
+"class": "MenuCredits",
+"language": "GDScript",
+"path": "res://ui/menus/pages/menu_credits.gd"
+}, {
+"base": "Control",
+"class": "MenuGameplayOptions",
+"language": "GDScript",
+"path": "res://ui/menus/pages/menu_gameplay_options.gd"
+}, {
+"base": "Control",
+"class": "MenuGeneralOptions",
+"language": "GDScript",
+"path": "res://ui/menus/pages/menu_general_options.gd"
+}, {
+"base": "Control",
+"class": "MenuMods",
+"language": "GDScript",
+"path": "res://ui/menus/pages/mods/menu_mods.gd"
+}, {
+"base": "VBoxContainer",
+"class": "MenuRestart",
+"language": "GDScript",
+"path": "res://ui/menus/pages/menu_restart.gd"
+}, {
+"base": "Control",
+"class": "Menus",
+"language": "GDScript",
+"path": "res://ui/menus/menus.gd"
+}, {
+"base": "Reference",
+"class": "MobProjectileStats",
+"language": "GDScript",
+"path": "res://projectiles/mob_projectile_stats.gd"
+}, {
+"base": "Resource",
+"class": "ModConfig",
+"language": "GDScript",
+"path": "res://addons/mod_loader/resources/mod_config.gd"
+}, {
+"base": "PanelContainer",
+"class": "ModContainer",
+"language": "GDScript",
+"path": "res://ui/menus/pages/mods/mod_container.gd"
+}, {
+"base": "Resource",
+"class": "ModData",
+"language": "GDScript",
+"path": "res://addons/mod_loader/resources/mod_data.gd"
+}, {
+"base": "PanelContainer",
+"class": "ModInfoContainer",
+"language": "GDScript",
+"path": "res://ui/menus/pages/mods/mod_info_container.gd"
+}, {
+"base": "Object",
+"class": "ModLoaderConfig",
+"language": "GDScript",
+"path": "res://addons/mod_loader/api/config.gd"
+}, {
+"base": "Resource",
+"class": "ModLoaderCurrentOptions",
+"language": "GDScript",
+"path": "res://addons/mod_loader/resources/options_current.gd"
+}, {
+"base": "Node",
+"class": "ModLoaderDeprecated",
+"language": "GDScript",
+"path": "res://addons/mod_loader/api/deprecated.gd"
+}, {
+"base": "Node",
+"class": "ModLoaderLog",
+"language": "GDScript",
+"path": "res://addons/mod_loader/api/log.gd"
+}, {
+"base": "Object",
+"class": "ModLoaderMod",
+"language": "GDScript",
+"path": "res://addons/mod_loader/api/mod.gd"
+}, {
+"base": "Reference",
+"class": "ModLoaderModManager",
+"language": "GDScript",
+"path": "res://addons/mod_loader/api/mod_manager.gd"
+}, {
+"base": "Resource",
+"class": "ModLoaderOptionsProfile",
+"language": "GDScript",
+"path": "res://addons/mod_loader/resources/options_profile.gd"
+}, {
+"base": "Reference",
+"class": "ModLoaderSetupLog",
+"language": "GDScript",
+"path": "res://addons/mod_loader/setup/setup_log.gd"
+}, {
+"base": "Reference",
+"class": "ModLoaderSetupUtils",
+"language": "GDScript",
+"path": "res://addons/mod_loader/setup/setup_utils.gd"
+}, {
+"base": "Object",
+"class": "ModLoaderUserProfile",
+"language": "GDScript",
+"path": "res://addons/mod_loader/api/profile.gd"
+}, {
+"base": "Node",
+"class": "ModLoaderUtils",
+"language": "GDScript",
+"path": "res://addons/mod_loader/internal/mod_loader_utils.gd"
+}, {
+"base": "Resource",
+"class": "ModManifest",
+"language": "GDScript",
+"path": "res://addons/mod_loader/resources/mod_manifest.gd"
+}, {
+"base": "Resource",
+"class": "ModUserProfile",
+"language": "GDScript",
+"path": "res://addons/mod_loader/resources/mod_user_profile.gd"
+}, {
+"base": "Behavior",
+"class": "MovementBehavior",
+"language": "GDScript",
+"path": "res://entities/units/movement_behaviors/movement_behavior.gd"
+}, {
+"base": "HSlider",
+"class": "MyHSlider",
+"language": "GDScript",
+"path": "res://ui/menus/global/my_h_slider.gd"
+}, {
+"base": "MyMenuButtonParent",
+"class": "MyMenuButton",
+"language": "GDScript",
+"path": "res://ui/menus/global/my_menu_button.gd"
+}, {
+"base": "Button",
+"class": "MyMenuButtonParent",
+"language": "GDScript",
+"path": "res://ui/menus/global/my_menu_button_parent.gd"
+}, {
+"base": "Particles2D",
+"class": "MyParticles",
+"language": "GDScript",
+"path": "res://particles/particles.gd"
+}, {
+"base": "TileMap",
+"class": "MyTileMap",
+"language": "GDScript",
+"path": "res://global/my_tile_map.gd"
+}, {
+"base": "StaticBody2D",
+"class": "MyTileMapLimits",
+"language": "GDScript",
+"path": "res://global/my_tile_map_limits.gd"
+}, {
+"base": "Unit",
+"class": "Neutral",
+"language": "GDScript",
+"path": "res://entities/units/neutral/neutral.gd"
+}, {
+"base": "Effect",
+"class": "NullEffect",
+"language": "GDScript",
+"path": "res://effects/weapons/null_effect.gd"
+}, {
+"base": "MovementBehavior",
+"class": "PatrolEdgesOfMapMovementBehavior",
+"language": "GDScript",
+"path": "res://entities/units/movement_behaviors/patrol_edges_of_map_movement_behavior.gd"
+}, {
+"base": "Enemy",
+"class": "PatrollingEnemy",
+"language": "GDScript",
+"path": "res://entities/units/enemies/patrolling_enemy.gd"
+}, {
+"base": "PanelContainer",
+"class": "PauseMenu",
+"language": "GDScript",
+"path": "res://ui/menus/ingame/pause_menu.gd"
+}, {
+"base": "Node2D",
+"class": "Pivot",
+"language": "GDScript",
+"path": "res://entities/units/enemies/009/pivot.gd"
+}, {
+"base": "Unit",
+"class": "Player",
+"language": "GDScript",
+"path": "res://entities/units/player/player.gd"
+}, {
+"base": "Node2D",
+"class": "PlayerExplosion",
+"language": "GDScript",
+"path": "res://projectiles/player_explosion.gd"
+}, {
+"base": "MovementBehavior",
+"class": "PlayerMovementBehavior",
+"language": "GDScript",
+"path": "res://entities/units/movement_behaviors/player_movement_behavior.gd"
+}, {
+"base": "Projectile",
+"class": "PlayerProjectile",
+"language": "GDScript",
+"path": "res://projectiles/player_projectile.gd"
+}, {
+"base": "Node",
+"class": "ProgressionUI",
+"language": "GDScript",
+"path": "res://ui/menus/pages/progression_ui.gd"
+}, {
+"base": "Node2D",
+"class": "Projectile",
+"language": "GDScript",
+"path": "res://projectiles/projectile.gd"
+}, {
+"base": "Effect",
+"class": "ProjectileEffect",
+"language": "GDScript",
+"path": "res://effects/items/projectile_effect.gd"
+}, {
+"base": "NullEffect",
+"class": "ProjectilesOnHitEffect",
+"language": "GDScript",
+"path": "res://effects/weapons/projectiles_on_hit_effect.gd"
+}, {
+"base": "ShootingData",
+"class": "RangedShootingData",
+"language": "GDScript",
+"path": "res://weapons/shooting_behaviors/ranged_shooting_data.gd"
+}, {
+"base": "Weapon",
+"class": "RangedWeapon",
+"language": "GDScript",
+"path": "res://weapons/ranged/ranged_weapon.gd"
+}, {
+"base": "WeaponShootingBehavior",
+"class": "RangedWeaponShootingBehavior",
+"language": "GDScript",
+"path": "res://weapons/shooting_behaviors/ranged_weapon_shooting_behavior.gd"
+}, {
+"base": "WeaponStats",
+"class": "RangedWeaponStats",
+"language": "GDScript",
+"path": "res://weapons/weapon_stats/ranged_weapon_stats.gd"
+}, {
+"base": "ButtonWithIcon",
+"class": "RerollButton",
+"language": "GDScript",
+"path": "res://ui/menus/shop/reroll_button.gd"
+}, {
+"base": "Reference",
+"class": "RewardType",
+"language": "GDScript",
+"path": "res://challenges/global/reward_type.gd"
+}, {
+"base": "Particles2D",
+"class": "RunningSmoke",
+"language": "GDScript",
+"path": "res://particles/running_smoke.gd"
+}, {
+"base": "Reference",
+"class": "SaveStatus",
+"language": "GDScript",
+"path": "res://ui/menus/global/save_status.gd"
+}, {
+"base": "OptionButton",
+"class": "ScoreStoringButton",
+"language": "GDScript",
+"path": "res://ui/menus/pages/score_storing_button.gd"
+}, {
+"base": "Node",
+"class": "Screenshaker",
+"language": "GDScript",
+"path": "res://global/screenshaker.gd"
+}, {
+"base": "HBoxContainer",
+"class": "SecondaryStatContainer",
+"language": "GDScript",
+"path": "res://ui/menus/shop/secondary_stat_container.gd"
+}, {
+"base": "VBoxContainer",
+"class": "SecondaryStatsContainer",
+"language": "GDScript",
+"path": "res://ui/menus/shop/secondary_stats_container.gd"
+}, {
+"base": "Resource",
+"class": "SetData",
+"language": "GDScript",
+"path": "res://items/sets/set_data.gd"
+}, {
+"base": "AttackBehavior",
+"class": "ShootingAttackBehavior",
+"language": "GDScript",
+"path": "res://entities/units/enemies/attack_behaviors/shooting_attack_behavior.gd"
+}, {
+"base": "Reference",
+"class": "ShootingData",
+"language": "GDScript",
+"path": "res://weapons/shooting_behaviors/shooting_data.gd"
+}, {
+"base": "Control",
+"class": "Shop",
+"language": "GDScript",
+"path": "res://ui/menus/shop/shop.gd"
+}, {
+"base": "Control",
+"class": "ShopItem",
+"language": "GDScript",
+"path": "res://ui/menus/shop/shop_item.gd"
+}, {
+"base": "HBoxContainer",
+"class": "ShopItemsContainer",
+"language": "GDScript",
+"path": "res://ui/menus/shop/shop_items_container.gd"
+}, {
+"base": "Reference",
+"class": "Sign",
+"language": "GDScript",
+"path": "res://effects/enums/sign.gd"
+}, {
+"base": "HBoxContainer",
+"class": "SliderOption",
+"language": "GDScript",
+"path": "res://ui/menus/global/slider_option.gd"
+}, {
+"base": "NullEffect",
+"class": "SlowInZoneEffect",
+"language": "GDScript",
+"path": "res://effects/weapons/slow_in_zone_effect.gd"
+}, {
+"base": "Node",
+"class": "Sorter",
+"language": "GDScript",
+"path": "res://global/sorter.gd"
+}, {
+"base": "Node",
+"class": "SoundManagerParent",
+"language": "GDScript",
+"path": "res://singletons/sound_manager_parent.gd"
+}, {
+"base": "AttackBehavior",
+"class": "SpawningAttackBehavior",
+"language": "GDScript",
+"path": "res://entities/units/enemies/attack_behaviors/spawning_attack_behavior.gd"
+}, {
+"base": "Effect",
+"class": "StatCapEffect",
+"language": "GDScript",
+"path": "res://effects/items/stat_cap_effect.gd"
+}, {
+"base": "HBoxContainer",
+"class": "StatContainer",
+"language": "GDScript",
+"path": "res://ui/menus/shop/stat_container.gd"
+}, {
+"base": "Resource",
+"class": "StatData",
+"language": "GDScript",
+"path": "res://items/upgrades/stat_data.gd"
+}, {
+"base": "Effect",
+"class": "StatGainsModificationEffect",
+"language": "GDScript",
+"path": "res://effects/items/stat_gains_modification_effect.gd"
+}, {
+"base": "BasePopup",
+"class": "StatPopup",
+"language": "GDScript",
+"path": "res://ui/menus/shop/stat_popup.gd"
+}, {
+"base": "Effect",
+"class": "StatWithMaxEffect",
+"language": "GDScript",
+"path": "res://effects/items/stat_with_max_effect.gd"
+}, {
+"base": "Resource",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://entities/units/unit/stats.gd"
+}, {
+"base": "PanelContainer",
+"class": "StatsContainer",
+"language": "GDScript",
+"path": "res://ui/menus/shop/stats_container.gd"
+}, {
+"base": "MovementBehavior",
+"class": "StayInRangeFromPlayerMovementBehavior",
+"language": "GDScript",
+"path": "res://entities/units/movement_behaviors/stay_in_range_from_player_movement_behavior.gd"
+}, {
+"base": "Reference",
+"class": "StorageMethod",
+"language": "GDScript",
+"path": "res://effects/enums/storage_method.gd"
+}, {
+"base": "Entity",
+"class": "Structure",
+"language": "GDScript",
+"path": "res://entities/structures/structure.gd"
+}, {
+"base": "Effect",
+"class": "StructureEffect",
+"language": "GDScript",
+"path": "res://effects/items/structure_effect.gd"
+}, {
+"base": "VBoxContainer",
+"class": "SynergyContainer",
+"language": "GDScript",
+"path": "res://ui/menus/shop/synergy_container.gd"
+}, {
+"base": "PanelContainer",
+"class": "SynergyPanel",
+"language": "GDScript",
+"path": "res://ui/menus/shop/synergy_panel.gd"
+}, {
+"base": "MovementBehavior",
+"class": "TargetRandPosAroundPlayerMovementBehavior",
+"language": "GDScript",
+"path": "res://entities/units/movement_behaviors/target_rand_pos_around_player_movement_behavior.gd"
+}, {
+"base": "MovementBehavior",
+"class": "TargetRandPosMovementBehavior",
+"language": "GDScript",
+"path": "res://entities/units/movement_behaviors/target_rand_pos_movement_behavior.gd"
+}, {
+"base": "Reference",
+"class": "Tier",
+"language": "GDScript",
+"path": "res://items/global/tier.gd"
+}, {
+"base": "Control",
+"class": "TitleScreen",
+"language": "GDScript",
+"path": "res://ui/menus/title_screen/title_screen.gd"
+}, {
+"base": "Menus",
+"class": "TitleScreenMenus",
+"language": "GDScript",
+"path": "res://ui/menus/title_screen/title_screen_menus.gd"
+}, {
+"base": "Structure",
+"class": "Turret",
+"language": "GDScript",
+"path": "res://entities/structures/turret/turret.gd"
+}, {
+"base": "StructureEffect",
+"class": "TurretEffect",
+"language": "GDScript",
+"path": "res://effects/items/turret_effect.gd"
+}, {
+"base": "HBoxContainer",
+"class": "UIBonusold",
+"language": "GDScript",
+"path": "res://ui/hud/ui_bonus_gold.gd"
+}, {
+"base": "UIItemList",
+"class": "UIConsumableToProcessList",
+"language": "GDScript",
+"path": "res://ui/hud/ui_consumable_to_process_list.gd"
+}, {
+"base": "ColorRect",
+"class": "UIDimScreen",
+"language": "GDScript",
+"path": "res://ui/hud/ui_dim_screen.gd"
+}, {
+"base": "HBoxContainer",
+"class": "UIGold",
+"language": "GDScript",
+"path": "res://ui/hud/ui_gold.gd"
+}, {
+"base": "TextureRect",
+"class": "UIItemElement",
+"language": "GDScript",
+"path": "res://ui/hud/ui_item_element.gd"
+}, {
+"base": "HBoxContainer",
+"class": "UIItemList",
+"language": "GDScript",
+"path": "res://ui/hud/ui_item_list.gd"
+}, {
+"base": "TextureRect",
+"class": "UIUpgradeToProcessElement",
+"language": "GDScript",
+"path": "res://ui/hud/ui_upgrade_to_process_element.gd"
+}, {
+"base": "HBoxContainer",
+"class": "UIUpgradeToProcessList",
+"language": "GDScript",
+"path": "res://ui/hud/ui_upgrade_to_process_list.gd"
+}, {
+"base": "Entity",
+"class": "Unit",
+"language": "GDScript",
+"path": "res://entities/units/unit/unit.gd"
+}, {
+"base": "ItemData",
+"class": "UpgradeData",
+"language": "GDScript",
+"path": "res://items/upgrades/upgrade_data.gd"
+}, {
+"base": "PanelContainer",
+"class": "UpgradeUI",
+"language": "GDScript",
+"path": "res://ui/menus/upgrades/upgrade_ui.gd"
+}, {
+"base": "Control",
+"class": "UpgradesUI",
+"language": "GDScript",
+"path": "res://ui/menus/ingame/upgrades_ui.gd"
+}, {
+"base": "Turret",
+"class": "WanderingBot",
+"language": "GDScript",
+"path": "res://entities/structures/turret/wandering_bot/wandering_bot.gd"
+}, {
+"base": "Label",
+"class": "WaveClearedLabel",
+"language": "GDScript",
+"path": "res://ui/menus/ingame/wave_cleared_label.gd"
+}, {
+"base": "Resource",
+"class": "WaveData",
+"language": "GDScript",
+"path": "res://zones/wave_data.gd"
+}, {
+"base": "Resource",
+"class": "WaveGroupData",
+"language": "GDScript",
+"path": "res://zones/wave_group_data.gd"
+}, {
+"base": "Node2D",
+"class": "WaveManager",
+"language": "GDScript",
+"path": "res://zones/wave_manager.gd"
+}, {
+"base": "Timer",
+"class": "WaveTimer",
+"language": "GDScript",
+"path": "res://ui/hud/wave_timer.gd"
+}, {
+"base": "Resource",
+"class": "WaveUnitData",
+"language": "GDScript",
+"path": "res://zones/wave_unit_data.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://weapons/weapon.gd"
+}, {
+"base": "Effect",
+"class": "WeaponBonusEffect",
+"language": "GDScript",
+"path": "res://effects/items/weapon_bonus_effect.gd"
+}, {
+"base": "ItemParentData",
+"class": "WeaponData",
+"language": "GDScript",
+"path": "res://items/global/weapon_data.gd"
+}, {
+"base": "CharacterSelection",
+"class": "WeaponSelection",
+"language": "GDScript",
+"path": "res://ui/menus/run/weapon_selection.gd"
+}, {
+"base": "Behavior",
+"class": "WeaponShootingBehavior",
+"language": "GDScript",
+"path": "res://weapons/shooting_behaviors/weapon_shooting_behavior.gd"
+}, {
+"base": "NullEffect",
+"class": "WeaponStackEffect",
+"language": "GDScript",
+"path": "res://effects/weapons/weapon_stack_effect.gd"
+}, {
+"base": "Resource",
+"class": "WeaponStats",
+"language": "GDScript",
+"path": "res://weapons/weapon_stats/weapon_stats.gd"
+}, {
+"base": "Reference",
+"class": "WeaponType",
+"language": "GDScript",
+"path": "res://weapons/weapon_type.gd"
+}, {
+"base": "Node2D",
+"class": "WeaponsContainer",
+"language": "GDScript",
+"path": "res://entities/units/player/weapons_container.gd"
+}, {
+"base": "Resource",
+"class": "ZoneData",
+"language": "GDScript",
+"path": "res://zones/zone_data.gd"
+}, {
+"base": "Reference",
+"class": "ZoneDifficultyInfo",
+"language": "GDScript",
+"path": "res://ui/menus/run/difficulty_selection/zone_difficulty_info.gd"
+}, {
+"base": "PanelContainer",
+"class": "ZonePanel",
+"language": "GDScript",
+"path": "res://ui/menus/run/zone_panel.gd"
+}, {
+"base": "Control",
+"class": "ZoneSelection",
+"language": "GDScript",
+"path": "res://ui/menus/run/zone_selection.gd"
+}, {
+"base": "PanelContainer",
+"class": "ZoneUI",
+"language": "GDScript",
+"path": "res://ui/menus/run/zone_ui.gd"
+}, {
+"base": "PanelContainer",
+"class": "ZoneUILocked",
+"language": "GDScript",
+"path": "res://ui/menus/run/zone_ui_locked.gd"
+}, {
+"base": "Reference",
+"class": "_ModLoaderCLI",
+"language": "GDScript",
+"path": "res://addons/mod_loader/internal/cli.gd"
+}, {
+"base": "Reference",
+"class": "_ModLoaderCache",
+"language": "GDScript",
+"path": "res://addons/mod_loader/internal/cache.gd"
+}, {
+"base": "Reference",
+"class": "_ModLoaderDependency",
+"language": "GDScript",
+"path": "res://addons/mod_loader/internal/dependency.gd"
+}, {
+"base": "Reference",
+"class": "_ModLoaderFile",
+"language": "GDScript",
+"path": "res://addons/mod_loader/internal/file.gd"
+}, {
+"base": "Object",
+"class": "_ModLoaderGodot",
+"language": "GDScript",
+"path": "res://addons/mod_loader/internal/godot.gd"
+}, {
+"base": "Reference",
+"class": "_ModLoaderPath",
+"language": "GDScript",
+"path": "res://addons/mod_loader/internal/path.gd"
+}, {
+"base": "Reference",
+"class": "_ModLoaderScriptExtension",
+"language": "GDScript",
+"path": "res://addons/mod_loader/internal/script_extension.gd"
+}, {
+"base": "Node",
+"class": "_ModLoaderSteam",
+"language": "GDScript",
+"path": "res://addons/mod_loader/internal/third_party/steam.gd"
+} ]
+_global_script_class_icons={
+"ArgValue": "",
+"AttackBehavior": "",
+"BackgroundButton": "",
+"BackgroundData": "",
+"BasePopup": "",
+"Behavior": "",
+"Boss": "",
+"BossState": "",
+"BurnChanceEffect": "",
+"BurningData": "",
+"BurningEffect": "",
+"BurningParticles": "",
+"BurningType": "",
+"ButtonWithIcon": "",
+"Category": "",
+"ChallengeAndRewardUI": "",
+"ChallengeCompletedUI": "",
+"ChallengeData": "",
+"ChallengeUI": "",
+"ChanceStatDamageEffect": "",
+"CharacterData": "",
+"CharacterDifficultyInfo": "",
+"CharacterInfoPanel": "",
+"CharacterSelection": "",
+"ChargingAttackBehavior": "",
+"ClassBonusEffect": "",
+"Consumable": "",
+"ConsumableData": "",
+"ConvertStatEffect": "",
+"CustomArg": "",
+"DelayedPlayerProjectile": "",
+"DifficultyData": "",
+"DifficultyScore": "",
+"DifficultySelection": "",
+"Direction": "",
+"Effect": "",
+"EffectsManager": "",
+"EliteContainer": "",
+"EliteType": "",
+"EndRun": "",
+"EndlessButton": "",
+"EndlessScoreStoring": "",
+"Enemy": "",
+"EnemyData": "",
+"EnemyProjectile": "",
+"EnemyProjectileRotating": "",
+"Entity": "",
+"EntityBirth": "",
+"EntitySpawner": "",
+"EntityType": "",
+"ExplodingEffect": "",
+"FixedTimer": "",
+"FlameTurret": "",
+"FloatingText": "",
+"FloatingTextManager": "",
+"FocusManager": "",
+"FollowPlayerMovementBehavior": "",
+"FollowRandPosAroundPlayerMovementBehavior": "",
+"Format": "",
+"GainStatEveryKilledEnemiesEffect": "",
+"GainStatForEveryStatEffect": "",
+"Garden": "",
+"Gold": "",
+"GoldBag": "",
+"GoldLabel": "",
+"GutHookScript": "",
+"GutTest": "",
+"HealingEffect": "",
+"HitType": "",
+"Hitbox": "",
+"Hurtbox": "",
+"InfoContainer": "",
+"InfoPopup": "",
+"IngameMainMenu": "",
+"IngameMenus": "",
+"Inventory": "",
+"InventoryContainer": "",
+"InventoryElement": "",
+"Item": "",
+"ItemAppearanceData": "",
+"ItemBoxUI": "",
+"ItemData": "",
+"ItemDescription": "",
+"ItemExplodingEffect": "",
+"ItemPanelUI": "",
+"ItemParentData": "",
+"ItemPopup": "",
+"JSONSchema": "",
+"Landmine": "",
+"LanguageButton": "",
+"LevelContainer": "",
+"LiveStats": "",
+"LockedPanel": "",
+"MainMenu": "",
+"MeleeAttackType": "",
+"MeleeShootingData": "",
+"MeleeWeapon": "",
+"MeleeWeaponShootingBehavior": "",
+"MeleeWeaponStats": "",
+"MenuChooseOptions": "",
+"MenuConfirm": "",
+"MenuCredits": "",
+"MenuGameplayOptions": "",
+"MenuGeneralOptions": "",
+"MenuMods": "",
+"MenuRestart": "",
+"Menus": "",
+"MobProjectileStats": "",
+"ModConfig": "",
+"ModContainer": "",
+"ModData": "",
+"ModInfoContainer": "",
+"ModLoaderConfig": "",
+"ModLoaderCurrentOptions": "",
+"ModLoaderDeprecated": "",
+"ModLoaderLog": "",
+"ModLoaderMod": "",
+"ModLoaderModManager": "",
+"ModLoaderOptionsProfile": "",
+"ModLoaderSetupLog": "",
+"ModLoaderSetupUtils": "",
+"ModLoaderUserProfile": "",
+"ModLoaderUtils": "",
+"ModManifest": "",
+"ModUserProfile": "",
+"MovementBehavior": "",
+"MyHSlider": "",
+"MyMenuButton": "",
+"MyMenuButtonParent": "",
+"MyParticles": "",
+"MyTileMap": "",
+"MyTileMapLimits": "",
+"Neutral": "",
+"NullEffect": "",
+"PatrolEdgesOfMapMovementBehavior": "",
+"PatrollingEnemy": "",
+"PauseMenu": "",
+"Pivot": "",
+"Player": "",
+"PlayerExplosion": "",
+"PlayerMovementBehavior": "",
+"PlayerProjectile": "",
+"ProgressionUI": "",
+"Projectile": "",
+"ProjectileEffect": "",
+"ProjectilesOnHitEffect": "",
+"RangedShootingData": "",
+"RangedWeapon": "",
+"RangedWeaponShootingBehavior": "",
+"RangedWeaponStats": "",
+"RerollButton": "",
+"RewardType": "",
+"RunningSmoke": "",
+"SaveStatus": "",
+"ScoreStoringButton": "",
+"Screenshaker": "",
+"SecondaryStatContainer": "",
+"SecondaryStatsContainer": "",
+"SetData": "",
+"ShootingAttackBehavior": "",
+"ShootingData": "",
+"Shop": "",
+"ShopItem": "",
+"ShopItemsContainer": "",
+"Sign": "",
+"SliderOption": "",
+"SlowInZoneEffect": "",
+"Sorter": "",
+"SoundManagerParent": "",
+"SpawningAttackBehavior": "",
+"StatCapEffect": "",
+"StatContainer": "",
+"StatData": "",
+"StatGainsModificationEffect": "",
+"StatPopup": "",
+"StatWithMaxEffect": "",
+"Stats": "",
+"StatsContainer": "",
+"StayInRangeFromPlayerMovementBehavior": "",
+"StorageMethod": "",
+"Structure": "",
+"StructureEffect": "",
+"SynergyContainer": "",
+"SynergyPanel": "",
+"TargetRandPosAroundPlayerMovementBehavior": "",
+"TargetRandPosMovementBehavior": "",
+"Tier": "",
+"TitleScreen": "",
+"TitleScreenMenus": "",
+"Turret": "",
+"TurretEffect": "",
+"UIBonusold": "",
+"UIConsumableToProcessList": "",
+"UIDimScreen": "",
+"UIGold": "",
+"UIItemElement": "",
+"UIItemList": "",
+"UIUpgradeToProcessElement": "",
+"UIUpgradeToProcessList": "",
+"Unit": "",
+"UpgradeData": "",
+"UpgradeUI": "",
+"UpgradesUI": "",
+"WanderingBot": "",
+"WaveClearedLabel": "",
+"WaveData": "",
+"WaveGroupData": "",
+"WaveManager": "",
+"WaveTimer": "",
+"WaveUnitData": "",
+"Weapon": "",
+"WeaponBonusEffect": "",
+"WeaponData": "",
+"WeaponSelection": "",
+"WeaponShootingBehavior": "",
+"WeaponStackEffect": "",
+"WeaponStats": "",
+"WeaponType": "",
+"WeaponsContainer": "",
+"ZoneData": "",
+"ZoneDifficultyInfo": "",
+"ZonePanel": "",
+"ZoneSelection": "",
+"ZoneUI": "",
+"ZoneUILocked": "",
+"_ModLoaderCLI": "",
+"_ModLoaderCache": "",
+"_ModLoaderDependency": "",
+"_ModLoaderFile": "",
+"_ModLoaderGodot": "",
+"_ModLoaderPath": "",
+"_ModLoaderScriptExtension": "",
+"_ModLoaderSteam": ""
+}
+
+[application]
+
+config/name="Brotato"
+run/main_scene="res://pause.tscn"
+config/use_custom_user_dir=true
+boot_splash/image="res://splash.png"
+boot_splash/bg_color=Color( 0.109804, 0.109804, 0.109804, 1 )
+config/icon="res://brotato_icon.png"
+config/windows_native_icon="res://brotato_icon.ico"
+
+[audio]
+
+default_bus_layout="res://resources/music/default_bus_layout.tres"
+
+[autoload]
+
+ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
+ModLoader="*res://addons/mod_loader/mod_loader.gd"
+Utils="*res://singletons/utils.gd"
+MenuData="*res://singletons/menu_data.gd"
+ProgressData="*res://singletons/progress_data.gd"
+ItemService="*res://singletons/item_service.tscn"
+ZoneService="*res://zones/zone_service.tscn"
+RunData="*res://singletons/run_data.tscn"
+SoundManager="*res://singletons/sound_manager.gd"
+SoundManager2D="*res://singletons/sound_manager_2d.gd"
+MusicManager="*res://singletons/music_manager.tscn"
+Text="*res://singletons/text.gd"
+ChallengeService="*res://singletons/challenge_service.tscn"
+InputService="*res://singletons/input_service.gd"
+WeaponService="*res://singletons/weapon_service.gd"
+TempStats="*res://singletons/temp_stats.gd"
+LinkedStats="*res://singletons/linked_stats.gd"
+DebugService="*res://singletons/debug_service.tscn"
+CursorManager="*res://singletons/cursor_manager.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=false
+shapes/collision/shape_color=Color( 1, 1, 1, 0.419608 )
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/test_width=960
+window/size/test_height=540
+mouse_cursor/custom_image="res://ui/custom_cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2( 3, 3 )
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg", "res://addons/resave_scenes/plugin.cfg" )
+
+[importer_defaults]
+
+mp3={
+"loop": false,
+"loop_offset": 0
+}
+
+[input]
+
+ui_cancel={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_focus_prev={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777218,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":81,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":65,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":74,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":68,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":76,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":90,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":87,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":73,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":83,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":75,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+rjoy_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":-1.0,"script":null)
+ ]
+}
+rjoy_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":1.0,"script":null)
+ ]
+}
+rjoy_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":1.0,"script":null)
+ ]
+}
+rjoy_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":-1.0,"script":null)
+ ]
+}
+ui_left_keyboard_only={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":81,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":65,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_right_keyboard_only={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":68,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_up_keyboard_only={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":90,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":87,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_down_keyboard_only={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":83,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+rtrigger={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ltrigger={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+move_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":81,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":65,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":74,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":68,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":76,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":90,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":87,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":73,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":83,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":75,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_left_keyboard_only={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":81,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":65,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_right_keyboard_only={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":68,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_up_keyboard_only={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":90,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":87,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_down_keyboard_only={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":83,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+2d_physics/layer_1="neutral"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemies"
+2d_physics/layer_4="player_projectiles"
+2d_physics/layer_5="enemy_projectiles"
+2d_physics/layer_6="items"
+2d_physics/layer_7="gold"
+2d_physics/layer_8="obstacles"
+2d_physics/layer_9="bonus_gold"
+2d_physics/layer_10="pets"
+
+[locale]
+
+translations=PoolStringArray( "res://resources/translations/translations.de.translation", "res://resources/translations/translations.en.translation", "res://resources/translations/translations.es.translation", "res://resources/translations/translations.fr.translation", "res://resources/translations/translations.ja.translation", "res://resources/translations/translations.ko.translation", "res://resources/translations/translations.pl.translation", "res://resources/translations/translations.pt.translation", "res://resources/translations/translations.ru.translation", "res://resources/translations/translations.zh.translation", "res://resources/translations/translations.zh_TW.translation", "res://resources/translations/translations.it.translation", "res://resources/translations/translations.tr.translation" )
+locale_filter=[ 1, [ "de", "en", "es", "fr", "it", "ja", "ko", "pl", "pt", "ru", "tr", "zh", "zh_TW" ] ]
+translation_remaps={
+
+}
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=10000
+
+[physics]
+
+common/enable_pause_aware_picking=true
+2d/default_gravity=0
+2d/default_linear_damp=0.0
+2d/default_angular_damp=0.0
+
+[rendering]
+
+quality/driver/fallback_to_gles2=true
+environment/default_environment="res://default_env.tres"

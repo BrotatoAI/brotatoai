@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://ui/menus/ingame/challenge_ui.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=5]
+[ext_resource path="res://ui/menus/ingame/challenge_completed_ui.gd" type="Script" id=6]
+[ext_resource path="res://weapons/melee_sounds/whoosh_swish_small_harsh_03.wav" type="AudioStream" id=7]
+[ext_resource path="res://ui/sounds/Shield 4.mp3" type="AudioStream" id=8]
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "popout"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "hide"
+} ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "popup"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1.1, 1.1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+
+[node name="ChallengeCompletedUI" type="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 5 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+sound_popup = ExtResource( 8 )
+sound_popout = ExtResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -103.0
+margin_right = 365.0
+margin_bottom = -19.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChallengeUI" parent="VBoxContainer" instance=ExtResource( 2 )]
+margin_right = 355.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/popout = SubResource( 2 )
+anims/popup = SubResource( 1 )
+
+[node name="HideTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="HideTimer" to="." method="_on_HideTimer_timeout"]

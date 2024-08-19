@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/power-punch by 2050 Artlist.mp3-5f942efdb81aeefcbd5ee3e15685d41f.mp3str"
+
+[deps]
+
+source_file="res://resources/music/power-punch by 2050 Artlist.mp3"
+dest_files=[ "res://.import/power-punch by 2050 Artlist.mp3-5f942efdb81aeefcbd5ee3e15685d41f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

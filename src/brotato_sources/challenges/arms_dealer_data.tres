@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://items/all/anvil/anvil_data.tres" type="Resource" id=1]
+[ext_resource path="res://items/characters/arms_dealer/arms_dealer_icon.png" type="Texture" id=2]
+[ext_resource path="res://challenges/global/challenge_data.gd" type="Script" id=3]
+
+[resource]
+script = ExtResource( 3 )
+my_id = "chal_arms_dealer"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "CHARACTER_ARMS_DEALER"
+tier = 0
+value = 1
+effects = [  ]
+tracking_text = ""
+description = "CHAL_CHARACTER_DESC"
+reward_type = 0
+reward = ExtResource( 1 )
+number = 0
+stat = ""
+additional_args = [  ]

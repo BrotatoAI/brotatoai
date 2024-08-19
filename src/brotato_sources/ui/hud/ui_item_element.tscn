@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/hud/ui_item_element.gd" type="Script" id=1]
+[ext_resource path="res://items/consumables/item_box/item_box.png" type="Texture" id=2]
+
+[node name="UIItemElement" type="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 2 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="mouse_entered" from="." to="." method="_on_UIItemElement_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_UIItemElement_mouse_exited"]

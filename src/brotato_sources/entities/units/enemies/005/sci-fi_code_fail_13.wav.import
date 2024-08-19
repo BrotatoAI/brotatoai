@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sci-fi_code_fail_13.wav-84736930f0830e0b1532fa51bbbcbad5.sample"
+
+[deps]
+
+source_file="res://entities/units/enemies/005/sci-fi_code_fail_13.wav"
+dest_files=[ "res://.import/sci-fi_code_fail_13.wav-84736930f0830e0b1532fa51bbbcbad5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,171 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://resources/fonts/actual/base/font_small_title.tres" type="DynamicFont" id=1]
+[ext_resource path="res://resources/fonts/actual/base/font_subtitle.tres" type="DynamicFont" id=2]
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=3]
+[ext_resource path="res://ui/menus/shop/icon_panel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/menus/shop/item_description.gd" type="Script" id=5]
+[ext_resource path="res://resources/fonts/actual/base/font_smallest_text.tres" type="DynamicFont" id=6]
+[ext_resource path="res://resources/themes/button_styles/button_invisible.tres" type="StyleBox" id=7]
+[ext_resource path="res://resources/themes/no_scrollbar_theme.tres" type="Theme" id=8]
+
+[node name="ItemDescription" type="VBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -540.0
+margin_right = -639.0
+margin_bottom = -444.0
+theme = ExtResource( 3 )
+custom_constants/separation = 30
+script = ExtResource( 5 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 321.0
+margin_bottom = 96.0
+custom_constants/separation = 15
+
+[node name="IconPanel" parent="HBoxContainer" instance=ExtResource( 4 )]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+margin_left = 111.0
+margin_right = 321.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 0, 96 )
+theme = ExtResource( 8 )
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+margin_right = 210.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color( 0.0784314, 0.164706, 0.219608, 1 )
+margin_right = 210.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 210, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "ITEM_NAME"
+autowrap = true
+
+[node name="Category" type="Button" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 35.0
+margin_right = 210.0
+margin_bottom = 59.0
+focus_mode = 0
+custom_colors/font_color_disabled = Color( 0.980392, 0.956863, 0.8, 1 )
+custom_colors/font_color_focus = Color( 0.980392, 0.956863, 0.8, 1 )
+custom_colors/font_color = Color( 0.917647, 0.886275, 0.690196, 1 )
+custom_colors/font_color_hover = Color( 0.980392, 0.956863, 0.8, 1 )
+custom_colors/font_color_pressed = Color( 0.980392, 0.956863, 0.8, 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/disabled = ExtResource( 7 )
+custom_styles/normal = ExtResource( 7 )
+text = "ITEM_CATEGORY"
+flat = true
+clip_text = true
+align = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+margin_top = 126.0
+margin_right = 1920.0
+margin_bottom = 126.0
+size_flags_horizontal = 3
+
+[node name="WeaponStats" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
+margin_right = 1920.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "BBCode [color=blue]blue[/color]
+qsdsqd
+qsdqsd"
+text = "BBCode blue
+qsdsqd
+qsdqsd"
+fit_content_height = true
+scroll_active = false
+
+[node name="Effects" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
+margin_right = 1920.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "BBCode [color=blue]blue[/color]
+qsdsqd
+qsdqsd"
+text = "BBCode blue
+qsdsqd
+qsdqsd"
+fit_content_height = true
+scroll_active = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+visible = false
+margin_top = 126.0
+margin_right = 321.0
+margin_bottom = 391.0
+rect_min_size = Vector2( 0, 265 )
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 321.0
+size_flags_horizontal = 3
+
+[node name="WeaponStats" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+visible = false
+margin_right = 1920.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "BBCode [color=blue]blue[/color]
+qsdsqd
+qsdqsd"
+text = "BBCode blue
+qsdsqd
+qsdqsd"
+fit_content_height = true
+scroll_active = false
+
+[node name="Effects" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+visible = false
+margin_top = 76.0
+margin_right = 1920.0
+margin_bottom = 148.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "BBCode [color=blue]blue[/color]
+qsdsqd
+qsdqsd"
+text = "BBCode blue
+qsdsqd
+qsdqsd"
+fit_content_height = true
+scroll_active = false
+
+[connection signal="mouse_entered" from="HBoxContainer/ScrollContainer/VBoxContainer/Category" to="." method="_on_Category_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/ScrollContainer/VBoxContainer/Category" to="." method="_on_Category_mouse_exited"]

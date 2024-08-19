@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://entities/units/enemies/attack_behaviors/enemy_charge_prep_animation.tres" type="Animation" id=2]
+[ext_resource path="res://entities/units/enemies/attack_behaviors/charging_attack_behavior.gd" type="Script" id=3]
+[ext_resource path="res://entities/units/enemies/026/26.png" type="Texture" id=4]
+[ext_resource path="res://entities/units/enemies/enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/units/enemies/026/26.gd" type="Script" id=6]
+[ext_resource path="res://entities/units/enemies/attack_behaviors/shooting_attack_behavior.gd" type="Script" id=7]
+[ext_resource path="res://entities/units/enemies/026/26_stats.tres" type="Resource" id=8]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 19.0263
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 48.0104
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 29.0172
+
+[node name="Enemy" instance=ExtResource( 5 )]
+script = ExtResource( 6 )
+stats = ExtResource( 8 )
+
+[node name="Sprite" parent="Animation" index="0"]
+texture = ExtResource( 4 )
+
+[node name="Collision" parent="." index="1"]
+position = Vector2( 0, 10 )
+shape = SubResource( 4 )
+
+[node name="Hurtbox" parent="." index="2"]
+position = Vector2( 0, -19 )
+
+[node name="Collision" parent="Hurtbox" index="0"]
+shape = SubResource( 5 )
+
+[node name="Hitbox" parent="." index="3"]
+position = Vector2( 0, 9 )
+
+[node name="Collision" parent="Hitbox" index="0"]
+position = Vector2( 1, -9 )
+shape = SubResource( 6 )
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/shoot = ExtResource( 2 )
+
+[node name="ChargingShootProjectilesBehavior" type="Node2D" parent="." index="6"]
+script = ExtResource( 7 )
+projectile_speed = 600
+cooldown = 30.0
+damage_increase_each_wave = 0.75
+max_cd_randomization = 0
+max_range = 99999
+number_projectiles = 2
+projectile_spread = 1.0
+constant_spread = true
+shoot_in_unit_direction = true
+
+[node name="AttackBehavior" parent="." index="8"]
+script = ExtResource( 3 )
+cooldown = 90.0
+max_cd_randomization = 15
+min_range = 0
+max_range = 400
+attack_anim_speed = 2.0
+charge_duration = 0.75
+charge_speed = 500.0
+target = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

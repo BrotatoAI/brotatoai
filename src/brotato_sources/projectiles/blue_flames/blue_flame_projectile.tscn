@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://projectiles/player_projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://projectiles/blue_flames/blue_fire.tres" type="Animation" id=2]
+[ext_resource path="res://projectiles/flames/sprites/bullet_flame_0000.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 7 ) ]
+}
+
+[node name="BlueFlameProjectile" instance=ExtResource( 1 )]
+enable_physics_process = false
+rotation_speed = 0
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 7 )
+
+[node name="Collision" parent="Hitbox" index="0"]
+position = Vector2( 24, 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+autoplay = "fire"
+anims/RESET = SubResource( 2 )
+anims/fire = ExtResource( 2 )
+
+[editable path="Hitbox"]

@@ -1,0 +1,78 @@
+GDRE Tools v0.6.2
+macOS 14.5.0, Apple M3 Pro, opengl3
+Extracted 5303 files, no errors detected!
+USER WARNING: Converting lossy imports, you may lose fidelity for indicated assets when re-importing upon loading the project
+   at: _export_imports (modules/gdsdecomp/utility/import_exporter.cpp:58)
+Script version 3.5.3 (rev 0xa7aad78) detected
+Saved project config project.godot.
+USER ERROR: Failed to find main script for plugin mod_loader!
+   at: recreate_plugin_config (modules/gdsdecomp/utility/import_exporter.cpp:610)
+USER WARNING: Failed to recreate plugin.cfg for mod_loader
+   at: recreate_plugin_configs (modules/gdsdecomp/utility/import_exporter.cpp:651)
+USER ERROR: Failed to find main script for plugin JSON_Schema_Validator!
+   at: recreate_plugin_config (modules/gdsdecomp/utility/import_exporter.cpp:610)
+USER WARNING: Failed to recreate plugin.cfg for JSON_Schema_Validator
+   at: recreate_plugin_configs (modules/gdsdecomp/utility/import_exporter.cpp:651)
+USER WARNING: res://resources/translations/translations.en.translation: Doing real load on incompatible version 3
+   at: load (modules/gdsdecomp/compat/resource_loader_compat.cpp:98)
+USER WARNING: Could not guess all keys in translation.csv
+   at: export_translation (modules/gdsdecomp/utility/import_exporter.cpp:817)
+Recreated translation.csv
+Did not rewrite import metadata for res://resources/translations/translations.csv
+Saved project config project.godot.
+
+
+********************************EXPORT REPORT********************************
+
+Totals:                                 
+Decompiled scripts:                     260
+Failed scripts:                         0
+Imported resources for export session:  5303
+Successfully converted:                 1018
+Lossy:                                  1
+Rewrote metadata:                       0
+Non-importable conversions:             1
+Not converted:                          0
+Failed conversions:                     0
+-------------
+
+
+The following files were converted from an import that was stored lossy.
+You may lose fidelity when re-importing these files upon loading the project.
+res://resources/translations/translations.en.translation to res://.assets/resources/translations/translations.csv
+------
+
+The following plugins failed to have their plugin.cfg regenerated:
+mod_loader
+JSON_Schema_Validator
+------
+
+The following files were converted and saved to a non-original path, but did not have their import data rewritten.
+These files will not be re-imported when loading the project.
+res://resources/translations/translations.en.translation to res://.assets/resources/translations/translations.csv
+
+
+
+---------------------------------IMPORTANT NOTES----------------------------------
+
+WARNING: Could not recover 737 keys for translation.csv
+Saved translations.csv to res://.assets/resources/translations/translations.csv
+If you wish to modify the translation csv(s), you will have to manually find the missing keys, replace them in the csv, and then copy it back to the original path
+Note: consider just asking the creator if you wish to add a translation
+-------
+The following addons failed to have their libraries copied or plugin.cfg regenerated:
+- mod_loader
+- JSON_Schema_Validator
+You may encounter editor errors due to this.
+Tip: Try finding the plugin in the Godot Asset Library or Github.
+
+
+------------------------------------------------------------------------------------
+
+Use Godot editor version 3.5.3 to edit the project.
+Note: the project may be using a custom version of Godot. Detection for this has not been implemented yet.
+If you find that you have many non-import errors upon opening the project 
+(i.e. scripts or shaders have many errors), use the original game's binary as the export template.
+
+*******************************************************************************
+

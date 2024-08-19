@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://ui/menus/pages/progression_ui.gd" type="Script" id=1]
+[ext_resource path="res://ui/menus/run/challenge_and_reward_ui.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/menus/shop/inventory.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=5]
+[ext_resource path="res://ui/menus/global/my_menu_button.gd" type="Script" id=6]
+[ext_resource path="res://items/global/locked_icon.png" type="Texture" id=8]
+[ext_resource path="res://resources/fonts/actual/base/font_big_title.tres" type="DynamicFont" id=9]
+
+[node name="ProgressionUI" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+script = ExtResource( 1 )
+locked_icon = ExtResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 1820.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 9 )
+text = "MENU_PROGRESS"
+align = 1
+
+[node name="EmptySpace2" type="Control" parent="VBoxContainer"]
+margin_top = 77.0
+margin_right = 1820.0
+margin_bottom = 152.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 156.0
+margin_right = 1820.0
+margin_bottom = 831.0
+custom_constants/separation = 25
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 897.0
+margin_bottom = 675.0
+size_flags_horizontal = 3
+scroll_horizontal_enabled = false
+scroll_vertical_enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/ScrollContainer"]
+
+[node name="Inventory" parent="VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+columns = 12
+
+[node name="ChallengeAndRewardUI" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 922.0
+margin_bottom = 675.0
+custom_constants/separation = 25
+
+[node name="ProgressChallengeUI" parent="VBoxContainer/HBoxContainer/ChallengeAndRewardUI" index="0"]
+margin_right = 898.0
+
+[node name="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChallengeAndRewardUI" index="1"]
+margin_top = 125.0
+margin_right = 898.0
+margin_bottom = 675.0
+rect_min_size = Vector2( 0, 550 )
+
+[node name="Label" parent="VBoxContainer/HBoxContainer/ChallengeAndRewardUI/VBoxContainer" index="0"]
+margin_right = 898.0
+
+[node name="ItemPanelUI" parent="VBoxContainer/HBoxContainer/ChallengeAndRewardUI/VBoxContainer" index="1"]
+margin_left = 269.0
+margin_right = 628.0
+
+[node name="ZonePanel" parent="VBoxContainer/HBoxContainer/ChallengeAndRewardUI/VBoxContainer" index="2"]
+visible = false
+
+[node name="EmptySpace" type="Control" parent="VBoxContainer"]
+margin_top = 835.0
+margin_right = 1820.0
+margin_bottom = 911.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+margin_left = 776.0
+margin_top = 915.0
+margin_right = 1043.0
+margin_bottom = 980.0
+size_flags_horizontal = 4
+text = "MENU_BACK"
+script = ExtResource( 6 )
+
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+
+[editable path="VBoxContainer/HBoxContainer/ChallengeAndRewardUI"]

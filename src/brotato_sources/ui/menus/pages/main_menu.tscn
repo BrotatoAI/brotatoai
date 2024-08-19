@@ -1,0 +1,228 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/menus/title_screen/ui_logo.png" type="Texture" id=1]
+[ext_resource path="res://ui/menus/pages/main_menu.gd" type="Script" id=2]
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=3]
+[ext_resource path="res://resources/fonts/actual/base/font_small_title.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ui/menus/global/my_menu_button.gd" type="Script" id=5]
+[ext_resource path="res://resources/fonts/actual/base/font_small_text.tres" type="DynamicFont" id=6]
+
+[node name="MainMenu" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+custom_constants/separation = 25
+script = ExtResource( 2 )
+
+[node name="Logo" type="TextureRect" parent="."]
+margin_left = 399.0
+margin_right = 1521.0
+margin_bottom = 330.0
+rect_min_size = Vector2( 1000, 200 )
+size_flags_horizontal = 4
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="EmptySpace" type="Control" parent="."]
+margin_top = 355.0
+margin_right = 1920.0
+margin_bottom = 574.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 599.0
+margin_right = 1920.0
+margin_bottom = 1024.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonsLeft" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 362.0
+margin_bottom = 425.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+custom_constants/separation = 25
+
+[node name="ContinueButton" type="Button" parent="HBoxContainer/ButtonsLeft"]
+unique_name_in_owner = true
+margin_right = 317.0
+margin_bottom = 65.0
+focus_neighbour_left = NodePath("../../ButtonsRight/ModsButton")
+focus_neighbour_top = NodePath("../QuitButton")
+focus_neighbour_right = NodePath("../../ButtonsRight/ModsButton")
+size_flags_horizontal = 0
+text = "MENU_RESUME"
+align = 0
+script = ExtResource( 5 )
+
+[node name="StartButton" type="Button" parent="HBoxContainer/ButtonsLeft"]
+unique_name_in_owner = true
+margin_top = 90.0
+margin_right = 289.0
+margin_bottom = 155.0
+focus_neighbour_left = NodePath("../../ButtonsRight/MoreGamesButton")
+focus_neighbour_top = NodePath("../QuitButton")
+focus_neighbour_right = NodePath("../../ButtonsRight/MoreGamesButton")
+size_flags_horizontal = 0
+text = "MENU_START"
+align = 0
+script = ExtResource( 5 )
+
+[node name="OptionsButton" type="Button" parent="HBoxContainer/ButtonsLeft"]
+unique_name_in_owner = true
+margin_top = 180.0
+margin_right = 332.0
+margin_bottom = 245.0
+focus_neighbour_left = NodePath("../../ButtonsRight/NewsletterButton")
+focus_neighbour_right = NodePath("../../ButtonsRight/NewsletterButton")
+size_flags_horizontal = 0
+text = "MENU_OPTIONS"
+align = 0
+script = ExtResource( 5 )
+
+[node name="ProgressButton" type="Button" parent="HBoxContainer/ButtonsLeft"]
+unique_name_in_owner = true
+margin_top = 270.0
+margin_right = 362.0
+margin_bottom = 335.0
+focus_neighbour_left = NodePath("../../ButtonsRight/CommunityButton")
+focus_neighbour_right = NodePath("../../ButtonsRight/CommunityButton")
+size_flags_horizontal = 0
+text = "MENU_PROGRESS"
+align = 0
+script = ExtResource( 5 )
+
+[node name="QuitButton" type="Button" parent="HBoxContainer/ButtonsLeft"]
+unique_name_in_owner = true
+margin_top = 360.0
+margin_right = 253.0
+margin_bottom = 425.0
+focus_neighbour_left = NodePath("../../ButtonsRight/CreditsButton")
+focus_neighbour_right = NodePath("../../ButtonsRight/CreditsButton")
+focus_neighbour_bottom = NodePath("../StartButton")
+size_flags_horizontal = 0
+text = "MENU_QUIT"
+align = 0
+script = ExtResource( 5 )
+
+[node name="EmptySpace" type="ColorRect" parent="HBoxContainer"]
+margin_left = 366.0
+margin_right = 1501.0
+margin_bottom = 425.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0 )
+
+[node name="ButtonsRight" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 1505.0
+margin_right = 1920.0
+margin_bottom = 425.0
+size_flags_horizontal = 8
+custom_constants/separation = 25
+alignment = 2
+
+[node name="ModsButton" type="Button" parent="HBoxContainer/ButtonsRight"]
+unique_name_in_owner = true
+margin_left = 140.0
+margin_right = 415.0
+margin_bottom = 65.0
+focus_neighbour_left = NodePath("../../ButtonsLeft/StartButton")
+focus_neighbour_top = NodePath("../CreditsButton")
+focus_neighbour_right = NodePath("../../ButtonsLeft/StartButton")
+size_flags_horizontal = 8
+text = "MENU_MODS"
+script = ExtResource( 5 )
+
+[node name="MoreGamesButton" type="Button" parent="HBoxContainer/ButtonsRight"]
+unique_name_in_owner = true
+margin_left = 179.0
+margin_top = 90.0
+margin_right = 415.0
+margin_bottom = 155.0
+focus_neighbour_left = NodePath("../../ButtonsLeft/StartButton")
+focus_neighbour_right = NodePath("../../ButtonsLeft/StartButton")
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 0.541176, 0.72549, 1, 1 )
+text = "MENU_DLC"
+script = ExtResource( 5 )
+
+[node name="NewsletterButton" type="Button" parent="HBoxContainer/ButtonsRight"]
+unique_name_in_owner = true
+margin_top = 180.0
+margin_right = 415.0
+margin_bottom = 245.0
+focus_neighbour_left = NodePath("../../ButtonsLeft/OptionsButton")
+focus_neighbour_right = NodePath("../../ButtonsLeft/OptionsButton")
+size_flags_horizontal = 8
+text = "MENU_NEWSLETTER"
+script = ExtResource( 5 )
+
+[node name="CommunityButton" type="Button" parent="HBoxContainer/ButtonsRight"]
+unique_name_in_owner = true
+margin_left = 15.0
+margin_top = 270.0
+margin_right = 415.0
+margin_bottom = 335.0
+focus_neighbour_left = NodePath("../../ButtonsLeft/ProgressButton")
+focus_neighbour_right = NodePath("../../ButtonsLeft/ProgressButton")
+size_flags_horizontal = 8
+text = "MENU_COMMUNITY"
+align = 0
+script = ExtResource( 5 )
+
+[node name="CreditsButton" type="Button" parent="HBoxContainer/ButtonsRight"]
+unique_name_in_owner = true
+margin_left = 93.0
+margin_top = 360.0
+margin_right = 415.0
+margin_bottom = 425.0
+focus_neighbour_left = NodePath("../../ButtonsLeft/QuitButton")
+focus_neighbour_right = NodePath("../../ButtonsLeft/QuitButton")
+focus_neighbour_bottom = NodePath("../ModsButton")
+size_flags_horizontal = 8
+text = "MENU_CREDITS"
+align = 0
+script = ExtResource( 5 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+margin_top = 1049.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="SaveStatusLabel" type="Label" parent="HBoxContainer2"]
+unique_name_in_owner = true
+margin_top = 3.0
+margin_right = 1200.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 1200, 0 )
+custom_fonts/font = ExtResource( 6 )
+text = "(!)"
+autowrap = true
+
+[node name="EmptySpace" type="Control" parent="HBoxContainer2"]
+margin_left = 1204.0
+margin_right = 1574.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="VersionLabel" type="Label" parent="HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 1578.0
+margin_right = 1920.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 4 )
+text = "early access version x.x.x"
+align = 2
+
+[connection signal="pressed" from="HBoxContainer/ButtonsLeft/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonsLeft/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonsLeft/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonsLeft/ProgressButton" to="." method="_on_ProgressButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonsLeft/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonsRight/ModsButton" to="." method="_on_ModsButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonsRight/MoreGamesButton" to="." method="_on_MoreGamesButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonsRight/NewsletterButton" to="." method="_on_NewsletterButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonsRight/CommunityButton" to="." method="_on_CommunityButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonsRight/CreditsButton" to="." method="_on_CreditsButton_pressed"]

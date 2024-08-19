@@ -1,0 +1,340 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/menus/pages/menu_general_options.gd" type="Script" id=2]
+[ext_resource path="res://ui/menus/global/my_menu_button.gd" type="Script" id=3]
+[ext_resource path="res://ui/menus/global/slider_option.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/fonts/actual/base/font_big_title.tres" type="DynamicFont" id=5]
+[ext_resource path="res://resources/fonts/actual/base/font_big_outlined.tres" type="DynamicFont" id=6]
+[ext_resource path="res://ui/menus/pages/language_button.gd" type="Script" id=7]
+[ext_resource path="res://resources/themes/button_styles/button_hover.tres" type="StyleBox" id=8]
+[ext_resource path="res://ui/menus/pages/background_button.gd" type="Script" id=11]
+
+[node name="MenuGeneralOptions" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_constants/separation = 50
+alignment = 1
+script = ExtResource( 2 )
+
+[node name="Options" type="HBoxContainer" parent="."]
+margin_top = 146.0
+margin_right = 1920.0
+margin_bottom = 819.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="Column1" type="VBoxContainer" parent="Options"]
+margin_left = 173.0
+margin_right = 953.0
+margin_bottom = 673.0
+rect_min_size = Vector2( 600, 0 )
+size_flags_horizontal = 4
+custom_constants/separation = 25
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoContainer" type="VBoxContainer" parent="Options/Column1"]
+margin_right = 780.0
+margin_bottom = 673.0
+custom_constants/separation = 15
+
+[node name="VideoLabel" type="Label" parent="Options/Column1/VideoContainer"]
+margin_right = 780.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 5 )
+text = "MENU_VIDEO"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/Column1/VideoContainer"]
+margin_top = 88.0
+margin_right = 780.0
+margin_bottom = 673.0
+custom_constants/separation = 5
+
+[node name="ResolutionContainer" type="HBoxContainer" parent="Options/Column1/VideoContainer/VBoxContainer"]
+visible = false
+margin_right = 780.0
+margin_bottom = 65.0
+
+[node name="Label" type="Label" parent="Options/Column1/VideoContainer/VBoxContainer/ResolutionContainer"]
+margin_top = 10.0
+margin_right = 562.0
+margin_bottom = 55.0
+text = "MENU_OPTIONS_RESOLUTION"
+
+[node name="EmptySpace" type="Control" parent="Options/Column1/VideoContainer/VBoxContainer/ResolutionContainer"]
+margin_left = 566.0
+margin_right = 704.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+
+[node name="ResolutionButton" type="OptionButton" parent="Options/Column1/VideoContainer/VBoxContainer/ResolutionContainer"]
+margin_left = 708.0
+margin_right = 780.0
+margin_bottom = 65.0
+focus_neighbour_top = NodePath("../../../../../../BackButton")
+custom_fonts/font = ExtResource( 6 )
+
+[node name="LanguageButton" type="OptionButton" parent="Options/Column1/VideoContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 780.0
+margin_bottom = 65.0
+focus_neighbour_top = NodePath("../../../../../BackButton")
+custom_fonts/font = ExtResource( 6 )
+text = "MENU_LANGUAGE"
+script = ExtResource( 7 )
+
+[node name="BackgroundContainer" type="HBoxContainer" parent="Options/Column1/VideoContainer/VBoxContainer"]
+margin_top = 70.0
+margin_right = 780.0
+margin_bottom = 135.0
+
+[node name="Label" type="Label" parent="Options/Column1/VideoContainer/VBoxContainer/BackgroundContainer"]
+margin_top = 10.0
+margin_right = 394.0
+margin_bottom = 55.0
+text = "MENU_BACKGROUND"
+
+[node name="EmptySpace" type="Control" parent="Options/Column1/VideoContainer/VBoxContainer/BackgroundContainer"]
+margin_left = 398.0
+margin_right = 704.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+
+[node name="BackgroundButton" type="OptionButton" parent="Options/Column1/VideoContainer/VBoxContainer/BackgroundContainer"]
+unique_name_in_owner = true
+margin_left = 708.0
+margin_right = 780.0
+margin_bottom = 65.0
+custom_fonts/font = ExtResource( 6 )
+script = ExtResource( 11 )
+
+[node name="ScreenshakeButton" type="CheckButton" parent="Options/Column1/VideoContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 140.0
+margin_right = 780.0
+margin_bottom = 210.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 8 )
+text = "MENU_OPTIONS_SCREENSHAKE"
+
+[node name="FullScreenButton" type="CheckButton" parent="Options/Column1/VideoContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 215.0
+margin_right = 780.0
+margin_bottom = 285.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 8 )
+text = "MENU_OPTIONS_FULLSCREEN"
+
+[node name="VisualEffectsButton" type="CheckButton" parent="Options/Column1/VideoContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 290.0
+margin_right = 780.0
+margin_bottom = 360.0
+focus_neighbour_right = NodePath("../../../../Column2/SoundContainer/PauseOnFocusLostButton")
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 8 )
+text = "MENU_OPTIONS_VISUAL_EFFECTS"
+
+[node name="DamageDisplayButton" type="CheckButton" parent="Options/Column1/VideoContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 365.0
+margin_right = 780.0
+margin_bottom = 435.0
+focus_neighbour_right = NodePath("../../../../Column2/SoundContainer/PauseOnFocusLostButton")
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 8 )
+text = "MENU_DAMAGE_DISPLAY"
+
+[node name="OptimizeEndWavesButton" type="CheckButton" parent="Options/Column1/VideoContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 440.0
+margin_right = 780.0
+margin_bottom = 510.0
+focus_neighbour_right = NodePath("../../../../Column2/SoundContainer/PauseOnFocusLostButton")
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 8 )
+text = "MENU_OPTIMIZE_END_WAVES"
+
+[node name="LimitFPSButton" type="CheckButton" parent="Options/Column1/VideoContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 515.0
+margin_right = 780.0
+margin_bottom = 585.0
+focus_neighbour_right = NodePath("../../../../Column2/SoundContainer/PauseOnFocusLostButton")
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 8 )
+text = "MENU_LIMIT_FPS"
+
+[node name="Column2" type="VBoxContainer" parent="Options"]
+margin_left = 1003.0
+margin_right = 1746.0
+margin_bottom = 401.0
+rect_min_size = Vector2( 600, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_constants/separation = 25
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundContainer" type="VBoxContainer" parent="Options/Column2"]
+margin_right = 743.0
+margin_bottom = 401.0
+custom_constants/separation = 15
+
+[node name="SoundLabel" type="Label" parent="Options/Column2/SoundContainer"]
+margin_right = 743.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 5 )
+text = "MENU_SOUND"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/Column2/SoundContainer"]
+margin_top = 88.0
+margin_right = 743.0
+margin_bottom = 231.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterSlider" parent="Options/Column2/SoundContainer/VBoxContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_top = 0.0
+margin_right = 743.0
+margin_bottom = 45.0
+
+[node name="Label" parent="Options/Column2/SoundContainer/VBoxContainer/MasterSlider" index="0"]
+margin_top = 0.0
+margin_right = 290.0
+margin_bottom = 45.0
+text = "MENU_MASTER"
+
+[node name="Control" parent="Options/Column2/SoundContainer/VBoxContainer/MasterSlider" index="1"]
+margin_left = 340.0
+margin_right = 353.0
+margin_bottom = 45.0
+
+[node name="HSlider" parent="Options/Column2/SoundContainer/VBoxContainer/MasterSlider" index="2"]
+margin_left = 403.0
+margin_right = 603.0
+margin_bottom = 45.0
+focus_neighbour_top = NodePath("../../../../../../BackButton")
+
+[node name="Value" parent="Options/Column2/SoundContainer/VBoxContainer/MasterSlider" index="3"]
+margin_left = 653.0
+margin_top = 0.0
+margin_right = 743.0
+margin_bottom = 45.0
+
+[node name="SoundSlider" parent="Options/Column2/SoundContainer/VBoxContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_top = 49.0
+margin_right = 743.0
+margin_bottom = 94.0
+
+[node name="Label" parent="Options/Column2/SoundContainer/VBoxContainer/SoundSlider" index="0"]
+margin_top = 0.0
+margin_right = 267.0
+margin_bottom = 45.0
+text = "MENU_SOUND"
+
+[node name="Control" parent="Options/Column2/SoundContainer/VBoxContainer/SoundSlider" index="1"]
+margin_left = 317.0
+margin_right = 353.0
+margin_bottom = 45.0
+
+[node name="HSlider" parent="Options/Column2/SoundContainer/VBoxContainer/SoundSlider" index="2"]
+margin_left = 403.0
+margin_right = 603.0
+margin_bottom = 45.0
+
+[node name="Value" parent="Options/Column2/SoundContainer/VBoxContainer/SoundSlider" index="3"]
+margin_left = 653.0
+margin_top = 0.0
+margin_right = 743.0
+margin_bottom = 45.0
+
+[node name="MusicSlider" parent="Options/Column2/SoundContainer/VBoxContainer" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_top = 98.0
+margin_right = 743.0
+margin_bottom = 143.0
+
+[node name="Label" parent="Options/Column2/SoundContainer/VBoxContainer/MusicSlider" index="0"]
+margin_top = 0.0
+margin_right = 256.0
+margin_bottom = 45.0
+text = "MENU_MUSIC"
+
+[node name="Control" parent="Options/Column2/SoundContainer/VBoxContainer/MusicSlider" index="1"]
+margin_left = 306.0
+margin_right = 353.0
+margin_bottom = 45.0
+
+[node name="HSlider" parent="Options/Column2/SoundContainer/VBoxContainer/MusicSlider" index="2"]
+margin_left = 403.0
+margin_right = 603.0
+margin_bottom = 45.0
+
+[node name="Value" parent="Options/Column2/SoundContainer/VBoxContainer/MusicSlider" index="3"]
+margin_left = 653.0
+margin_top = 0.0
+margin_right = 743.0
+margin_bottom = 45.0
+
+[node name="MuteOnFocusLostButton" type="CheckButton" parent="Options/Column2/SoundContainer"]
+unique_name_in_owner = true
+margin_top = 246.0
+margin_right = 743.0
+margin_bottom = 316.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 8 )
+text = "MENU_MUTE_ON_FOCUS_LOST"
+
+[node name="PauseOnFocusLostButton" type="CheckButton" parent="Options/Column2/SoundContainer"]
+unique_name_in_owner = true
+margin_top = 331.0
+margin_right = 743.0
+margin_bottom = 401.0
+focus_neighbour_bottom = NodePath("../../../../BackButton")
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover_pressed = ExtResource( 8 )
+text = "MENU_PAUSE_ON_FOCUS_LOST"
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 826.0
+margin_top = 869.0
+margin_right = 1093.0
+margin_bottom = 934.0
+focus_neighbour_bottom = NodePath("../Options/Column1/VideoContainer/VBoxContainer/LanguageButton")
+size_flags_horizontal = 4
+text = "MENU_BACK"
+script = ExtResource( 3 )
+
+[connection signal="hide" from="." to="." method="_on_MenuOptions_hide"]
+[connection signal="item_selected" from="Options/Column1/VideoContainer/VBoxContainer/LanguageButton" to="." method="_on_LanguageButton_item_selected"]
+[connection signal="item_selected" from="Options/Column1/VideoContainer/VBoxContainer/BackgroundContainer/BackgroundButton" to="." method="_on_BackgroundButton_item_selected"]
+[connection signal="item_selected" from="Options/Column1/VideoContainer/VBoxContainer/BackgroundContainer/BackgroundButton" to="Options/Column1/VideoContainer/VBoxContainer/BackgroundContainer/BackgroundButton" method="_on_BackgroundButton_item_selected"]
+[connection signal="toggled" from="Options/Column1/VideoContainer/VBoxContainer/ScreenshakeButton" to="." method="_on_ScreenshakeButton_toggled"]
+[connection signal="toggled" from="Options/Column1/VideoContainer/VBoxContainer/FullScreenButton" to="." method="_on_FullScreenButton_toggled"]
+[connection signal="toggled" from="Options/Column1/VideoContainer/VBoxContainer/VisualEffectsButton" to="." method="_on_VisualEffectsButton_toggled"]
+[connection signal="toggled" from="Options/Column1/VideoContainer/VBoxContainer/DamageDisplayButton" to="." method="_on_DamageDisplayButton_toggled"]
+[connection signal="toggled" from="Options/Column1/VideoContainer/VBoxContainer/OptimizeEndWavesButton" to="." method="_on_OptimizeEndWavesButton_toggled"]
+[connection signal="toggled" from="Options/Column1/VideoContainer/VBoxContainer/LimitFPSButton" to="." method="_on_LimitFPSButton_toggled"]
+[connection signal="value_changed" from="Options/Column2/SoundContainer/VBoxContainer/MasterSlider" to="." method="_on_MasterSlider_value_changed"]
+[connection signal="value_changed" from="Options/Column2/SoundContainer/VBoxContainer/SoundSlider" to="." method="_on_SoundSlider_value_changed"]
+[connection signal="value_changed" from="Options/Column2/SoundContainer/VBoxContainer/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="toggled" from="Options/Column2/SoundContainer/MuteOnFocusLostButton" to="." method="_on_MuteOnFocusLostButton_toggled"]
+[connection signal="toggled" from="Options/Column2/SoundContainer/PauseOnFocusLostButton" to="." method="_on_PauseOnFocusLostButton_toggled"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+
+[editable path="Options/Column2/SoundContainer/VBoxContainer/MasterSlider"]
+[editable path="Options/Column2/SoundContainer/VBoxContainer/SoundSlider"]
+[editable path="Options/Column2/SoundContainer/VBoxContainer/MusicSlider"]

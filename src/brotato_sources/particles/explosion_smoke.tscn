@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://particles/running_smoke.gd" type="Script" id=2]
+[ext_resource path="res://particles/sprites/particle_3.png" type="Texture" id=6]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 128.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 30.0
+initial_velocity_random = 0.5
+angular_velocity = 720.0
+angular_velocity_random = 0.73
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle_random = 1.0
+scale = 0.5
+scale_random = 0.25
+scale_curve = SubResource( 3 )
+color = Color( 0.709804, 0.67451, 0.615686, 1 )
+
+[node name="ExplosionSmoke" type="Particles2D"]
+position = Vector2( 0, 24 )
+emitting = false
+amount = 40
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+randomness = 0.35
+local_coords = false
+process_material = SubResource( 4 )
+texture = ExtResource( 6 )
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
