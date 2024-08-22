@@ -319,6 +319,7 @@ func _physics_process(_delta:float)->void :
 	_life_bar.update_color_from_effects(life_bar_effects)
 	_player_life_bar.update_color_from_effects(life_bar_effects)
 
+	# ANCHOR : Aim
 	if not _cleaning_up and ProgressData.is_manual_aim() and InputService.using_gamepad:
 		var rjoy = Input.get_vector("rjoy_left", "rjoy_right", "rjoy_up", "rjoy_down").normalized()
 		var player_pos = _player.get_global_transform_with_canvas().origin
@@ -368,16 +369,33 @@ func init_camera()->void :
 
 
 func _on_player_died(_p_player:Player)->void :
-	_player_life_bar.hide()
+	# _player_life_bar.hide()
+	
+	# ANCHOR : Restart, died
+	print_debug('player died...')
+	
+	var controller = $"/root/Main/AIController2D"
+	controller.reset()
+#
+#	ProgressData.reset_run_state()
+#	RunData.reset(true)
+#	TempStats.reset()
+	
+	# _ready()
 
-	if RunData.current_wave <= RunData.nb_of_waves:
-		_is_run_lost = true
-	else :
-		_is_run_won = true
-	clean_up_room(false, _is_run_lost, _is_run_won)
-	_end_wave_timer.start()
-	ProgressData.reset_run_state()
-	ChallengeService.complete_challenge("chal_rookie")
+	# var _error = get_tree().change_scene(MenuData.game_scene)
+	# get_tree().set_pause(false)
+	
+	###
+
+	# if RunData.current_wave <= RunData.nb_of_waves:
+	#	_is_run_lost = true
+	# else :
+	#	_is_run_won = true
+	# clean_up_room(false, _is_run_lost, _is_run_won)
+	# _end_wave_timer.start()
+	# ProgressData.reset_run_state()
+	# ChallengeService.complete_challenge("chal_rookie")
 
 
 func _on_enemy_died(enemy:Enemy)->void :
@@ -834,54 +852,65 @@ func _on_PauseMenu_unpaused()->void :
 
 
 func _on_WaveTimer_timeout()->void :
-
-	DebugService.log_run_info(_upgrades_to_process, _consumables_to_process)
-
-	var is_last_wave = is_last_wave()
-
-	if not _is_run_lost and is_last_wave:
-		_is_run_won = true
-
-	ChallengeService.check_counted_challenges()
-
-	if _player != null and is_instance_valid(_player) and _player.current_stats.health == ChallengeService.get_chal("chal_reckless").value:
-		ChallengeService.complete_challenge("chal_reckless")
-
-	if _entity_spawner.neutrals.size() >= ChallengeService.get_chal("chal_forest").value:
-		ChallengeService.complete_challenge("chal_forest")
-
-	if RunData.effects["stats_end_of_wave"].size() > 0:
-		for stat_end_of_wave in RunData.effects["stats_end_of_wave"]:
-			RunData.add_stat(stat_end_of_wave[0], stat_end_of_wave[1])
-
-			if stat_end_of_wave[0] == "stat_percent_damage":
-				RunData.tracked_item_effects["item_vigilante_ring"] += stat_end_of_wave[1]
-			elif stat_end_of_wave[0] == "stat_max_hp":
-
-				var leaf_value = 0
-
-				for item in RunData.items:
-					if item.my_id == "item_grinds_magical_leaf":
-						leaf_value = item.effects[0].value + 2
-
-				RunData.tracked_item_effects["item_grinds_magical_leaf"] += leaf_value
-		RunData.emit_stats_updated()
-
-	if RunData.effects["convert_stats_end_of_wave"].size() > 0:
-		Utils.convert_stats(RunData.effects["convert_stats_end_of_wave"])
-
-	manage_harvesting()
-
-
-	DebugService.log_data("start clean_up_room...")
-	clean_up_room(is_last_wave, false, _is_run_won)
-
-	if _is_run_won:
-		apply_run_won()
-
-	_end_wave_timer.start()
+	
+	# ANCHOR : end wave won
+	
+	print_debug('end wave')
+	
+	RunData.reset()
 	TempStats.reset()
-	InputService.hide_mouse = true
+	
+	_player.die()
+	
+	_ready()
+
+#	DebugService.log_run_info(_upgrades_to_process, _consumables_to_process)
+#
+#	var is_last_wave = is_last_wave()
+#
+#	if not _is_run_lost and is_last_wave:
+#		_is_run_won = true
+#
+#	ChallengeService.check_counted_challenges()
+#
+#	if _player != null and is_instance_valid(_player) and _player.current_stats.health == ChallengeService.get_chal("chal_reckless").value:
+#		ChallengeService.complete_challenge("chal_reckless")
+#
+#	if _entity_spawner.neutrals.size() >= ChallengeService.get_chal("chal_forest").value:
+#		ChallengeService.complete_challenge("chal_forest")
+#
+#	if RunData.effects["stats_end_of_wave"].size() > 0:
+#		for stat_end_of_wave in RunData.effects["stats_end_of_wave"]:
+#			RunData.add_stat(stat_end_of_wave[0], stat_end_of_wave[1])
+#
+#			if stat_end_of_wave[0] == "stat_percent_damage":
+#				RunData.tracked_item_effects["item_vigilante_ring"] += stat_end_of_wave[1]
+#			elif stat_end_of_wave[0] == "stat_max_hp":
+#
+#				var leaf_value = 0
+#
+#				for item in RunData.items:
+#					if item.my_id == "item_grinds_magical_leaf":
+#						leaf_value = item.effects[0].value + 2
+#
+#				RunData.tracked_item_effects["item_grinds_magical_leaf"] += leaf_value
+#		RunData.emit_stats_updated()
+#
+#	if RunData.effects["convert_stats_end_of_wave"].size() > 0:
+#		Utils.convert_stats(RunData.effects["convert_stats_end_of_wave"])
+#
+#	manage_harvesting()
+#
+#
+#	DebugService.log_data("start clean_up_room...")
+#	clean_up_room(is_last_wave, false, _is_run_won)
+#
+#	if _is_run_won:
+#		apply_run_won()
+#
+#	_end_wave_timer.start()
+#	TempStats.reset()
+#	InputService.hide_mouse = true
 
 
 func apply_run_won()->void :

@@ -62,6 +62,8 @@ func init(
 	_wave_timer = wave_timer
 	_player = spawn_entity(player_scene, Vector2(zone_max_pos.x / 2, zone_max_pos.y / 2), true)
 
+	print_debug('init entity spawner')
+
 	emit_signal("player_spawned", _player)
 
 

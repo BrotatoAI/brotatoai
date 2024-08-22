@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://global/entity_spawner.gd" type="Script" id=1]
 [ext_resource path="res://ui/hud/ui_dim_screen.gd" type="Script" id=2]
@@ -76,6 +76,7 @@
 [ext_resource path="res://items/materials/gold_bag.tscn" type="PackedScene" id=74]
 [ext_resource path="res://zones/zone_1/000_all/group_1.tres" type="Resource" id=75]
 [ext_resource path="res://resources/tiles/ground_tiles.tres" type="TileSet" id=76]
+[ext_resource path="res://addons/godot_rl_agents/sync.gd" type="Script" id=77]
 [ext_resource path="res://resources/sounds/harvest/cartoon_boing_jump_06.wav" type="AudioStream" id=78]
 [ext_resource path="res://resources/sounds/harvest/cartoon_boing_jump_09.wav" type="AudioStream" id=79]
 [ext_resource path="res://global/my_camera.gd" type="Script" id=80]
@@ -98,6 +99,7 @@
 [ext_resource path="res://zones/zone_1/000_debug/group_1.tres" type="Resource" id=97]
 [ext_resource path="res://zones/zone_1/000_loot/group_1.tres" type="Resource" id=98]
 [ext_resource path="res://items/all/turret/turret_effect_1.tres" type="Resource" id=99]
+[ext_resource path="res://addons/godot_rl_agents/BratatoAI.gd" type="Script" id=100]
 [ext_resource path="res://items/materials/harvesting_icon.png" type="Texture" id=120]
 [ext_resource path="res://weapons/melee/dagger/dagger_icon.png" type="Texture" id=121]
 [ext_resource path="res://zones/zone_1/000_all/group_2.tres" type="Resource" id=122]
@@ -511,6 +513,16 @@ tick_sounds = [ ExtResource( 52 ) ]
 [node name="FiveSecondsTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource( 77 )
+
+[node name="AIController2D" type="Node2D" parent="."]
+script = ExtResource( 100 )
+control_mode = 2
+onnx_model_path = "/users/eguenichon/Development/BrotatoAI"
+reset_after = 1000000
+expert_demo_save_path = "/users/eguenichon/Development/BrotatoAI/demo"
 
 [connection signal="enemy_spawned" from="EntitySpawner" to="." method="_on_EntitySpawner_enemy_spawned"]
 [connection signal="neutral_spawned" from="EntitySpawner" to="." method="_on_EntitySpawner_neutral_spawned"]

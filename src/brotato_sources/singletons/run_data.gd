@@ -65,7 +65,7 @@ var locked_shop_items = []
 var current_background = null
 var shop_effects_checked = false
 
-var instant_waves = false
+var instant_waves = true
 var invulnerable = false
 
 var difficulty_unlocked = - 1
@@ -83,7 +83,7 @@ var chal_hungry_value = 0
 var chal_hungry_completed = false
 var consumables_picked_up_this_run = 0
 
-var is_testing = false
+var is_testing = true
 
 
 func _ready()->void :
@@ -91,9 +91,9 @@ func _ready()->void :
 	chal_hoarder_value = ChallengeService.get_chal("chal_hoarder").value
 	chal_recycling_value = ChallengeService.get_chal("chal_recycling").value
 
-	if DebugService.unlock_all_challenges:
-		for chal in ChallengeService.challenges:
-			ChallengeService.complete_challenge(chal.my_id)
+	# if DebugService.unlock_all_challenges:
+	for chal in ChallengeService.challenges:
+		ChallengeService.complete_challenge(chal.my_id)
 
 	if DebugService.reinitialize_steam_data:
 		print("steam reset data")

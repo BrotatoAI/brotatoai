@@ -7,6 +7,7 @@ onready var _attenuate_background = $AttenuateBackground
 
 
 func _ready()->void :
+	print_debug("has_run_state", ProgressData.current_run_state.has_run_state)
 	if ProgressData.current_run_state.has_run_state:
 		_main_menu.continue_button.show()
 		_main_menu.continue_button.activate()
