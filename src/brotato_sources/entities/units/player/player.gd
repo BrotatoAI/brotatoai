@@ -295,8 +295,9 @@ func take_damage(value:int, hitbox:Hitbox = null, dodgeable:bool = true, armor_a
 	elif _invincibility_timer.is_stopped() or bypass_invincibility:
 		var dmg_taken = .take_damage(value, hitbox, dodgeable, armor_applied, custom_sound, base_effect_scale)
 
-		print_debug('dmg_taken ', dmg_taken)
-		if dmg_taken[2]:
+		# print_debug('dmg_taken ', dmg_taken)
+		
+		if dmg_taken.size() > 2 && dmg_taken[2]:
 			if RunData.effects["dmg_on_dodge"].size() > 0 and hitbox != null and hitbox.from != null and is_instance_valid(hitbox.from):
 				var total_dmg_to_deal = 0
 				for dmg_on_dodge in RunData.effects["dmg_on_dodge"]:
@@ -340,7 +341,12 @@ func take_damage(value:int, hitbox:Hitbox = null, dodgeable:bool = true, armor_a
 			check_hp_regen()
 
 		TempStats.emit_updated()
+		
+		print_debug('updated damage', dmg_taken)
+		
 		return dmg_taken
+		
+	print_debug('updated damage 0.0')
 
 	return [0, 0]
 

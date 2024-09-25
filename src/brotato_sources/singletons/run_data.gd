@@ -95,9 +95,9 @@ func _ready()->void :
 	for chal in ChallengeService.challenges:
 		ChallengeService.complete_challenge(chal.my_id)
 
-	if DebugService.reinitialize_steam_data:
-		print("steam reset data")
-		var _reset = Steam.resetAllStats(true)
+	# if DebugService.reinitialize_steam_data:
+	#	print("steam reset data")
+	#	var _reset = Steam.resetAllStats(true)
 
 
 func reset(restart:bool = false)->void :

@@ -1451,6 +1451,7 @@ TempStats="*res://singletons/temp_stats.gd"
 LinkedStats="*res://singletons/linked_stats.gd"
 DebugService="*res://singletons/debug_service.tscn"
 CursorManager="*res://singletons/cursor_manager.gd"
+GodotRLClient="*res://singletons/godot_rl_client.gd"
 
 [debug]
 

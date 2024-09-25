@@ -70,7 +70,7 @@ func _ready()->void :
 	randomize()
 	current_run_state = RunData.get_state(true)
 	add_unlocked_by_default()
-	initialize_Steam()
+	# initialize_Steam()
 	init_save_paths()
 	RunData.reset()
 
@@ -179,24 +179,24 @@ func get_user_id()->String:
 		return "user"
 
 
-func initialize_Steam()->void :
-	var INIT:Dictionary = Steam.steamInit()
-	print("Did Steam initialize?: " + str(INIT))
-
-	steam_is_online = Steam.loggedOn()
-	steam_id = Steam.getSteamID()
-	steam_is_owned = Steam.isSubscribed()
-
-	print("steam_is_online: " + str(steam_is_online))
-	print("steam_id: " + str(steam_id))
-	print("steam_is_owned: " + str(steam_is_owned))
-	Steam.requestUserStats(steam_id)
-	var _err = Steam.connect("user_stats_received", self, "on_steam_stats_ready")
-
-	var steam_lang = Steam.getCurrentGameLanguage()
-
-	if steam_lang != "None" and languages.has(steam_lang):
-		settings.language = languages.get(steam_lang)
+#func initialize_Steam()->void :
+#	var INIT:Dictionary = Steam.steamInit()
+#	print("Did Steam initialize?: " + str(INIT))
+#
+#	steam_is_online = Steam.loggedOn()
+#	steam_id = Steam.getSteamID()
+#	steam_is_owned = Steam.isSubscribed()
+#
+#	print("steam_is_online: " + str(steam_is_online))
+#	print("steam_id: " + str(steam_id))
+#	print("steam_is_owned: " + str(steam_is_owned))
+#	Steam.requestUserStats(steam_id)
+#	var _err = Steam.connect("user_stats_received", self, "on_steam_stats_ready")
+#
+#	var steam_lang = Steam.getCurrentGameLanguage()
+#
+#	if steam_lang != "None" and languages.has(steam_lang):
+#		settings.language = languages.get(steam_lang)
 
 
 func on_steam_stats_ready(_game:int, _result:int, _user:int)->void :
@@ -207,7 +207,8 @@ func on_steam_stats_ready(_game:int, _result:int, _user:int)->void :
 
 
 func _process(_delta:float)->void :
-	Steam.run_callbacks()
+	pass
+	# Steam.run_callbacks()
 
 
 func add_unlocked_by_default()->void :
@@ -435,17 +436,17 @@ func recreate_save_file_from_achievements()->void :
 	var max_diff = 0
 	var characters_won = []
 
-	for chal in ChallengeService.challenges:
-		var steam_achievement = Steam.getAchievement(chal.my_id)
-
-		if steam_achievement.achieved:
-			ChallengeService.complete_challenge(chal.my_id)
-
-			if (chal.my_id == "chal_difficulty_0" or chal.my_id == "chal_difficulty_1" or chal.my_id == "chal_difficulty_2"
-			 or chal.my_id == "chal_difficulty_3" or chal.my_id == "chal_difficulty_4" or chal.my_id == "chal_difficulty_5"):
-				max_diff = max(max_diff, chal.value + 1)
-
-			characters_won.push_back("character_" + chal.my_id.trim_prefix("chal_"))
+#	for chal in ChallengeService.challenges:
+#		var steam_achievement = Steam.getAchievement(chal.my_id)
+#
+#		if steam_achievement.achieved:
+#			ChallengeService.complete_challenge(chal.my_id)
+#
+#			if (chal.my_id == "chal_difficulty_0" or chal.my_id == "chal_difficulty_1" or chal.my_id == "chal_difficulty_2"
+#			 or chal.my_id == "chal_difficulty_3" or chal.my_id == "chal_difficulty_4" or chal.my_id == "chal_difficulty_5"):
+#				max_diff = max(max_diff, chal.value + 1)
+#
+#			characters_won.push_back("character_" + chal.my_id.trim_prefix("chal_"))
 
 	for char_diff in ProgressData.difficulties_unlocked:
 		for zone_difficulty_info in char_diff.zones_difficulty_info:
@@ -464,9 +465,9 @@ func recreate_save_file_from_achievements()->void :
 					false
 				)
 
-	data.enemies_killed = Steam.getStatInt("enemies_killed")
-	data.materials_collected = Steam.getStatInt("materials_collected")
-	data.trees_killed = Steam.getStatInt("trees_killed")
+#	data.enemies_killed = Steam.getStatInt("enemies_killed")
+#	data.materials_collected = Steam.getStatInt("materials_collected")
+#	data.trees_killed = Steam.getStatInt("trees_killed")
 
 	save()
 	save_backups()
@@ -817,8 +818,8 @@ func get_character_difficulty_info(character_id:String, zone_id:int)->ZoneDiffic
 
 func add_data(key:String)->void :
 	ProgressData.data[key] += 1
-	var _stat = Steam.setStatInt(key, ProgressData.data[key])
-	var _stored = Steam.storeStats()
+#	var _stat = Steam.setStatInt(key, ProgressData.data[key])
+#	var _stored = Steam.storeStats()
 
 
 func is_manual_aim()->bool:

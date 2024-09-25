@@ -103,6 +103,8 @@ onready var _info_popup = $UI / InfoPopup
 onready var _test_button = $"%TestButton"
 
 func _ready()->void :
+	
+	RunData.is_testing = true
 
 	if RunData.is_testing:_test_button.show()
 	else :_test_button.hide()
@@ -230,7 +232,8 @@ func _ready()->void :
 	RunData.reset_cache()
 
 
-func _input(event:InputEvent)->void :
+func _input(event:InputEvent)->void :	
+	
 	var is_right_stick_motion = event is InputEventJoypadMotion and (event.axis == JOY_AXIS_2 or event.axis == JOY_AXIS_3) and abs(event.axis_value) > 0.5
 	var is_mouse_press = event is InputEventMouseButton
 
@@ -374,12 +377,22 @@ func _on_player_died(_p_player:Player)->void :
 	# ANCHOR : Restart, died
 	print_debug('player died...')
 	
-	var controller = $"/root/Main/AIController2D"
-	controller.reset()
+#	var _controller = $"/root/Main/AIController2D"
+#	_controller.reset()
+	
+	var _sync = $"/root/Main/Sync"
+	_sync.just_reset = true
 #
 #	ProgressData.reset_run_state()
 #	RunData.reset(true)
 #	TempStats.reset()
+#
+#	RunData.reset_weapons_dmg_dealt()
+#	RunData.reset_cache()
+	
+	
+	
+	# var _error = get_tree().change_scene(MenuData.game_scene)
 	
 	# _ready()
 
@@ -857,12 +870,29 @@ func _on_WaveTimer_timeout()->void :
 	
 	print_debug('end wave')
 	
-	RunData.reset()
-	TempStats.reset()
+	var _sync = $"/root/Main/Sync"
+	_sync.just_reset = true
 	
-	_player.die()
+	# RunData.reset(true)
+	# TempStats.reset()
 	
-	_ready()
+	# ProgressData.reset_run_state()
+	# RunData.reset(true)
+	
+	# var _error = get_tree().change_scene(MenuData.game_scene)
+	
+	# print_debug(_error)
+	
+	# get_tree().paused = false
+	
+	#_player.die()
+	#remove_child(_player)
+	
+	#_ready()
+	
+	#_on_EntitySpawner_player_spawned(_player)
+	
+	# RunData.invulnerable = true
 
 #	DebugService.log_run_info(_upgrades_to_process, _consumables_to_process)
 #
@@ -995,6 +1025,7 @@ func _on_UIBonusGold_mouse_exited()->void :
 
 
 func _on_EntitySpawner_player_spawned(player:Player)->void :
+	print_debug('player spawn')
 	_player = player
 	TempStats.player = player
 	_floating_text_manager.player = player

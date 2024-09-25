@@ -6,10 +6,9 @@ var n_action_steps = 0
 
 const MAJOR_VERSION := "0"
 const MINOR_VERSION := "3" 
-const DEFAULT_PORT := "11008"
 const DEFAULT_SEED := "1"
 const DEFAULT_ACTION_REPEAT := "8"
-var stream : StreamPeerTCP = null
+
 var connected = false
 var message_center
 var should_connect = true
@@ -62,7 +61,7 @@ func _set_heuristic(heuristic):
 func _handshake():
 	print("performing handshake")
 	
-	var json_dict = _get_dict_json_message()
+	var json_dict = GodotRLClient._get_dict_json_message()
 	JSON.print(json_dict)
 
 	assert(json_dict["type"] == "handshake")
@@ -75,33 +74,8 @@ func _handshake():
 		
 	print("handshake complete")
 
-func _get_dict_json_message():
-	# returns a dictionary from of the most recent message
-	# this is not waiting
-	while stream.get_available_bytes() == 0:
-		if stream.get_status() != StreamPeerTCP.STATUS_CONNECTED:
-			print("server disconnected status, closing")
-			# get_tree().quit()
-			return null
-
-		OS.delay_usec(10)
-		
-	var message = stream.get_string()
-	
-	return _parse_json(message)
-	
-func _parse_json(json_string: String):
-	var result = JSON.parse(json_string)
-	if result.error == OK:
-		return result.result
-	else:
-		push_error("JSON Parse Error: " + result.error_string + " in " + json_string + " at line " + result.error_line)
-	
-func _send_dict_as_json_message(dict):
-	stream.put_string(JSON.print(dict))
-
 func _send_env_info():
-	var json_dict = _get_dict_json_message()
+	var json_dict = GodotRLClient._get_dict_json_message()
 	assert(json_dict["type"] == "env_info")
 	
 	var message = {
@@ -111,37 +85,7 @@ func _send_env_info():
 		"action_space":agents[0].get_action_space(),
 		"n_agents": len(agents)
 	}
-	_send_dict_as_json_message(message)
-
-
-func connect_to_server():
-	print("Waiting for one second to allow server to start")
-	OS.delay_msec(1000)
-	
-	stream = StreamPeerTCP.new()
-	
-	# "localhost" was not working on windows VM, had to use the IP
-	var ip = "127.0.0.1"
-	var port = _get_port()
-	
-	print("trying to coclient.gdnnect to server: ", ip, ":", port)
-	
-	while true:
-		var connect = stream.connect_to_host(ip, port)
-		var attempt = 0
-		
-		if attempt > 3:
-			break
-		
-		if stream.get_status() != StreamPeerTCP.STATUS_CONNECTED:
-			attempt = attempt + 1
-			OS.delay_msec(1000)
-			print_debug('connect', stream.get_status())
-		else:
-			break
-
-	stream.set_no_delay(true)
-	return stream.get_status() == StreamPeerTCP.STATUS_CONNECTED
+	GodotRLClient._send_dict_as_json_message(message)
 
 func _get_args():
 	print("getting command line arguments")
@@ -169,8 +113,8 @@ func _get_speedup():
 	print(args)
 	return args.get("speedup", str(speed_up)).to_int()
 
-func _get_port():    
-	return args.get("port", DEFAULT_PORT).to_int()
+#func _get_port():
+#	return args.get("port", DEFAULT_PORT).to_int()
 
 func _set_seed():
 	var _seed = args.get("env_seed", DEFAULT_SEED).to_int()
@@ -178,9 +122,6 @@ func _set_seed():
 
 func _set_action_repeat():
 	action_repeat = args.get("action_repeat", DEFAULT_ACTION_REPEAT).to_int()
-	
-func disconnect_from_server():
-	stream.disconnect_from_host()
 
 func _initialize():
 	print_debug('initialize')
@@ -193,7 +134,7 @@ func _initialize():
 	Engine.time_scale = speedup * 1.0
 	prints("physics ticks", Engine.iterations_per_second, Engine.time_scale, speedup, speed_up)
 	
-	connected = connect_to_server()
+	connected = GodotRLClient.connect_to_server()
 	
 	print("connected ... lets go ", connected)
 	
@@ -220,7 +161,6 @@ func _physics_process(delta):
 	n_action_steps += 1
 	
 	if connected:
-		print_debug('process connected')
 		# get_tree().set_pause(true) 
 		
 		if just_reset:
@@ -232,13 +172,13 @@ func _physics_process(delta):
 				"type": "reset",
 				"obs": obs
 			}
-			_send_dict_as_json_message(reply)
+			GodotRLClient._send_dict_as_json_message(reply)
 			# this should go straight to getting the action and setting it checked the agent, no need to perform one phyics tick
 			get_tree().set_pause(false) 
 			return
 		
 		if need_to_send_obs:
-			print_debug('need to send obs')
+			# print_debug('need to send obs')
 			need_to_send_obs = false
 			var reward = _get_reward_from_agents()
 			var done = _get_done_from_agents()
@@ -252,15 +192,22 @@ func _physics_process(delta):
 				"reward": reward,
 				"done": done
 			}
-			_send_dict_as_json_message(reply)
+			
+			GodotRLClient._send_dict_as_json_message(reply)
 		
 		var handled = handle_message()
 	else:
+		print_debug('not connected reset agents')
 		_reset_agents_if_done()
 
 func handle_message() -> bool:
 	# get json message: reset, step, close
-	var message = _get_dict_json_message()
+	var message = GodotRLClient._get_dict_json_message()
+	
+	if message == null:
+		print_debug('received null message')
+		return false
+	
 	if message["type"] == "close":
 		print("received close message, closing game")
 		# get_tree().quit()
@@ -292,7 +239,7 @@ func handle_message() -> bool:
 			"returns": returns
 		}
 		print("calling method from Python")
-		_send_dict_as_json_message(reply)   
+		GodotRLClient._send_dict_as_json_message(reply)   
 		return handle_message()
 	
 	if message["type"] == "action":
@@ -351,3 +298,5 @@ func _set_agent_actions(actions):
 	for i in range(len(actions)):
 		agents[i].set_action(actions[i])
 	
+func _exit_tree() -> void:
+	print_debug('exit tree')

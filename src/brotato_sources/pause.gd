@@ -5,7 +5,7 @@ var state = State.READY
 
 
 func _process(_delta:float):
-	print_debug('process ', state)
+
 	#match state:
 	#	State.READY:
 	#		pass
@@ -19,14 +19,13 @@ func _process(_delta:float):
 	ProgressData.apply_settings()
 	
 	# ANCHOR : Start game
-	print_debug('init...')
-	# RunData.is_endless_run = false
 	
 	_init_character()
 	_init_difficulty()
 	_init_weapons()
 	
-	RunData.invulnerable = true
+	# RunData.invulnerable = true
+	RunData.is_endless_run = true
 	
 	_start()
 			
@@ -51,11 +50,11 @@ func _init_weapons():
 	var selected_weapon = _find_by_id(weapons, 'weapon_smg_1')
 	
 	RunData.add_weapon(selected_weapon, true)
+	# RunData.add_weapon(selected_weapon, true)
 	
 	RunData.add_starting_items_and_weapons()
 	
 func _start():
-	print_debug('start...')
 	RunData.init_elites_spawn()
 
 	ProgressData.save()
@@ -77,6 +76,5 @@ func _find_by_id(array, id):
 	return null
 
 func _draw():
-	print_debug("draw")
 	if state == State.READY:
 		state = State.BOOT_SPLASH

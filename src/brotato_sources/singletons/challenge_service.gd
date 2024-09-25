@@ -17,11 +17,11 @@ func complete_challenge(chal_id:String)->void :
 
 	if RunData.is_testing:return 
 
-	var steam_achievement = Steam.getAchievement(chal_id)
+	# var steam_achievement = Steam.getAchievement(chal_id)
 
-	if not steam_achievement.achieved:
-		var _achievement = Steam.setAchievement(chal_id)
-		var _stored = Steam.storeStats()
+	# if not steam_achievement.achieved:
+	#	var _achievement = Steam.setAchievement(chal_id)
+	#	var _stored = Steam.storeStats()
 
 	if ProgressData.challenges_completed.has(chal_id):return 
 
