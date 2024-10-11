@@ -53,7 +53,7 @@ func on_resume_button_pressed()->void :
 
 
 func on_game_lost_focus()->void :
-	# ANCHOR game lost focus
+	# ANCHOR : Game lost focus
 	pass
 	#if not get_tree().paused and ProgressData.settings.pause_on_focus_lost:
 	#	pause()

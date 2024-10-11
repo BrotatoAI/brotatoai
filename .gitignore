@@ -3,3 +3,5 @@
 /.idea/
 /BrotatoAI.iml
 /src/BrotatoAiServeur/brotato_env/
+/.venv/
+/.vscode/

@@ -62,7 +62,7 @@ func _on_BackButton_pressed()->void :
 func _on_MenuOptions_hide()->void :
 	ProgressData.save()
 
-
+# ANCHOR : Game options
 func _on_MouseOnlyButton_toggled(button_pressed:bool)->void :
 	ProgressData.settings.mouse_only = button_pressed
 

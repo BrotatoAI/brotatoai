@@ -160,9 +160,6 @@ margin_bottom = 840.0
 rect_rotation = 89.9906
 texture = SubResource( 3 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="WaveManager" type="Node2D" parent="."]
 script = ExtResource( 63 )

@@ -103,6 +103,8 @@ class GodotEnv:
         return str(pathlib.Path(env_path).with_suffix(suffix))
 
     def check_platform(self, filename: str):
+        print('filename: ', filename, ', platform: ', platform)
+
         """
         Check the platform and assert the file type
 
@@ -201,6 +203,8 @@ class GodotEnv:
         response = self._get_json_dict()
         response["obs"] = self._process_obs(response["obs"])
 
+        print("Response", response)
+
         return (
             response["obs"],
             response["reward"],
@@ -227,6 +231,7 @@ class GodotEnv:
         return response_obs
 
     def reset(self, seed=None):
+        print("resetting env")
         """
         Reset the Godot environment.
 
@@ -336,6 +341,8 @@ class GodotEnv:
         json_dict = self._get_json_dict()
 
         assert json_dict["type"] == "env_info"
+
+        print("getting env info", json_dict)
 
         # Number of AIController instances in a single Godot env/process
         self.num_envs = json_dict["n_agents"]
@@ -468,6 +475,7 @@ class GodotEnv:
 
 
 def interactive():
+    print("Interactive")
     env = GodotEnv()
     print("observation space", env.observation_space)
     print("action space", env.action_space)

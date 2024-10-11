@@ -46,6 +46,9 @@ func get_wave_data(my_id:int, index:int)->Resource:
 			var additional_groups = get_additional_groups(max(1, (nb_baits / 10.0) as int), 60, max(0, (nb_baits / 15.0) as int), extra_enemy_scenes, 15)
 			wave.groups_data.append_array(additional_groups)
 
+	# ANCHOR : Wave duration override
+	wave.wave_duration = 6000
+
 	return wave
 
 

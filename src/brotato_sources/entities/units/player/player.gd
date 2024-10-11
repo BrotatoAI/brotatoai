@@ -342,11 +342,11 @@ func take_damage(value:int, hitbox:Hitbox = null, dodgeable:bool = true, armor_a
 
 		TempStats.emit_updated()
 		
-		print_debug('updated damage', dmg_taken)
+		# print_debug('updated damage', dmg_taken)
 		
 		return dmg_taken
 		
-	print_debug('updated damage 0.0')
+	# print_debug('updated damage 0.0')
 
 	return [0, 0]
 

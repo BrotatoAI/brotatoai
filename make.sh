@@ -5,26 +5,27 @@ mkdir -p ./workspace/SteamCMD
 curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_osx.tar.gz" | tar zxvf - -C ./workspace/SteamCMD
 
 # Brotato app
-./workspace/SteamCMD/steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir ./workspace/brotato/ +login $STEAM_ACCOUNT_NAME +app_update 1942280 validate +quit
+mkdir -p ./workspace/brotato
+./workspace/SteamCMD/steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir ../brotato/ +login $STEAM_ACCOUNT_NAME +app_update 1942280 validate +quit
 
 # GDRE
 curl -sqL -o ./workspace/GDRE_tools-v0.6.2-macos.zip "https://github.com/bruvzg/gdsdecomp/releases/download/v0.6.2/GDRE_tools-v0.6.2-macos.zip"
-unzip -q -d ./workspace/GDRE_tools-v0.6.2-macos.zip ./workspace
+unzip ./workspace/GDRE_tools-v0.6.2-macos.zip -d ./workspace
 rm ./workspace/GDRE_tools-v0.6.2-macos.zip
 
 chmod +x ."/workspace/Godot RE Tools.app/Contents/MacOS/Godot RE Tools"
-."/workspace/Godot RE Tools.app/Contents/MacOS/Godot RE Tools" --headless --recover=./workspace/brotato/Brotato.pck --output=./workspace/brotato_sources
+."/workspace/Godot RE Tools.app/Contents/MacOS/Godot RE Tools" --headless --recover=workspace/brotato/Brotato.pck --output=workspace/brotato_sources_2
 
 # Godot python
 
-brew install scons yasm
-git clone https://github.com/touilleMan/godot-python.git ./workspace/godot-python
-asdf install python 3.10.8
-asdf local python 3.10.8
-python -m venv venv
-pip install typed-ast==1.5.0
-pip install -r requirements.txt
-scons platform=osx-64 arch=arm64 CC=clang release
+# brew install scons yasm
+# git clone https://github.com/touilleMan/godot-python.git ./workspace/godot-python
+# asdf install python 3.10.8
+# asdf local python 3.10.8
+# python -m venv venv
+# pip install typed-ast==1.5.0
+# pip install -r requirements.txt
+# scons platform=osx-64 arch=arm64 CC=clang release
 
 # Godot editor
 cp ./workspace/brotato/steam_data.json ./workspace/brotato_sources/steam_data.json

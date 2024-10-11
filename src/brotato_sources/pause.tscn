@@ -18,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 1880.0
 margin_bottom = 1040.0
+rect_scale = Vector2( 0.998808, 1.00144 )
 texture = ExtResource( 2 )
 
 [node name="BlackRect" type="ColorRect" parent="."]

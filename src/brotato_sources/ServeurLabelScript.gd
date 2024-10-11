@@ -2,8 +2,8 @@ extends Label
 
 onready var _sync_node = get_node("/root/Main/Sync")
 
-func _ready():
-	pause_mode = Node.PAUSE_MODE_PROCESS
+#func _ready():
+#	pause_mode = Node.PAUSE_MODE_PROCESS
 	
 func _process(delta):
 	var label = 'UNKNOWN'

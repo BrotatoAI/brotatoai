@@ -322,7 +322,6 @@ func _physics_process(_delta:float)->void :
 	_life_bar.update_color_from_effects(life_bar_effects)
 	_player_life_bar.update_color_from_effects(life_bar_effects)
 
-	# ANCHOR : Aim
 	if not _cleaning_up and ProgressData.is_manual_aim() and InputService.using_gamepad:
 		var rjoy = Input.get_vector("rjoy_left", "rjoy_right", "rjoy_up", "rjoy_down").normalized()
 		var player_pos = _player.get_global_transform_with_canvas().origin
@@ -377,27 +376,15 @@ func _on_player_died(_p_player:Player)->void :
 	# ANCHOR : Restart, died
 	print_debug('player died...')
 	
-#	var _controller = $"/root/Main/AIController2D"
-#	_controller.reset()
+	var _controller = $"/root/Main/AIController2D"
+	_controller.done = true
 	
-	var _sync = $"/root/Main/Sync"
-	_sync.just_reset = true
-#
-#	ProgressData.reset_run_state()
-#	RunData.reset(true)
-#	TempStats.reset()
-#
-#	RunData.reset_weapons_dmg_dealt()
-#	RunData.reset_cache()
-	
-	
-	
-	# var _error = get_tree().change_scene(MenuData.game_scene)
+	return
 	
 	# _ready()
 
-	# var _error = get_tree().change_scene(MenuData.game_scene)
-	# get_tree().set_pause(false)
+#	var _error = get_tree().change_scene(MenuData.game_scene)
+#	get_tree().set_pause(false)
 	
 	###
 
@@ -866,27 +853,14 @@ func _on_PauseMenu_unpaused()->void :
 
 func _on_WaveTimer_timeout()->void :
 	
-	# ANCHOR : end wave won
+	# ANCHOR : End wave won
 	
 	print_debug('end wave')
+
+	var _controller = $"/root/Main/AIController2D"
+	_controller.done = true
 	
-	var _sync = $"/root/Main/Sync"
-	_sync.just_reset = true
-	
-	# RunData.reset(true)
-	# TempStats.reset()
-	
-	# ProgressData.reset_run_state()
-	# RunData.reset(true)
-	
-	# var _error = get_tree().change_scene(MenuData.game_scene)
-	
-	# print_debug(_error)
-	
-	# get_tree().paused = false
-	
-	#_player.die()
-	#remove_child(_player)
+	return
 	
 	#_ready()
 	

@@ -42,13 +42,12 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2931079751
 https://github.com/GodotModding/godot-mod-loader
 
 
-##
-python -m venv brotato_env
-
-pip install gymnasium stable-baselines3 opencv-python tensorboard
-
-# Run samples
+## Python
 
 ```bash
-pip install gymnasium 'gymnasium[box2d]'
+python3 -m venv brotato_env
+
+pip install -r requirements.txt
+
+python3 src/godot_rl/main.py
 ```

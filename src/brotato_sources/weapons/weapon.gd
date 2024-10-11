@@ -103,7 +103,11 @@ func attach(attach_to:Vector2, attach_idle_angle:float)->void :
 
 func _physics_process(delta:float)->void :
 
+	# ANCHOR : Player aim
 	if ProgressData.is_manual_aim():
+#		var controller = $"/root/Main/AIController2D"
+#		rotation = (controller.aim_action - global_position).angle()
+		
 		if should_rotate_manual():
 			rotation = (get_global_mouse_position() - global_position).angle()
 	else :

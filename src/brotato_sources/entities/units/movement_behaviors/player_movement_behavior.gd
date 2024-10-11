@@ -5,10 +5,13 @@ const MIN_MOVE_DIST = 20
 
 var last_movement = Vector2.ZERO
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+
 # ANCHOR : Player movement
 func get_movement()->Vector2:
 	var movement:Vector2 = Vector2.ZERO
-
+	
 	if ProgressData.settings.mouse_only:
 		var mouse_pos = get_global_mouse_position()
 		movement = Vector2(mouse_pos.x - _parent.global_position.x, mouse_pos.y - _parent.global_position.y)

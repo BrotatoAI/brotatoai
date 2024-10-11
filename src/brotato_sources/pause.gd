@@ -25,7 +25,9 @@ func _process(_delta:float):
 	_init_weapons()
 	
 	# RunData.invulnerable = true
-	RunData.is_endless_run = true
+	# RunData.is_endless_run = true
+	
+	ProgressData.settings.manual_aim = false
 	
 	_start()
 			

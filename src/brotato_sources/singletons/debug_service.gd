@@ -1,6 +1,7 @@
 extends Node
 
-export (int, 1, 1000) var starting_wave: = 3
+# ANCHOR : Starting wave number
+export (int, 1, 1000) var starting_wave: = 2
 export (int) var starting_gold = 30
 export (bool) var invulnerable = false
 export (bool) var invisible = false

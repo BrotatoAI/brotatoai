@@ -35,6 +35,7 @@ func _ready():
 	add_to_group("AGENT")
 
 func init(player: Player):
+	print_debug("player: ", player)
 	_player = player
 
 #-- Methods that need implementing using the "extend script" option in Godot --#
@@ -87,7 +88,7 @@ func set_heuristic(h):
 	heuristic = h
 
 func get_done():
-	return done
+	return done || GodotRLClient.is_done
 
 func set_done_false():
 	done = false
