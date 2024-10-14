@@ -49,8 +49,9 @@ func _init_difficulty():
 func _init_weapons():
 	var weapons = ItemService.weapons
 	
-	var selected_weapon = _find_by_id(weapons, 'weapon_smg_1')
-	
+#	var selected_weapon = _find_by_id(weapons, 'weapon_smg_1')
+	var selected_weapon = _find_by_id(weapons, 'weapon_double_barrel_shotgun_1')
+
 	RunData.add_weapon(selected_weapon, true)
 	# RunData.add_weapon(selected_weapon, true)
 	

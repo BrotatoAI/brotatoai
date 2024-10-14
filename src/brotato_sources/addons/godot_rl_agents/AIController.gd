@@ -68,7 +68,7 @@ func _physics_process(delta):
 		needs_reset = true
 		
 	if needs_reset || GodotRLClient.needs_reset:
-		print('needs_reset: ', needs_reset, ', client: ', GodotRLClient.needs_reset)
+		print('needs_reset: ', needs_reset, ', GDClient: ', GodotRLClient.needs_reset)
 		reset()
 
 func get_obs_space():
@@ -81,6 +81,7 @@ func get_obs_space():
 func reset():
 	n_steps = 0
 	needs_reset = false
+	GodotRLClient.needs_reset = false
 	
 	# ANCHOR : Reset scene (single agent env)
 

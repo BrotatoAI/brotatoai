@@ -377,7 +377,8 @@ func _on_player_died(_p_player:Player)->void :
 	print('player died...')
 	
 	var _controller = $"/root/Main/BrotatoAI"
-	_controller.done = true
+#	_controller.done = true
+	GodotRLClient.is_done = true
 	_controller.needs_reset = true
 
 	return
@@ -859,7 +860,7 @@ func _on_WaveTimer_timeout()->void :
 	print('end wave')
 
 	var _controller = $"/root/Main/AIController2D"
-	_controller.done = true
+	GodotRLClient.is_done = true
 	_controller.needs_reset = true
 	
 	return

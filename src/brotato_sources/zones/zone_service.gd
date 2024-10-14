@@ -47,7 +47,7 @@ func get_wave_data(my_id:int, index:int)->Resource:
 			wave.groups_data.append_array(additional_groups)
 
 	# ANCHOR : Wave duration override
-	wave.wave_duration = 6000
+	wave.wave_duration = 600
 
 	return wave
 

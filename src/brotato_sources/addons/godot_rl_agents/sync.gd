@@ -1,7 +1,7 @@
 extends Node
 # --fixed-fps 2000 --disable-render-loop
 export (int) var action_repeat = 8
-export (int) var speed_up = 3
+export (int) var speed_up = 5
 var n_action_steps = 0
 
 const DEFAULT_SEED := "1"
@@ -20,13 +20,10 @@ onready var start_time = OS.get_ticks_msec()
 
 var initialized = false
 
-var instance_number = rand_range(1, 1000)
-
-
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	print('sync ready ...', instance_number, get_tree(), get_parent())
+	print('sync node ready ...')
 	
 	get_parent().connect("ready", self, "_on_root_ready")
 
@@ -36,7 +33,7 @@ func _on_root_ready():
 	print('********************************')
 	print('*****      ROOT READY      *****')
 	print('********************************')
-	get_tree().set_pause(true)
+
 	_initialize()
 #
 #	timer = Timer.new()
@@ -99,8 +96,8 @@ func _get_speedup():
 	print(args)
 	return args.get("speedup", str(speed_up)).to_int()
 
-#func _get_port():
-#	return args.get("port", DEFAULT_PORT).to_int()
+func _get_port():
+	return args.get("port", GodotRLClient.DEFAULT_PORT).to_int()
 
 func _set_seed():
 	var _seed = args.get("env_seed", DEFAULT_SEED).to_int()
@@ -115,17 +112,22 @@ func _initialize():
 	
 	args = _get_args()
 #	print('args', args)
-	var speedup = _get_speedup();
+	var speedup = _get_speedup()
 	Engine.iterations_per_second = speedup * 60 # Replace with function body.
 	Engine.time_scale = speedup * 1.0
 	GodotRLClient.speedup = speedup
+	var port = _get_port()
+	GodotRLClient.port = port
 	
 #	prints("physics ticks", Engine.iterations_per_second, Engine.time_scale, speedup, speed_up)
 	
 	if GodotRLClient.stream.get_status() != StreamPeerTCP.STATUS_CONNECTED:
+		print('try to connect to server ...')
 		connected = GodotRLClient.connect_to_server()
 	else:
 		connected = true
+		# We assume that previous env was triggering action
+		need_to_send_obs = true
 	
 	print("connected ... lets go, connected: ", connected, ", env sent: ", GodotRLClient.env_info_sent)
 	
@@ -156,13 +158,14 @@ func _physics_process(delta):
 	n_action_steps += 1
 
 	if connected:
-		get_tree().set_pause(true) 
+		get_tree().set_pause(true)
 
-		if just_reset || GodotRLClient.needs_reset:
+		if just_reset:
 			
 			print('just reset')
 			
 			just_reset = false
+			
 			var obs = _get_obs_from_agents()
 
 			var reply = {
@@ -174,15 +177,21 @@ func _physics_process(delta):
 
 			GodotRLClient._send_dict_as_json_message(reply)
 			# this should go straight to getting the action and setting it checked the agent, no need to perform one phyics tick
-			get_tree().set_pause(false) 
+			get_tree().set_pause(false)
 			return
 
 		if need_to_send_obs:
 			# print('need to send obs')
 			need_to_send_obs = false
 			var reward = _get_reward_from_agents()
-			var done = [false] # _get_done_from_agents()
-			#_reset_agents_if_done() # this ensures the new observation is from the next env instance : NEEDS REFACTOR
+			var done = _get_done_from_agents()
+			
+			if done[0]:
+				print('********************************')
+				print('*****  #  AGENT DONE  #    *****')
+				print('********************************')
+				
+			_reset_agents_if_done() # this ensures the new observation is from the next env instance : NEEDS REFACTOR
 
 			var obs = _get_obs_from_agents()
 
@@ -198,9 +207,9 @@ func _physics_process(delta):
 			GodotRLClient._send_dict_as_json_message(reply)
 
 		var handled = handle_message()
-#	else:
-#		print('not connected reset agents')
-#		_reset_agents_if_done()
+	else:
+		print('not connected reset agents')
+		_reset_agents_if_done()
 	print('********************************')
 
 func handle_message() -> bool:
@@ -226,7 +235,9 @@ func handle_message() -> bool:
 		print("resetting all agents")
 		_reset_all_agents()
 		
-		# get_tree().set_pause(false)
+		just_reset = true
+		
+		get_tree().set_pause(false)
 		# print("resetting forcing draw")
 		# RenderingServer.force_draw()
 		
@@ -264,9 +275,7 @@ func _call_method_on_agents(method):
 	var returns = []
 	for agent in agents:
 		returns.append(agent.call(method))
-		
 	return returns
-
 
 func _reset_agents_if_done():
 	print('reset agents if done')

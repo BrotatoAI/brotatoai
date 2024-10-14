@@ -1,0 +1,73 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+'ACTORS
+control "Godot Engine" #darkblue
+participant "Sync Node" #lightblue
+control Agent #lightblue
+participant "Game Scene" #lightblue
+participant Python #lightyellow
+
+'CONFIG
+autonumber
+
+'INITIALIZATION
+group "Initialization"
+activate "Sync Node" #red
+"Sync Node" -> Python: Connect
+activate Python #lightyellow
+Python --> "Sync Node": Connection Response
+deactivate Python
+
+"Sync Node" -> Python: Request Handshake
+activate Python #lightyellow
+Python --> "Sync Node": Handshake Response (with model version)
+deactivate Python
+
+"Sync Node" -> Python: Send env info
+note over Agent: "obs_size", "observation_space", "action_space", "n_agents"
+end
+
+'PHYSIC LOOP
+group "Physic loop"
+
+"Sync Node" -> "Godot Engine": Physic loop (pause)
+activate "Godot Engine" #darkblue
+
+"Sync Node" -> Agent: Retrieve observation array
+activate Agent #lightblue
+
+Agent -> "Game Scene": Ask Observation
+activate "Game Scene" #lightblue
+"Game Scene" -> Agent: Retrieve observation
+deactivate "Game Scene"
+
+Agent -> "Sync Node": Retrieve observation array
+deactivate Agent
+
+"Sync Node" -> Python: Send "observation_space"
+activate Python #lightyellow
+Python -> "Sync Node": Retrieve "action_space"
+deactivate Python
+
+"Sync Node" -> Agent: Send Action
+activate Agent #lightblue
+Agent -> "Game Scene": Apply Action
+activate "Game Scene" #lightblue
+"Godot Engine" -> "Sync Node": Physic loop (unpause)
+deactivate "Godot Engine"
+"Sync Node" -> Agent: Send "action_space"
+deactivate Agent
+"Game Scene" -> Agent
+deactivate "Game Scene"
+
+
+
+"Sync Node" -> "Godot Engine": Physic loop + 1 (pause)"
+
+
+"Sync Node" -> Python: Send "action_space"
+
+end
+
+@enduml
