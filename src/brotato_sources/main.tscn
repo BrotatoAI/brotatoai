@@ -99,7 +99,7 @@
 [ext_resource path="res://zones/zone_1/000_debug/group_1.tres" type="Resource" id=97]
 [ext_resource path="res://zones/zone_1/000_loot/group_1.tres" type="Resource" id=98]
 [ext_resource path="res://items/all/turret/turret_effect_1.tres" type="Resource" id=99]
-[ext_resource path="res://addons/godot_rl_agents/BratatoAI.gd" type="Script" id=100]
+[ext_resource path="res://addons/godot_rl_agents/BrotatoAI.gd" type="Script" id=100]
 [ext_resource path="res://ServeurLabelScript.gd" type="Script" id=101]
 [ext_resource path="res://resources/fonts/raw/Anybody-Medium.ttf" type="DynamicFontData" id=102]
 [ext_resource path="res://InputLabel.gd" type="Script" id=103]
@@ -536,7 +536,7 @@ autostart = true
 [node name="Sync" type="Node" parent="."]
 script = ExtResource( 77 )
 
-[node name="AIController2D" type="Node2D" parent="."]
+[node name="BrotatoAI" type="Node2D" parent="."]
 script = ExtResource( 100 )
 control_mode = 2
 onnx_model_path = "/users/eguenichon/Development/BrotatoAI"

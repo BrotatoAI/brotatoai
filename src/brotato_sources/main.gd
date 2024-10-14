@@ -374,11 +374,12 @@ func _on_player_died(_p_player:Player)->void :
 	# _player_life_bar.hide()
 	
 	# ANCHOR : Restart, died
-	print_debug('player died...')
+	print('player died...')
 	
-	var _controller = $"/root/Main/AIController2D"
+	var _controller = $"/root/Main/BrotatoAI"
 	_controller.done = true
-	
+	_controller.needs_reset = true
+
 	return
 	
 	# _ready()
@@ -855,10 +856,11 @@ func _on_WaveTimer_timeout()->void :
 	
 	# ANCHOR : End wave won
 	
-	print_debug('end wave')
+	print('end wave')
 
 	var _controller = $"/root/Main/AIController2D"
 	_controller.done = true
+	_controller.needs_reset = true
 	
 	return
 	
@@ -999,7 +1001,6 @@ func _on_UIBonusGold_mouse_exited()->void :
 
 
 func _on_EntitySpawner_player_spawned(player:Player)->void :
-	print_debug('player spawn')
 	_player = player
 	TempStats.player = player
 	_floating_text_manager.player = player

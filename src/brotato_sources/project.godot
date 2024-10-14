@@ -1680,6 +1680,11 @@ locale_filter=[ 1, [ "de", "en", "es", "fr", "it", "ja", "ko", "pl", "pt", "ru",
 translation_remaps={
 }
 
+[logging]
+
+file_logging/enable_file_logging=true
+file_logging/log_path="/Users/eguenichon/Development/BrotatoAI/workspace/logs"
+
 [network]
 
 limits/debugger_stdout/max_chars_per_second=10000

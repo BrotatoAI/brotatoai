@@ -24,7 +24,6 @@ export(String, "Multi-policy mode options") var policy_name: String = "shared_po
 var onnx_model: ONNXModel
 
 var heuristic := "human"
-var done := false
 var reward := 0.0
 var n_steps := 0
 var needs_reset := false
@@ -67,6 +66,10 @@ func _physics_process(delta):
 	n_steps += 1
 	if n_steps > reset_after:
 		needs_reset = true
+		
+	if needs_reset || GodotRLClient.needs_reset:
+		print('needs_reset: ', needs_reset, ', client: ', GodotRLClient.needs_reset)
+		reset()
 
 func get_obs_space():
 	# may need overriding if the obs space is complex
@@ -78,9 +81,11 @@ func get_obs_space():
 func reset():
 	n_steps = 0
 	needs_reset = false
+	
+	# ANCHOR : Reset scene (single agent env)
 
 func reset_if_done():
-	if done:
+	if GodotRLClient.is_done:
 		reset()
 
 func set_heuristic(h):
@@ -88,10 +93,10 @@ func set_heuristic(h):
 	heuristic = h
 
 func get_done():
-	return done || GodotRLClient.is_done
+	return GodotRLClient.is_done
 
 func set_done_false():
-	done = false
+	GodotRLClient.is_done = false
 
 func zero_reward():
 	reward = 0.0

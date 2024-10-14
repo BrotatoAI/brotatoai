@@ -20,6 +20,8 @@ gdrl --env_path path/to/exported/executable ---config_path path/to/yaml/file
 
 """
 
+import pathlib
+import os
 import argparse
 
 try:
@@ -34,6 +36,7 @@ except ImportError as e:
 
 try:
     from godot_rl.wrappers.stable_baselines_wrapper import stable_baselines_training
+    from godot_rl.wrappers.onnx.stable_baselines_export import export_model_as_onnx
 except ImportError as e:
     error_message = str(e)
 
@@ -92,6 +95,19 @@ def get_args():
 
     return args, extras
 
+def handle_onnx_export(args, model):
+    # Enforce the extension of onnx and zip when saving model to avoid potential conflicts in case of same name
+    # and extension used for both
+    if args.onnx_export_path is not None:
+        path_onnx = pathlib.Path(args.onnx_export_path).with_suffix(".onnx")
+        print("Exporting onnx to: " + os.path.abspath(path_onnx))
+        export_model_as_onnx(model, str(path_onnx))
+
+def handle_model_save(args):
+    if args.save_model_path is not None:
+        zip_save_path = pathlib.Path(args.save_model_path).with_suffix(".zip")
+        print("Saving model to: " + os.path.abspath(zip_save_path))
+        model.save(zip_save_path)
 
 def main():
     args, extras = get_args()
@@ -107,8 +123,12 @@ def main():
     else:
         raise NotImplementedError
 
+    print(args, extras)
+
     training_function(args, extras)
 
+    handle_onnx_export(args)
+    handle_model_save(args)
 
 if __name__ == "__main__":
     main()

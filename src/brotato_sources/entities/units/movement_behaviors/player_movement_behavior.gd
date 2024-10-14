@@ -19,7 +19,7 @@ func get_movement()->Vector2:
 		if (abs(movement.x) < MIN_MOVE_DIST and abs(movement.y) < MIN_MOVE_DIST) or Input.is_mouse_button_pressed(BUTTON_LEFT):
 			movement = Vector2.ZERO
 	else :
-		var controller = $"/root/Main/AIController2D"
+		var controller = $"/root/Main/BrotatoAI"
 		
 		movement = controller.move_action
 		

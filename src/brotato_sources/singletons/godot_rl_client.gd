@@ -8,9 +8,10 @@ var stream : StreamPeerTCP = null
 var port:int = DEFAULT_PORT.to_int()
 var env_info_sent = false
 var is_done = false
+var needs_reset = false
 
 var last_key: String
-var speedup: int
+var speedup: float
 
 const MAJOR_VERSION := "0"
 const MINOR_VERSION := "3" 
@@ -23,25 +24,23 @@ func _input(_event: InputEvent):
 	if Input.is_key_pressed(KEY_P):
 		last_key = 'P'
 		get_tree().paused = !get_tree().paused
-		
+
 	if Input.is_key_pressed(KEY_R):
 		last_key = 'R'
-		RunData.reset(true)
-		MusicManager.play(0)
-		var _error = get_tree().change_scene(MenuData.game_scene)
-		
-	if Input.is_key_pressed(KEY_D):
-		last_key = 'D'
+		needs_reset = true
 		is_done = true
-		
+
 	if Input.is_key_pressed(KEY_PLUS):
 		last_key = '+'
 		speedup += 1
-		
+
 	if Input.is_key_pressed(KEY_MINUS):
 		last_key = '-'
 		if (speedup > 1):
 			speedup -= 1
+			
+	Engine.iterations_per_second = speedup * 60 # Replace with function body.
+	Engine.time_scale = speedup * 1.0
 
 func connect_to_server():
 	print("Waiting for one second to allow server to start")
@@ -97,6 +96,7 @@ func _parse_json(json_string: String):
 		print_debug("JSON Parse Error: ", result.error_string, " in ", json_string, " at line ", result.error_line)
 	
 func _send_dict_as_json_message(dict):
+	print('sending: ', dict)
 	nb_exchanged_msg += 1
 	stream.put_string(JSON.print(dict))
 	
