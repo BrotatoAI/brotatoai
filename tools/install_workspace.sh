@@ -1,3 +1,5 @@
+#!/bin/bash
+
 STEAM_ACCOUNT_NAME=$1
 WORKSPACE_DIR=$(readlink -f ../workspace)
 

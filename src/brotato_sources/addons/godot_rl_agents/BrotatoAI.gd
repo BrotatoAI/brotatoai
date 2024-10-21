@@ -7,8 +7,11 @@ var _wave_duration: int
 
 var _dead_enemy_count = 0
 
+var _max_visible_consumables = 10
+
 var move_action : Vector2 = Vector2.ZERO
 var aim_action : Vector2 = Vector2.ZERO
+
 
 func _ready():
 	_consumables = $"/root/Main/Consumables"
@@ -21,9 +24,9 @@ func get_obs() -> Dictionary:
 
 	var obs = []
 	
-	get_enemy_positions(obs)
+	_get_enemy_positions(obs)
 	
-	get_loot_positions(obs)
+	_get_loot_positions(obs)
 	
 	# Player position
 	obs.push_front(_player.position.x)
@@ -44,45 +47,75 @@ func get_obs() -> Dictionary:
 
 	return {"obs":obs}
 	
-func get_enemy_positions(obs) -> void:
+func _get_enemy_positions(obs: Array) -> void:
+	_dead_enemy_count = 0
 	var alive_enemy_count = 0
 	
+	var starting_size = obs.size()
 	
 	var enemy_spwaner_size = _entity_spawner.enemies.size()
 	var max_enemies = _entity_spawner._current_wave_data.max_enemies
 	
-	for i in range(enemy_spwaner_size):
-
-		var enemy = _entity_spawner.enemies[i]
+	for enemy in _entity_spawner.enemies:
 		if (is_instance_valid(enemy) and !enemy.dead):
 			alive_enemy_count += 1
-			obs.push_front(enemy.position.x)
-			obs.push_front(enemy.position.y)
+			obs.push_back(enemy.position.x)
+			obs.push_back(enemy.position.y)
 		else:
 			_dead_enemy_count += 1
-			obs.push_back(-1)
-			obs.push_back(-1)
-		
-		if alive_enemy_count == max_enemies:
-			break
 
-	if alive_enemy_count < max_enemies:
-		for i in range(max_enemies - alive_enemy_count):
-			obs.push_back(-1)
-			obs.push_back(-1)
+	_fill_with_negative_vector(obs, starting_size + max_enemies * 2)
 			
-func get_loot_positions(obs) -> void:
-	_consumables.get_children()
+func _get_loot_positions(obs: Array) -> void:
+	
+	var nb_consumable_found = 0
+	
+	var starting_size = obs.size()
+	
+	var positions = Dictionary()
+	var consumables = []
+
+	for child in _consumables.get_children():
+		print('child ', child)
+		var consumable := child as Consumable
+		if is_instance_valid(consumable) and consumable.consumable_data.name  == 'CONSUMABLE_FRUIT':
+			positions[consumable.position.distance_to(_player.position)] = consumable
+
+	var keys = positions.keys()
+	if keys.size() > 0:
+		var sorted_keys = keys.sort()
+	
+		for key in keys:
+			print('key ', key)
+
+#		for key in sorted_keys:
+#			if consumables.size() < _max_visible_consumables:
+#				var consumable = consumables[key]
+#				obs.push_back(consumable.position.x)
+#				obs.push_back(consumable.position.y)
+			
+	_fill_with_negative_vector(obs, (starting_size / 2) + _max_visible_consumables)
+	
+func _fill_with_negative_vector(obs: Array, expected_size: int) -> void:
+	if obs.size() < expected_size: 
+		for i in range(expected_size - obs.size()):
+			obs.push_back(-1.0)
 
 func get_reward() -> float:
-	_player = $"/root/Main"._player
+	var main = $"/root/Main"
+	_player = main._player
+	var won = main._is_run_won
 #	print('reward', _entity_spawner, _wave_timer, _player)
 
-	var elapsed_time = _wave_duration - _wave_timer.time_left
-	var reward = RunData.gold + _dead_enemy_count + elapsed_time
+	var health = _player.current_stats.health * 10
+	var elapsed_time = (_wave_duration - _wave_timer.time_left) * 5
+	var reward = health + _dead_enemy_count + round(elapsed_time)
 	
-	if (_player.dead):
-		return -1000.0
+	if _player.dead:
+		return reward - 1000.0
+		
+	if won:
+		return reward + 1000.0
 	
 #	print('reward: ', reward)
 	
@@ -129,7 +162,7 @@ func reset():
 	
 	var _error = get_tree().change_scene(MenuData.game_scene)
 	
-	if _error > 0:
+	if _error != OK:
 		print(_error)
 	
 	queue_free()

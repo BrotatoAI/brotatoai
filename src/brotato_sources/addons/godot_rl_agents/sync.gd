@@ -1,6 +1,7 @@
 extends Node
 # --fixed-fps 2000 --disable-render-loop
 export (int) var action_repeat = 8
+# ANCHOR : Speed settings
 export (int) var speed_up = 5
 var n_action_steps = 0
 
@@ -15,18 +16,21 @@ var need_to_send_obs = false
 var args = null
 var timer: Timer
 var just_reset = false
+var last_reward
 
 onready var start_time = OS.get_ticks_msec()
+
+var onnx_model_path: String
+var onnx_model: ONNXModel
 
 var initialized = false
 
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	print('sync node ready ...')
+#	print('sync node ready ...')
 	
 	get_parent().connect("ready", self, "_on_root_ready")
-
 	get_tree().root.connect("ready", self, "_on_root_ready")
 
 func _on_root_ready():
@@ -35,22 +39,8 @@ func _on_root_ready():
 	print('********************************')
 
 	_initialize()
-#
-#	timer = Timer.new()
-#	timer.set_wait_time(1.0)
-#	timer.set_one_shot(true)
-#	add_child(timer)
-#	timer.connect("timeout", self, "_on_timer_timeout")
-#	timer.start()
-#
-#func _on_timer_timeout():
-#	get_tree().set_pause(false)
-#	# Cleanup timer if necessary
-#	# var timer = get_node("Timer")
-#	if timer:
-#		timer.queue_free()
 		
-func _get_agents():
+func _set_agents():
 	agents = get_tree().get_nodes_in_group("AGENT")
 
 func _set_heuristic(heuristic):
@@ -71,14 +61,6 @@ func _send_env_info():
 	GodotRLClient._send_dict_as_json_message(message)
 
 func _get_args():
-	# print("getting command line arguments")
-#	var arguments = {}
-#	for argument in OS.get_cmdline_args():
-#		# Parse valid command-line arguments into a dictionary
-#		if argument.find("=") > -1:
-#			var key_value = argument.split("=")
-#			arguments[key_value[0].lstrip("--")] = key_value[1]
-			
 	var arguments = {}
 	for argument in OS.get_cmdline_args():
 		print(argument)
@@ -102,25 +84,56 @@ func _get_port():
 func _set_seed():
 	var _seed = args.get("env_seed", DEFAULT_SEED).to_int()
 	seed(_seed)
+	
+func _set_onnx_model_path():
+	onnx_model_path = args.get("onnx_model_path", '')
+#	onnx_model_path = args.get("onnx_model_path", '/Users/eguenichon/Development/BrotatoAI/workspace/model/model_3.onnx')
+	pass
 
 func _set_action_repeat():
 	action_repeat = args.get("action_repeat", DEFAULT_ACTION_REPEAT).to_int()
+	
+func _load_onnx_model():
+	var file = File.new()
+	assert(
+		file.file_exists(onnx_model_path),
+		"Onnx Model Path set on Sync node does not exist: " + onnx_model_path
+	)
+	onnx_model = ONNXModel.new(onnx_model_path, 1)
+	# onnx_model.set_action_means_only(action_space)
 
 func _initialize():
 #	print('initialize')
-	_get_agents()
+	_set_agents()
 	
 	args = _get_args()
 #	print('args', args)
+
 	var speedup = _get_speedup()
 	Engine.iterations_per_second = speedup * 60 # Replace with function body.
 	Engine.time_scale = speedup * 1.0
 	GodotRLClient.speedup = speedup
-	var port = _get_port()
-	GodotRLClient.port = port
+	
+	_set_onnx_model_path()
 	
 #	prints("physics ticks", Engine.iterations_per_second, Engine.time_scale, speedup, speed_up)
+
+	if onnx_model_path != '':
+		_load_onnx_model()
+	else:
+		var port = _get_port()
+		GodotRLClient.port = port
+		
+		_connect()
+
+		if !GodotRLClient.env_info_sent:
+			_set_heuristic("model")
+			_send_env_info()
+			GodotRLClient.env_info_sent = true
 	
+#	print('init done')
+
+func _connect():
 	if GodotRLClient.stream.get_status() != StreamPeerTCP.STATUS_CONNECTED:
 		print('try to connect to server ...')
 		connected = GodotRLClient.connect_to_server()
@@ -131,21 +144,18 @@ func _initialize():
 	
 	print("connected ... lets go, connected: ", connected, ", env sent: ", GodotRLClient.env_info_sent)
 	
-#	if !initialized:
-#		if connected:
-	if !GodotRLClient.env_info_sent:
-		_set_heuristic("model")
-		_send_env_info()
-		GodotRLClient.env_info_sent = true
-#		else:
-#			_set_heuristic("human")  
-#
-#			_set_seed()
-#			_set_action_repeat()
-	
-#	print('init done')
 
 func _physics_process(delta): 
+
+	if GodotRLClient.manual_input:
+		return
+		
+	if onnx_model_path != '':
+		var obs = _get_obs_from_agents()
+		var action = onnx_model.run_inference(obs, 1.0)
+		
+#		print('action: ', action)
+		_set_agent_actions([action])
 
 	# two modes, human control, agent control
 	# pause tree, send obs, get actions, set actions, unpause tree
@@ -153,7 +163,7 @@ func _physics_process(delta):
 		n_action_steps += 1
 		return
 		
-	print('process ... need_to_send_obs: ', need_to_send_obs, ', just reset: ', just_reset, ', needs_reset: ', GodotRLClient.needs_reset)
+	#print('process ... need_to_send_obs: ', need_to_send_obs, ', just reset: ', just_reset, ', needs_reset: ', GodotRLClient.needs_reset)
 
 	n_action_steps += 1
 
@@ -184,6 +194,7 @@ func _physics_process(delta):
 			# print('need to send obs')
 			need_to_send_obs = false
 			var reward = _get_reward_from_agents()
+			last_reward = reward
 			var done = _get_done_from_agents()
 			
 			if done[0]:
@@ -202,7 +213,7 @@ func _physics_process(delta):
 				"done": done
 			}
 
-			print('Send obs ...')
+			# print('Send obs ...')
 
 			GodotRLClient._send_dict_as_json_message(reply)
 
@@ -210,16 +221,16 @@ func _physics_process(delta):
 	else:
 		print('not connected reset agents')
 		_reset_agents_if_done()
-	print('********************************')
+	# print('********************************')
 
 func handle_message() -> bool:
 	
-	print('handle message')
+	# print('handle message')
 
 	# get json message: reset, step, close
 	var message = GodotRLClient._get_dict_json_message()
 	
-	print('handle message: ', message["type"])
+	# print('handle message: ', message["type"])
 	
 	if message == null:
 		print('received null message')
@@ -257,7 +268,7 @@ func handle_message() -> bool:
 			"type": "call",
 			"returns": returns
 		}
-		print("calling method from Python")
+#		print("calling method from Python")
 		GodotRLClient._send_dict_as_json_message(reply)   
 		return handle_message()
 	
@@ -278,7 +289,7 @@ func _call_method_on_agents(method):
 	return returns
 
 func _reset_agents_if_done():
-	print('reset agents if done')
+#	print('reset agents if done')
 	if agents:
 		for agent in agents:
 			if agent.get_done(): 
@@ -305,7 +316,6 @@ func _get_reward_from_agents():
 	
 func _get_done_from_agents():
 	var dones = [] 
-	print(agents)
 	for agent in agents:
 		var done = agent.get_done()
 		if done: agent.set_done_false()

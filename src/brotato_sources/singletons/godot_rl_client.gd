@@ -12,6 +12,7 @@ var needs_reset = false
 
 var last_key: String
 var speedup: float
+var manual_input = false
 
 const MAJOR_VERSION := "0"
 const MINOR_VERSION := "3" 
@@ -29,6 +30,10 @@ func _input(_event: InputEvent):
 		last_key = 'R'
 		needs_reset = true
 		is_done = true
+		
+	if Input.is_key_pressed(KEY_M):
+		last_key = 'M'
+		manual_input = !manual_input
 
 	if Input.is_key_pressed(KEY_PLUS):
 		last_key = '+'
@@ -96,7 +101,7 @@ func _parse_json(json_string: String):
 		print_debug("JSON Parse Error: ", result.error_string, " in ", json_string, " at line ", result.error_line)
 	
 func _send_dict_as_json_message(dict):
-	print('sending: ', dict)
+	# print('sending: ', dict)
 	nb_exchanged_msg += 1
 	stream.put_string(JSON.print(dict))
 	
@@ -107,7 +112,7 @@ func _handshake():
 	print("performing handshake")
 	
 	var json_dict = _get_dict_json_message()
-	print_debug('dict', JSON.print(json_dict))
+	# print_debug('dict', JSON.print(json_dict))
 
 	assert(json_dict["type"] == "handshake")
 	var major_version = json_dict["major_version"]

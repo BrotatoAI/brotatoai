@@ -859,7 +859,8 @@ func _on_WaveTimer_timeout()->void :
 	
 	print('end wave')
 
-	var _controller = $"/root/Main/AIController2D"
+	var _controller = $"/root/Main/BrotatoAI"
+	_is_run_won = true
 	GodotRLClient.is_done = true
 	_controller.needs_reset = true
 	

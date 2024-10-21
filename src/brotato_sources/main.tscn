@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=2]
+[gd_scene load_steps=113 format=2]
 
 [ext_resource path="res://global/entity_spawner.gd" type="Script" id=1]
 [ext_resource path="res://ui/hud/ui_dim_screen.gd" type="Script" id=2]
@@ -103,6 +103,7 @@
 [ext_resource path="res://ServeurLabelScript.gd" type="Script" id=101]
 [ext_resource path="res://resources/fonts/raw/Anybody-Medium.ttf" type="DynamicFontData" id=102]
 [ext_resource path="res://InputLabel.gd" type="Script" id=103]
+[ext_resource path="res://RewardLabel.gd" type="Script" id=104]
 [ext_resource path="res://items/materials/harvesting_icon.png" type="Texture" id=120]
 [ext_resource path="res://weapons/melee/dagger/dagger_icon.png" type="Texture" id=121]
 [ext_resource path="res://zones/zone_1/000_all/group_2.tres" type="Resource" id=122]
@@ -335,7 +336,7 @@ custom_constants/margin_bottom = 24
 margin_left = 24.0
 margin_top = 24.0
 margin_right = 344.0
-margin_bottom = 332.0
+margin_bottom = 368.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 __meta__ = {
@@ -439,7 +440,7 @@ margin_top = 240.0
 margin_right = 320.0
 margin_bottom = 272.0
 custom_fonts/font = SubResource( 13 )
-text = "INPUT LABEL"
+text = "INPUT INFO"
 script = ExtResource( 103 )
 
 [node name="ServerLabel" type="Label" parent="UI/HUD/LifeContainer"]
@@ -449,6 +450,14 @@ margin_bottom = 308.0
 custom_fonts/font = SubResource( 13 )
 text = "SERVER STATUS"
 script = ExtResource( 101 )
+
+[node name="RewardLabel" type="Label" parent="UI/HUD/LifeContainer"]
+margin_top = 312.0
+margin_right = 320.0
+margin_bottom = 344.0
+custom_fonts/font = SubResource( 13 )
+text = "REWARD INFO"
+script = ExtResource( 104 )
 
 [node name="WaveContainer" type="VBoxContainer" parent="UI/HUD"]
 margin_left = 873.0

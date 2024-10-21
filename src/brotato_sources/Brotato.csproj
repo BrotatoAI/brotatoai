@@ -1,0 +1,26 @@
+<Project Sdk="Godot.NET.Sdk/3.3.0">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.14.1" />
+    <PackageReference Include="Microsoft.ML.OnnxRuntime.DirectML" Version="1.14.1" />
+    <PackageReference Include="Microsoft.ML.OnnxRuntime.Gpu" Version="1.14.1" />
+    <PackageReference Include="System.Numerics.Tensors" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="libonnxruntime.1.14.1.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="libonnxruntime.1.14.1dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="libonnxruntime.so.1.14.1.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

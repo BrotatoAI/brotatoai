@@ -179,13 +179,24 @@ def linear_schedule(initial_value: float) -> Callable[[float], float]:
 
   return func
 
+# n_steps: int = 2048,
+# batch_size: int = 64,
+# n_epochs: int = 10,
+# gamma: float = 0.99,
+# gae_lambda: float = 0.95,
+# ent_coef: float = 0.0,
+# vf_coef: float = 0.5,
+# max_grad_norm: float = 0.5,
+# sde_sample_freq: int = -1,
+# target_kl: Optional[float] = None,
+# policy_kwargs: Optional[Dict[str, Any]] = None,
 
 if args.resume_model_path is None:
   learning_rate = 0.0003 if not args.linear_lr_schedule else linear_schedule(0.0003)
   model: PPO = PPO(
     "MultiInputPolicy",
     env,
-    ent_coef=0.0001,
+    ent_coef=0.01, # default 0.0001
     verbose=2,
     n_steps=32,
     tensorboard_log=args.experiment_dir,
